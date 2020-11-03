@@ -1,0 +1,12 @@
+D:\Projects\Plaid\server\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
+D:\Projects\Plaid\server\Domain\bin\Debug\netcoreapp3.1\Domain.dll
+D:\Projects\Plaid\server\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\Projects\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
+D:\Projects\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
+D:\Projects\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+D:\Projects\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+D:\Projects\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.dll
+D:\Projects\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+D:\Projects\Plaid\server\Domain\bin\Debug\netcoreapp3.1\Common.dll
+D:\Projects\Plaid\server\Domain\bin\Debug\netcoreapp3.1\Common.pdb
+D:\Projects\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CopyComplete
