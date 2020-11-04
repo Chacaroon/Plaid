@@ -17,6 +17,13 @@ type IUserResponse = {
     email: string
 } & ErrorHandling
 
+type IUserProfileResponse = {
+    name: string
+    tag: string
+    email: string
+    bio: string
+} & ErrorHandling
+
 interface IUserCredentials {
     email: string
     password: string
@@ -50,5 +57,14 @@ async function login(credentials: IUserCredentials): Promise<IUserResponse> {
     }
 }
 
-export {isTagTaken, isEmailTaken, register, login}
-export type {INewUser, IUserCredentials}
+async function getProfile(): Promise<IUserProfileResponse> {
+    return {
+        name: 'Name',
+        tag: 'tag123',
+        email: 'example@gmail.com',
+        bio: 'my bio :)'
+    }
+}
+
+export {isTagTaken, isEmailTaken, register, login, getProfile}
+export type {INewUser, IUserCredentials, IUserProfileResponse}
