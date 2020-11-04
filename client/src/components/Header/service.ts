@@ -1,6 +1,6 @@
 import React from 'react'
 import {action, observable} from 'mobx'
-
+import {history} from '../../stores/RouterStore'
 import userStore from '../../stores/UserStore'
 
 interface IState {
@@ -17,6 +17,13 @@ export default class Service {
         }
     )
 
+    handleProfile = action (
+        () => {
+            this.handleClose()
+            history.push('/profile')
+        }
+    )
+
     handleClose = action(
         () => {
             this.state.menuAnchor = null
@@ -27,6 +34,7 @@ export default class Service {
         () => {
             this.state.isLoggedIn = false
             this.handleClose()
+            history.push('/login')
         }
     )
 

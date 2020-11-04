@@ -6,12 +6,13 @@ import {
     IconButton,
     Menu,
     MenuItem,
-    Box
+    Box, Grid
 } from '@material-ui/core'
 import {observer} from 'mobx-react'
 import React from 'react'
 import {AccountCircle} from '@material-ui/icons'
 import Service from './service'
+import {history} from '../../stores/RouterStore'
 
 interface IProps {
 }
@@ -29,49 +30,60 @@ const Header = observer(
 
         render() {
             const {menuAnchor, isLoggedIn} = this.service.state
-            const {handleClick, handleClose, handleLogin, handleLogout} = this.service
+            const {handleClick, handleClose, handleLogin, handleLogout, handleProfile} = this.service
 
             return (
                 <AppBar position="sticky">
                     <Toolbar>
-                        <Box display={'flex'} style={{width: '100%'}} alignItems={'center'}>
-                            <Typography variant="h6">
-                                Plaid
-                            </Typography>
-                            {isLoggedIn &&
-                            <Box style={{marginLeft: 'auto'}}>
-                                <IconButton
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    onClick={handleClick}
-                                    color="inherit"
+                        <Grid container direction={'row'} justify={'center'}>
+                            <Grid item xs={2} container alignItems={'center'}>
+                                <Typography variant="h6" style={{marginRight: 'auto'}}>
+                                    Plaid
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={8} container justify={'center'}>
+                                <Button onClick={() => history.push('/creators/1')}>
+                                    Creators
+                                </Button>
+                                <Button onClick={() => history.push('/creators/1')}>
+                                    Feed
+                                </Button>
+                            </Grid>
+                            <Grid item xs={2} container justify={'flex-end'}>
+                                {isLoggedIn &&
+                                <Box style={{marginLeft: 'auto'}}>
+                                    <IconButton
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleClick}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle/>
+                                    </IconButton>
+                                </Box>
+                                }
+                                {!isLoggedIn &&
+                                <Box style={{marginLeft: 'auto'}}>
+                                    <Button onClick={handleLogin}>
+                                        Register
+                                    </Button>
+                                    <Button onClick={handleLogin}>
+                                        Login
+                                    </Button>
+                                </Box>
+                                }
+                                <Menu
+                                    anchorEl={menuAnchor}
+                                    open={!!menuAnchor}
+                                    onClose={handleClose}
                                 >
-                                    <AccountCircle/>
-                                </IconButton>
-                            </Box>
-                            }
-                            {!isLoggedIn &&
-                            <Box style={{marginLeft: 'auto'}}>
-                                <Button onClick={handleLogin} color={'secondary'}
-                                        style={{color: 'white'}}>
-                                    Register
-                                </Button>
-                                <Button onClick={handleLogin} color={'secondary'}
-                                        style={{color: 'white'}}>
-                                    Login
-                                </Button>
-                            </Box>
-                            }
-                            <Menu
-                                anchorEl={menuAnchor}
-                                open={!!menuAnchor}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                            </Menu>
-                        </Box>
+                                    <MenuItem
+                                        onClick={handleProfile}>Profile</MenuItem>
+                                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                </Menu>
+                            </Grid>
+                        </Grid>
                     </Toolbar>
                 </AppBar>
             )
