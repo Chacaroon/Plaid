@@ -8,7 +8,7 @@ interface IServiceParams {
 
 class Service extends WithLoading {
     private creatorId: IObservableValue<string>
-    @observable creatorInfo?: ICreatorInfo
+    creatorInfo?: ICreatorInfo = observable({name: '', tag: '', bio: null})
 
     constructor(params: IServiceParams) {
         super()

@@ -1,44 +1,82 @@
-import {Grid} from '@material-ui/core'
-import Box from '@material-ui/core/Box/Box'
-import Typography from '@material-ui/core/Typography/Typography'
-import Button from '@material-ui/core/Button'
+import {
+    Button,
+    AppBar,
+    Typography,
+    Toolbar,
+    IconButton,
+    Menu,
+    MenuItem,
+    Box
+} from '@material-ui/core'
 import {observer} from 'mobx-react'
 import React from 'react'
+import {AccountCircle} from '@material-ui/icons'
 import Service from './service'
 
 interface IProps {
 }
 
-@observer
-class Header extends React.Component {
-    private readonly service: Service
+const Header = observer(
+    class extends React.Component {
+        private readonly service: Service
 
-    constructor(props: IProps) {
-        super(props)
+        constructor(props: IProps) {
+            super(props)
 
-        this.service = new Service()
-    }
+            this.service = new Service()
+        }
 
-    render() {
-        const {isLoggedIn} = this.service
 
-        return (
-            <Box bgcolor={'primary.main'}>
-                <Grid container justify={'space-between'} alignItems={'center'}>
-                    <Grid item>
-                        <Box color={'primary.contrastText'}>
-                            <Typography variant={'h5'} component={'h1'}>Plaid</Typography>
+        render() {
+            const {menuAnchor, isLoggedIn} = this.service.state
+            const {handleClick, handleClose, handleLogin, handleLogout} = this.service
+
+            return (
+                <AppBar position="sticky">
+                    <Toolbar>
+                        <Box display={'flex'} style={{width: '100%'}} alignItems={'center'}>
+                            <Typography variant="h6">
+                                Plaid
+                            </Typography>
+                            {isLoggedIn &&
+                            <Box style={{marginLeft: 'auto'}}>
+                                <IconButton
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleClick}
+                                    color="inherit"
+                                >
+                                    <AccountCircle/>
+                                </IconButton>
+                            </Box>
+                            }
+                            {!isLoggedIn &&
+                            <Box style={{marginLeft: 'auto'}}>
+                                <Button onClick={handleLogin} color={'secondary'}
+                                        style={{color: 'white'}}>
+                                    Register
+                                </Button>
+                                <Button onClick={handleLogin} color={'secondary'}
+                                        style={{color: 'white'}}>
+                                    Login
+                                </Button>
+                            </Box>
+                            }
+                            <Menu
+                                anchorEl={menuAnchor}
+                                open={!!menuAnchor}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            </Menu>
                         </Box>
-                    </Grid>
-                    <Grid item>
-                        <Box color={'primary.contrastText'}>
-                            <Button color={'inherit'}>Feed</Button>
-                        </Box>
-                    </Grid>
-                </Grid>
-            </Box>
-        )
+                    </Toolbar>
+                </AppBar>
+            )
+        }
     }
-}
+)
 
 export default Header
