@@ -20,8 +20,10 @@ namespace DAL.Contexts
                 new User()
                 { 
                     Id = 1,
+                    Name = "Vlad",
                     Email = "moransaka@gmail.com",
-                    Password = "qwe123"
+                    Password = "qwe123",
+                    Roles = Common.Enums.RoleEnum.Admin | Common.Enums.RoleEnum.Creator
                 }
             });
         }

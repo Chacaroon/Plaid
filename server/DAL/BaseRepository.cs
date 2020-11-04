@@ -1,25 +1,36 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Contexts;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
 namespace DAL
 {
-    public class BaseRepository<T> : IBaseRepository<T>
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        public void Dispose()
+        protected readonly ApplicationContext _context;
+
+        public BaseRepository(ApplicationContext context)
         {
+            _context = context;
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual void Add(T item)
         {
-            throw new NotImplementedException();
+            _context.Add(item);
+            _context.SaveChanges();
         }
 
-        public IEnumerable<T> GetAll(Expression<Predicate<T>> predicate)
+        public virtual IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Set<T>();
+        }
+
+        public virtual IQueryable<T> GetAll(Expression<Func<T,bool>> predicate)
+        {
+            return GetAll().Where(predicate);
         }
     }
 }

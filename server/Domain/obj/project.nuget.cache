@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "LMyJ54ewEOFQvYihByqZdo3hLD+W2I1XVs2vrUInAcGwmC7at29W65i/J4R4GaykqJjhO7gFjaBi3Yx5Rk4ENg==",
+  "dgSpecHash": "9FxVGkyi9HTTmG1V19syIriv5vJkKdqETi3nBEI7/SLFWTEwdBiWNvy88B2PmwzN3vqpde+8J0nlshgp9BH8eA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Plaid\\server\\Domain\\Domain.csproj",
+  "projectFilePath": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\moransaka_Desktop\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
-    "C:\\Users\\moransaka_Desktop\\.nuget\\packages\\microsoft.identitymodel.logging\\6.8.0\\microsoft.identitymodel.logging.6.8.0.nupkg.sha512",
-    "C:\\Users\\moransaka_Desktop\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
-    "C:\\Users\\moransaka_Desktop\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
+    "C:\\Users\\Duckick\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Duckick\\.nuget\\packages\\microsoft.identitymodel.logging\\6.8.0\\microsoft.identitymodel.logging.6.8.0.nupkg.sha512",
+    "C:\\Users\\Duckick\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
+    "C:\\Users\\Duckick\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

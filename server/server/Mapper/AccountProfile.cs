@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Common.Enums;
+using Common.Extensions;
 using Domain;
 using Server.Models;
 using System;
@@ -14,6 +16,15 @@ namespace Server.Mapper
         {
             CreateMap<User, UserModel>()
                 .ReverseMap();
+
+            CreateMap<RegisterModel, User>()
+                .ForMember(dst => dst.Roles, opt => opt.MapFrom(src => RoleEnum.User))
+                .AfterMap((src, dst) => {
+                    if (src.IsCreator)
+                    {
+                        dst.AddRole(RoleEnum.Creator);
+                    }
+                });
         }
     }
 }
