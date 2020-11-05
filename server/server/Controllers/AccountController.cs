@@ -11,6 +11,7 @@ using Common.Extensions;
 using DAL;
 using DAL.Interfaces;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -19,6 +20,7 @@ using Server.Models;
 
 namespace server.Controllers
 {
+    [Authorize]
     [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -36,6 +38,16 @@ namespace server.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("")]
+        public IActionResult Test()
+        {
+            return Ok(new 
+            {
+                str = "All fine" 
+            });
+        }
+
+        [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel register)
         {
@@ -49,6 +61,7 @@ namespace server.Controllers
             });
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel request)
         {

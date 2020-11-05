@@ -142,6 +142,7 @@ D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.MvcApplicationPartsAssemblyInfo.cs
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.MvcApplicationPartsAssemblyInfo.cache

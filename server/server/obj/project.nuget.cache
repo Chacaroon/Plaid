@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nHsT5/LnjcqVE3dB4PY+7dmyv0/bgIH3RkXDYbTHR631unO32dDlHP+wgsapAymi+u8wN/utuf7+Mnag1FWw8g==",
+  "dgSpecHash": "S5GJHL2ckT7H3ceAabMNg4pIIpieL7UWrEQSXuHYTxuTY2sONpwgfhsvA5Drh6MRZT5Y3w/v5egp/qPQ5PCVtA==",
   "success": true,
   "projectFilePath": "D:\\Project\\Plaid\\server\\server\\Server.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Duckick\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.1.0\\autofac.extensions.dependencyinjection.7.1.0.nupkg.sha512",
     "C:\\Users\\Duckick\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Duckick\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\Duckick\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
     "C:\\Users\\Duckick\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Duckick\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\Duckick\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

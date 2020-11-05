@@ -9,6 +9,7 @@ using DAL.Contexts;
 using System.Reflection;
 using Autofac;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace server
 {
@@ -35,7 +36,28 @@ namespace server
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.Configure<AuthOptions>(authOptionsConfiguration);
-            
+
+            var authOptions = Configuration.GetSection("Auth").Get<AuthOptions>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(option =>
+                {
+                    option.RequireHttpsMetadata = false;
+                    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = authOptions.Issuer,
+
+                        ValidateAudience = true,
+                        ValidAudience = authOptions.Audience,
+
+                        ValidateLifetime = true,
+
+                        IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
+                        ValidateIssuerSigningKey = true
+                    };
+                });
+
             services.AddSwaggerGen();
 
             services.AddCors(options =>
@@ -64,7 +86,7 @@ namespace server
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -74,6 +96,8 @@ namespace server
             });
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
