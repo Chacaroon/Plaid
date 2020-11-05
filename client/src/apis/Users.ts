@@ -2,8 +2,8 @@ import {ErrorHandling} from '../utils/ErrorHandling'
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'http://localhost:5001/api/account',
-    timeout: 5000,
+    baseURL: 'https://localhost:5001/api/account',
+    timeout: 5000
 })
 
 type IsTaken = {
@@ -18,10 +18,10 @@ interface INewUser {
     isCreator: boolean
 }
 
-type IUserResponse = {
-    name: string
-    tag: string
-    email: string
+type IUserCreateResponse = {
+    data: {
+        accessToken: string
+    }
 } & ErrorHandling
 
 interface IUserCredentials {
@@ -41,15 +41,23 @@ async function isEmailTaken(email: string): Promise<IsTaken> {
     }
 }
 
-async function register(newUser: INewUser): Promise<IUserResponse> {
+async function testToken(): Promise<any> {
+    return api.get('', {
+        headers: {Authorization: `Bearer ${localStorage.getItem('access-token')}`
+        }})
+}
+
+async function register(newUser: INewUser): Promise<IUserCreateResponse> {
     return api.post('register', newUser)
 }
 
-async function login(credentials: IUserCredentials): Promise<IUserResponse> {
+async function login(credentials: IUserCredentials): Promise<IUserCreateResponse> {
     return api.post('login', credentials)
 }
 
 
-
-export {isTagTaken, isEmailTaken, register, login}
-export type {INewUser, IUserCredentials}
+export {isTagTaken, isEmailTaken, register, login, testToken}
+export type
+{
+    INewUser, IUserCredentials
+}
