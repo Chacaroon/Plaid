@@ -1,6 +1,7 @@
 import {FormikHelpers} from 'formik'
-import {IUserCredentials, isEmailTaken, isTagTaken, login} from '../../apis/Users'
-import {routerStore} from '../../stores/RouterStore'
+import {IUserCredentials, login, testToken} from '../../apis/Users'
+import {history} from '../../stores/RouterStore'
+import userStore from '../../stores/UserStore'
 
 type IFields = IUserCredentials
 
@@ -16,12 +17,13 @@ export default class Service {
     }
 
     async handleSubmit(values: IFields, {setErrors}: FormikHelpers<IFields>) {
-        let user = await login(values)
-
-        if (user.error) {
-            setErrors({password: user.error.message})
+        let res = await login(values)
+        if (res.error) {
+            alert('Unexpected error!')
         } else {
-            routerStore.history.push('creators/1')  //TODO redirect to feed
+            localStorage.setItem('access-token', res.data.accessToken)
+            userStore.isLoggedIn = true
+            history.push('creators/1')  //TODO redirect to recommendations
         }
     }
 

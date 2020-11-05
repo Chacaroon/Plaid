@@ -5,11 +5,10 @@ import userStore from '../../stores/UserStore'
 
 interface IState {
     menuAnchor: HTMLElement | null
-    isLoggedIn: boolean
 }
 // TODO make service work with API
 export default class Service {
-    state: IState = observable({menuAnchor: null, isLoggedIn: userStore.isLoggedIn})
+    state: IState = observable({menuAnchor: null})
 
     handleClick = action(
         (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,15 +31,21 @@ export default class Service {
 
     handleLogout = action (
         () => {
-            this.state.isLoggedIn = false
+            userStore.isLoggedIn = false
             this.handleClose()
             history.push('/login')
         }
     )
 
-    handleLogin = action (
+    handleLoginClick = action (
         () => {
-            this.state.isLoggedIn = true
+            history.push('/login')
+        }
+    )
+
+    handleRegisterClick = action (
+        () => {
+            history.push('/register')
         }
     )
 }

@@ -32,7 +32,7 @@ const LoginForm = observer(
 
             return (
                 <Paper style={{
-                    marginTop: '20px',
+                    marginTop: '40px',
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     width: '20%',

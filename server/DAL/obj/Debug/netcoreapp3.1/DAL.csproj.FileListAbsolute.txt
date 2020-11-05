@@ -26,3 +26,17 @@ D:\Project\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CoreCompileInputs
 D:\Project\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CopyComplete
 D:\Project\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.dll
 D:\Project\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.pdb
+D:\Programming\Универ\авпз\Plaid\server\DAL\bin\Debug\netcoreapp3.1\DAL.deps.json
+D:\Programming\Универ\авпз\Plaid\server\DAL\bin\Debug\netcoreapp3.1\DAL.dll
+D:\Programming\Универ\авпз\Plaid\server\DAL\bin\Debug\netcoreapp3.1\DAL.pdb
+D:\Programming\Универ\авпз\Plaid\server\DAL\bin\Debug\netcoreapp3.1\Common.dll
+D:\Programming\Универ\авпз\Plaid\server\DAL\bin\Debug\netcoreapp3.1\Domain.dll
+D:\Programming\Универ\авпз\Plaid\server\DAL\bin\Debug\netcoreapp3.1\Common.pdb
+D:\Programming\Универ\авпз\Plaid\server\DAL\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\Programming\Универ\авпз\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.csprojAssemblyReference.cache
+D:\Programming\Универ\авпз\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfoInputs.cache
+D:\Programming\Универ\авпз\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfo.cs
+D:\Programming\Универ\авпз\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CoreCompileInputs.cache
+D:\Programming\Универ\авпз\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CopyComplete
+D:\Programming\Универ\авпз\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.dll
+D:\Programming\Универ\авпз\Plaid\server\DAL\obj\Debug\netcoreapp3.1\DAL.pdb

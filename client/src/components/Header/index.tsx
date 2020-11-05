@@ -13,6 +13,7 @@ import React from 'react'
 import {AccountCircle} from '@material-ui/icons'
 import Service from './service'
 import {history} from '../../stores/RouterStore'
+import userStore from '../../stores/UserStore'
 
 interface IProps {
 }
@@ -29,8 +30,16 @@ const Header = observer(
 
 
         render() {
-            const {menuAnchor, isLoggedIn} = this.service.state
-            const {handleClick, handleClose, handleLogin, handleLogout, handleProfile} = this.service
+            const isLoggedIn = userStore.isLoggedIn
+            const {menuAnchor} = this.service.state
+            const {
+                handleClick,
+                handleClose,
+                handleLoginClick,
+                handleLogout,
+                handleProfile,
+                handleRegisterClick
+            } = this.service
 
             return (
                 <AppBar position="sticky">
@@ -42,10 +51,12 @@ const Header = observer(
                                 </Typography>
                             </Grid>
                             <Grid item xs={8} container justify={'center'}>
-                                <Button onClick={() => history.push('/creators/1')}> {/*TODO redirect to creators*/}
+                                <Button
+                                    onClick={() => history.push('/creators/1')}> {/*TODO redirect to creators*/}
                                     Creators
                                 </Button>
-                                <Button onClick={() => history.push('/creators/1')}> {/*TODO redirect to creators*/}
+                                <Button
+                                    onClick={() => history.push('/creators/1')}> {/*TODO redirect to creators*/}
                                     Feed
                                 </Button>
                             </Grid>
@@ -65,10 +76,10 @@ const Header = observer(
                                 }
                                 {!isLoggedIn &&
                                 <Box style={{marginLeft: 'auto'}}>
-                                    <Button onClick={handleLogin}>
+                                    <Button onClick={handleRegisterClick}>
                                         Register
                                     </Button>
-                                    <Button onClick={handleLogin}>
+                                    <Button onClick={handleLoginClick}>
                                         Login
                                     </Button>
                                 </Box>
