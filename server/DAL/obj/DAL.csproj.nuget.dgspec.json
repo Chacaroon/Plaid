@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\Plaid\\server\\DAL\\DAL.csproj": {}
+    "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Plaid\\server\\Common\\Common.csproj": {
+    "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Plaid\\server\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Projects\\Plaid\\server\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\moransaka_Desktop\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Plaid\\server\\Common\\obj\\",
+        "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Plaid\\server\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\moransaka_Desktop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,21 +58,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projects\\Plaid\\server\\DAL\\DAL.csproj": {
+    "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Plaid\\server\\DAL\\DAL.csproj",
+        "projectUniqueName": "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\Projects\\Plaid\\server\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\moransaka_Desktop\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Plaid\\server\\DAL\\obj\\",
+        "projectPath": "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Plaid\\server\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\moransaka_Desktop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,11 +85,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Projects\\Plaid\\server\\Common\\Common.csproj": {
-                "projectPath": "D:\\Projects\\Plaid\\server\\Common\\Common.csproj"
+              "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+                "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
               },
-              "D:\\Projects\\Plaid\\server\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Projects\\Plaid\\server\\Domain\\Domain.csproj"
+              "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj"
               }
             }
           }
@@ -135,21 +135,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projects\\Plaid\\server\\Domain\\Domain.csproj": {
+    "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Plaid\\server\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\Projects\\Plaid\\server\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\moransaka_Desktop\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Plaid\\server\\Domain\\obj\\",
+        "projectPath": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Plaid\\server\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\moransaka_Desktop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -162,8 +162,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Projects\\Plaid\\server\\Common\\Common.csproj": {
-                "projectPath": "D:\\Projects\\Plaid\\server\\Common\\Common.csproj"
+              "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+                "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
               }
             }
           }
@@ -191,7 +191,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

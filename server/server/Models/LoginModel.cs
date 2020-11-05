@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Server.Models
 {
-    public class Login
+    public class LoginModel
     {
         [Required]
         [EmailAddress]
