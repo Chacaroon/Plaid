@@ -21,6 +21,7 @@ namespace DAL.Contexts
                 { 
                     Id = 1,
                     Name = "Vlad",
+                    Tag = "Tag",
                     Email = "moransaka@gmail.com",
                     Password = "qwe123",
                     Roles = Common.Enums.RoleEnum.Admin | Common.Enums.RoleEnum.Creator

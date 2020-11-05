@@ -12,6 +12,9 @@ namespace Server.Models
         public string Name { get; set; }
 
         [Required]
+        public string Tag { get; set; }
+
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
     

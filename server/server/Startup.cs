@@ -35,6 +35,8 @@ namespace server
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.Configure<AuthOptions>(authOptionsConfiguration);
+            
+            services.AddSwaggerGen();
 
             services.AddCors(options =>
             {
@@ -62,6 +64,14 @@ namespace server
             }
 
             app.UseHttpsRedirection();
+            
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

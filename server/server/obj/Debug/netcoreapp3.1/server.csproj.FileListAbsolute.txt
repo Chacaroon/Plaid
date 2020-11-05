@@ -131,8 +131,6 @@ D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Domain.pdb
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.csprojAssemblyReference.cache
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.AssemblyInfoInputs.cache
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.AssemblyInfo.cs
-D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
-D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.MvcApplicationPartsAssemblyInfo.cache
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.RazorTargetAssemblyInfo.cache
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.csproj.CopyComplete
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\staticwebassets\Server.StaticWebAssets.Manifest.cache
@@ -140,3 +138,10 @@ D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\staticwebassets\Server.St
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.dll
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.pdb
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.MvcApplicationPartsAssemblyInfo.cs
+D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.MvcApplicationPartsAssemblyInfo.cache
