@@ -9,19 +9,13 @@ interface INewUser {
     tag: string
     email: string
     password: string
+    isCreator: boolean
 }
 
 type IUserResponse = {
     name: string
     tag: string
     email: string
-} & ErrorHandling
-
-type IUserProfileResponse = {
-    name: string
-    tag: string
-    email: string
-    bio: string
 } & ErrorHandling
 
 interface IUserCredentials {
@@ -57,14 +51,7 @@ async function login(credentials: IUserCredentials): Promise<IUserResponse> {
     }
 }
 
-async function getProfile(): Promise<IUserProfileResponse> {
-    return {
-        name: 'Name',
-        tag: 'tag123',
-        email: 'example@gmail.com',
-        bio: 'my bio :)'
-    }
-}
 
-export {isTagTaken, isEmailTaken, register, login, getProfile}
-export type {INewUser, IUserCredentials, IUserProfileResponse}
+
+export {isTagTaken, isEmailTaken, register, login}
+export type {INewUser, IUserCredentials}

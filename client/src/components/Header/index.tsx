@@ -42,10 +42,10 @@ const Header = observer(
                                 </Typography>
                             </Grid>
                             <Grid item xs={8} container justify={'center'}>
-                                <Button onClick={() => history.push('/creators/1')}>
+                                <Button onClick={() => history.push('/creators/1')}> {/*TODO redirect to creators*/}
                                     Creators
                                 </Button>
-                                <Button onClick={() => history.push('/creators/1')}>
+                                <Button onClick={() => history.push('/creators/1')}> {/*TODO redirect to creators*/}
                                     Feed
                                 </Button>
                             </Grid>

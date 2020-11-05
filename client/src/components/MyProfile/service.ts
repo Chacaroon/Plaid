@@ -1,7 +1,5 @@
-import React from 'react'
 import {action, observable} from 'mobx'
-import {IUserProfileResponse, getProfile} from '../../apis/Users'
-import userStore from '../../stores/UserStore'
+import {IUserProfileResponse, getProfile} from '../../apis/Profile'
 import WithLoading from '../../services/WithLoading'
 
 interface IState {
