@@ -1,4 +1,10 @@
 import {ErrorHandling} from '../utils/ErrorHandling'
+import axios from 'axios'
+
+const api = axios.create({
+    baseURL: 'http://localhost:5001/api/account',
+    timeout: 5000,
+})
 
 type IsTaken = {
     isTaken: boolean
@@ -36,19 +42,11 @@ async function isEmailTaken(email: string): Promise<IsTaken> {
 }
 
 async function register(newUser: INewUser): Promise<IUserResponse> {
-    return {
-        name: newUser.name,
-        tag: newUser.tag,
-        email: newUser.email
-    }
+    return api.post('register', newUser)
 }
 
 async function login(credentials: IUserCredentials): Promise<IUserResponse> {
-    return {
-        name: 'Name',
-        tag: 'tag123',
-        email: credentials.email
-    }
+    return api.post('login', credentials)
 }
 
 
