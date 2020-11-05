@@ -17,7 +17,7 @@ const MyProfile = observer(
         }
 
         render() {
-            return <Typography>USER PROFILE</Typography>
+            return <Typography>USER PROFILE</Typography> //TODO make user profile
         }
     }
 )

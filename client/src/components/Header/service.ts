@@ -7,7 +7,7 @@ interface IState {
     menuAnchor: HTMLElement | null
     isLoggedIn: boolean
 }
-
+// TODO make service work with API
 export default class Service {
     state: IState = observable({menuAnchor: null, isLoggedIn: userStore.isLoggedIn})
 

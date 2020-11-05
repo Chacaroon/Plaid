@@ -1,9 +1,14 @@
-import {makeAutoObservable} from 'mobx'
+import {action, computed, makeObservable, observable} from 'mobx'
 
 export default class WithLoading {
-    private _loading: boolean = false
+    _loading: boolean = false
     constructor() {
-        makeAutoObservable(this)
+        makeObservable(this, {
+            _loading: observable,
+            isLoading: computed,
+            loading: action,
+            loaded: action
+        })
     }
 
     get isLoading() {

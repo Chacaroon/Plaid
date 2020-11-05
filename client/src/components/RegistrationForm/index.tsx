@@ -1,11 +1,16 @@
-import {Button} from '@material-ui/core'
+import {Box, Button, Grid, Paper, Typography} from '@material-ui/core'
 import {observer} from 'mobx-react'
 import React from 'react'
 import {Field, Form, Formik} from 'formik'
 import Service from './service'
-import {TextField} from 'formik-material-ui'
+import {TextField, Checkbox} from 'formik-material-ui'
 
 interface IProps {
+}
+
+const fieldStyle = {
+    width: '100%',
+    marginBottom: '10px'
 }
 
 const RegistrationForm = observer(
@@ -29,39 +34,62 @@ const RegistrationForm = observer(
             } = this.service
 
             return (
-                <Formik
-                    initialValues={initialValues}
-                    onSubmit={handleSubmit}
-                >
-                    <Form>
-                        <Field
-                            component={TextField}
-                            name={'name'}
-                            label={'Name'}
-                            validate={validateName}
-                        />
-                        <Field
-                            component={TextField}
-                            name={'tag'}
-                            label={'Tag'}
-                            validate={validateTag}
-                        />
-                        <Field
-                            component={TextField}
-                            name={'email'}
-                            label={'E-mail'}
-                            validate={validateEmail}
-                        />
-                        <Field
-                            component={TextField}
-                            name={'password'}
-                            label={'Password'}
-                            type={'password'}
-                            validate={validatePassword}
-                        />
-                        <Button type={'submit'}>Submit</Button>
-                    </Form>
-                </Formik>
+                <Paper style={{
+                    marginTop: '40px',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    width: '20%',
+                    padding: '20px'
+                }}>
+                    <Formik
+                        initialValues={initialValues}
+                        onSubmit={handleSubmit}
+                    >
+                        <Form>
+                            <Grid container direction={'column'} alignItems={'center'}>
+                                <Field
+                                    style={fieldStyle}
+                                    component={TextField}
+                                    name={'name'}
+                                    label={'Name'}
+                                    validate={validateName}
+                                />
+                                <Field
+                                    style={fieldStyle}
+                                    component={TextField}
+                                    name={'tag'}
+                                    label={'Tag'}
+                                    validate={validateTag}
+                                />
+                                <Field
+                                    style={fieldStyle}
+                                    component={TextField}
+                                    name={'email'}
+                                    label={'E-mail'}
+                                    validate={validateEmail}
+                                />
+                                <Field
+                                    style={fieldStyle}
+                                    component={TextField}
+                                    name={'password'}
+                                    label={'Password'}
+                                    type={'password'}
+                                    validate={validatePassword}
+                                />
+                                <Grid item container justify={'center'} alignItems={'center'} style={fieldStyle}>
+                                    <Typography>I am a creator</Typography>
+                                    <Field
+                                        component={Checkbox}
+                                        type='checkbox'
+                                        name={'isCreator'}
+                                        label={'isCreator'}
+                                    />
+                                </Grid>
+                                <Button type={'submit'} variant={'contained'}>Submit</Button>
+                            </Grid>
+                        </Form>
+                    </Formik>
+                </Paper>
             )
         }
     }
