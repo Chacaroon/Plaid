@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using AutoMapper;
+using Common;
+using DAL;
+using DAL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using server.Models;
-using server.Models.Contexts;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Server.Models;
 
 namespace server.Controllers
 {
@@ -17,66 +20,66 @@ namespace server.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private UserContext db;
-        public AccountController(UserContext context)
+        private readonly IAccountRepository _accountRepository;
+        private readonly IOptions<AuthOptions> _authOpions;
+        private readonly IMapper _mapper;
+
+        public AccountController(IAccountRepository accountRepository,
+            IOptions<AuthOptions> authOpions,
+            IMapper mapper)
         {
-            db = context;
+            _accountRepository = accountRepository;
+            _authOpions = authOpions;
+            _mapper = mapper;
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel model)
+        [HttpPost("login")]
+        public IActionResult Login([FromBody]Login request)
         {
-            if (ModelState.IsValid)
+            var user = AuthenticateUser(request.Email, request.Password);
+
+            if (user != null)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.Password);
-                if (user != null)
+                var token = GenerateJWT(user);
+
+                return Ok(new
                 {
-                    await Authenticate(model.Login); // аутентификация
-
-                    return RedirectToAction("Index", "Home");
-                }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                    access_token = token
+                });
             }
-            return Ok();
+
+            return Unauthorized();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterModel model)
+        private UserModel AuthenticateUser(string email, string password)
         {
-            if (ModelState.IsValid)
-            {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Login == model.Login);
-                if (user == null)
-                {
-                    db.Users.Add(new User { Login = model.Login, Password = model.Password });
-                    await db.SaveChangesAsync();
-
-                    await Authenticate(model.Login); // аутентификация
-
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-            }
-            return Ok();
+            return _mapper.Map<UserModel>(_accountRepository.GetAll().FirstOrDefault(a => a.Email == email && a.Password == password));
         }
 
-        private async Task Authenticate(string userName)
+        private string GenerateJWT(UserModel account)
         {
-            var claims = new List<Claim>
+            var authParams = _authOpions.Value;
+            var securityKey = authParams.GetSymmetricSecurityKey();
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new List<Claim>()
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                new Claim(JwtRegisteredClaimNames.Email, account.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, account.Id.ToString())
             };
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        }
 
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            foreach (var role in account.Roles)
+            {
+                claims.Add(new Claim("role", role.ToString()));
+            }
+
+            var token = new JwtSecurityToken(authParams.Issuer,
+                authParams.Audience,
+                claims,
+                expires: DateTime.Now.AddSeconds(authParams.TokenLifeTime),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
