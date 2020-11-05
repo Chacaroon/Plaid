@@ -9,7 +9,8 @@ export default class Service {
         name: '',
         tag: '',
         email: '',
-        password: ''
+        password: '',
+        isCreator: false
     }
 
     constructor() {
@@ -21,7 +22,7 @@ export default class Service {
 
     async handleSubmit(values: IFields) {
         let user = await register(values)
-
+        console.log(values)
         if (user.error) {
             alert('Unexpected error!')
         } else {
