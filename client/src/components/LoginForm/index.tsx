@@ -1,4 +1,4 @@
-import {Button, Grid, Paper} from '@material-ui/core'
+import {Box, Button, Grid, Paper} from '@material-ui/core'
 import {observer} from 'mobx-react'
 import React from 'react'
 import {Field, Form, Formik} from 'formik'
@@ -31,38 +31,42 @@ const LoginForm = observer(
             } = this.service
 
             return (
-                <Paper style={{
-                    marginTop: '40px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    width: '20%',
-                    padding: '20px'
-                }}>
-                    <Formik
-                        initialValues={initialValues}
-                        onSubmit={handleSubmit}
-                    >
-                        <Form>
-                            <Grid container direction={'column'} alignItems={'center'}>
-                                <Field
-                                    style={fieldStyle}
-                                    component={TextField}
-                                    name={'email'}
-                                    label={'E-mail'}
-                                    validate={validateEmail}
-                                />
-                                <Field
-                                    style={fieldStyle}
-                                    component={TextField}
-                                    name={'password'}
-                                    label={'Password'}
-                                    type={'password'}
-                                />
-                                <Button variant={'contained'} type={'submit'}>Submit</Button>
-                            </Grid>
-                        </Form>
-                    </Formik>
-                </Paper>
+                <Box mt={6}>
+                    <Grid container justify={'center'}>
+                        <Grid item xs={3}>
+                            <Paper>
+                                <Box p={2}>
+                                    <Formik
+                                        initialValues={initialValues}
+                                        onSubmit={handleSubmit}
+                                    >
+                                        <Form>
+                                            <Grid container direction={'column'}
+                                                  alignItems={'center'}>
+                                                <Field
+                                                    style={fieldStyle}
+                                                    component={TextField}
+                                                    name={'email'}
+                                                    label={'E-mail'}
+                                                    validate={validateEmail}
+                                                />
+                                                <Field
+                                                    style={fieldStyle}
+                                                    component={TextField}
+                                                    name={'password'}
+                                                    label={'Password'}
+                                                    type={'password'}
+                                                />
+                                                <Button variant={'contained'}
+                                                        type={'submit'}>Submit</Button>
+                                            </Grid>
+                                        </Form>
+                                    </Formik>
+                                </Box>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Box>
             )
         }
     }
