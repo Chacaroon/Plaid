@@ -23,8 +23,6 @@ const CreatorBlog = observer(
         constructor(props: IProps) {
             super(props)
 
-            console.dir(routerStore)
-
             const creatorId: string = (matchPath(routerStore.location.pathname, {
                 path: '/creators/:creatorId'
             }) as any).params.creatorId

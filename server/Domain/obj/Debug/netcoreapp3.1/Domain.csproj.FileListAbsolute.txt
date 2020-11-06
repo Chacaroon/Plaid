@@ -34,3 +34,14 @@ D:\Programming\Универ\авпз\Plaid\server\Domain\obj\Debug\netcoreapp3.1
 D:\Programming\Универ\авпз\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CopyComplete
 D:\Programming\Универ\авпз\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.dll
 D:\Programming\Универ\авпз\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+E:\Web\plaid\server\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
+E:\Web\plaid\server\Domain\bin\Debug\netcoreapp3.1\Domain.dll
+E:\Web\plaid\server\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+E:\Web\plaid\server\Domain\bin\Debug\netcoreapp3.1\Common.dll
+E:\Web\plaid\server\Domain\bin\Debug\netcoreapp3.1\Common.pdb
+E:\Web\plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
+E:\Web\plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+E:\Web\plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+E:\Web\plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CopyComplete
+E:\Web\plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.dll
+E:\Web\plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.pdb

@@ -19,9 +19,7 @@ interface INewUser {
 }
 
 type IUserCreateResponse = {
-    data: {
-        accessToken: string
-    }
+    accessToken: string
 } & ErrorHandling
 
 interface IUserCredentials {
@@ -43,18 +41,19 @@ async function isEmailTaken(email: string): Promise<IsTaken> {
 
 async function testToken(): Promise<any> {
     return api.get('', {
-        headers: {Authorization: `Bearer ${localStorage.getItem('access-token')}`
-        }})
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('access-token')}`
+        }
+    })
 }
 
 async function register(newUser: INewUser): Promise<IUserCreateResponse> {
-    return api.post('register', newUser)
+    return api.post('register', newUser).then(res => res.data)
 }
 
 async function login(credentials: IUserCredentials): Promise<IUserCreateResponse> {
-    return api.post('login', credentials)
+    return api.post('login', credentials).then(res => res.data)
 }
-
 
 export {isTagTaken, isEmailTaken, register, login, testToken}
 export type

@@ -15,24 +15,20 @@ export default class Service {
     }
 
     constructor() {
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.validateEmail = this.validateEmail.bind(this)
-        this.validateTag = this.validateTag.bind(this)
-        this.validatePassword = this.validatePassword.bind(this)
     }
 
-    async handleSubmit(values: IFields) {
-        let res = await register(values)
-        if (res.error) {
+    handleSubmit = async (values: IFields) => {
+        let data = await register(values)
+        if (data.error) {
             alert('Unexpected error!')
         } else {
-            localStorage.setItem('access-token', res.data.accessToken)
+            localStorage.setItem('access-token', data.accessToken)
             userStore.isLoggedIn = true
             history.push('creators/1')  //TODO redirect to recommendations
         }
     }
 
-    validateName(value: string): string {
+    validateName = async (value: string): Promise<string> => {
         let errorMessage = ''
 
         if (!/^.{1,40}$/.test(value)) {
@@ -43,7 +39,7 @@ export default class Service {
         return errorMessage
     }
 
-    async validateTag(value: string): Promise<string | undefined> {
+    validateTag = async (value: string): Promise<string | undefined> => {
         if (!/^[a-z0-9_]{6,12}$/.test(value)) {
             return `Tag must have 6-12 characters.
                 Only lowercase latin letters, digits and _ are allowed`
@@ -59,7 +55,7 @@ export default class Service {
         }
     }
 
-    async validateEmail(value: string): Promise<string | undefined> {
+    validateEmail = async (value: string): Promise<string | undefined> => {
         if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)) {
             return 'Invalid e-mail'
         }
@@ -74,7 +70,7 @@ export default class Service {
         }
     }
 
-    validatePassword(value: string): string {
+    validatePassword = async (value: string): Promise<string> => {
         let errorMessage = ''
 
         if (!/^[A-Za-z0-9]{8,16}$/.test(value)) {
