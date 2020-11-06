@@ -1,0 +1,9 @@
+d:\Projects\Plaid\server\Common\bin\Debug\netcoreapp3.1\Common.deps.json
+d:\Projects\Plaid\server\Common\bin\Debug\netcoreapp3.1\Common.dll
+d:\Projects\Plaid\server\Common\bin\Debug\netcoreapp3.1\Common.pdb
+d:\Projects\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.csprojAssemblyReference.cache
+d:\Projects\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+d:\Projects\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+d:\Projects\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
+d:\Projects\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.dll
+d:\Projects\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.pdb
