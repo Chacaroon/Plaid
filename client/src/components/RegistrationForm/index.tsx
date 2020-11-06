@@ -34,62 +34,67 @@ const RegistrationForm = observer(
             } = this.service
 
             return (
-                <Paper style={{
-                    marginTop: '40px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    width: '20%',
-                    padding: '20px'
-                }}>
-                    <Formik
-                        initialValues={initialValues}
-                        onSubmit={handleSubmit}
-                    >
-                        <Form>
-                            <Grid container direction={'column'} alignItems={'center'}>
-                                <Field
-                                    style={fieldStyle}
-                                    component={TextField}
-                                    name={'name'}
-                                    label={'Name'}
-                                    validate={validateName}
-                                />
-                                <Field
-                                    style={fieldStyle}
-                                    component={TextField}
-                                    name={'tag'}
-                                    label={'Tag'}
-                                    validate={validateTag}
-                                />
-                                <Field
-                                    style={fieldStyle}
-                                    component={TextField}
-                                    name={'email'}
-                                    label={'E-mail'}
-                                    validate={validateEmail}
-                                />
-                                <Field
-                                    style={fieldStyle}
-                                    component={TextField}
-                                    name={'password'}
-                                    label={'Password'}
-                                    type={'password'}
-                                    validate={validatePassword}
-                                />
-                                <Grid item container justify={'center'} alignItems={'center'} style={fieldStyle}>
-                                    <Typography>I am a creator</Typography>
-                                    <Field
-                                        component={Checkbox}
-                                        type='checkbox'
-                                        name={'isCreator'}
-                                        label={'isCreator'}
-                                    />
-                                </Grid>
-                                <Button type={'submit'} variant={'contained'}>Submit</Button>
-                            </Grid>
-                        </Form>
-                    </Formik>
-                </Paper>
+                <Box mt={6}>
+                    <Grid container justify={'center'}>
+                        <Grid item xs={3}>
+                            <Paper>
+                                <Box p={2}>
+                                    <Formik
+                                        initialValues={initialValues}
+                                        onSubmit={handleSubmit}
+                                    >
+                                        <Form>
+                                            <Grid container direction={'column'}
+                                                  alignItems={'center'}>
+                                                <Field
+                                                    style={fieldStyle}
+                                                    component={TextField}
+                                                    name={'name'}
+                                                    label={'Name'}
+                                                    validate={validateName}
+                                                />
+                                                <Field
+                                                    style={fieldStyle}
+                                                    component={TextField}
+                                                    name={'tag'}
+                                                    label={'Tag'}
+                                                    validate={validateTag}
+                                                />
+                                                <Field
+                                                    style={fieldStyle}
+                                                    component={TextField}
+                                                    name={'email'}
+                                                    label={'E-mail'}
+                                                    validate={validateEmail}
+                                                />
+                                                <Field
+                                                    style={fieldStyle}
+                                                    component={TextField}
+                                                    name={'password'}
+                                                    label={'Password'}
+                                                    type={'password'}
+                                                    validate={validatePassword}
+                                                />
+                                                <Grid item container justify={'center'}
+                                                      alignItems={'center'} style={fieldStyle}>
+                                                    <Typography>I am a creator</Typography>
+                                                    <Field
+                                                        component={Checkbox}
+                                                        type='checkbox'
+                                                        name={'isCreator'}
+                                                        label={'isCreator'}
+                                                    />
+                                                </Grid>
+                                                <Button type={'submit'}
+                                                        variant={'contained'}>Submit</Button>
+                                            </Grid>
+                                        </Form>
+                                    </Formik>
+                                </Box>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Box>
             )
         }
     }
