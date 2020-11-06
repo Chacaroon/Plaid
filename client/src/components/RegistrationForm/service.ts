@@ -1,6 +1,7 @@
 import {FormikBag, FormikValues} from 'formik'
 import {INewUser, isEmailTaken, isTagTaken, register} from '../../apis/Users'
-import {routerStore} from '../../stores/RouterStore'
+import {history} from '../../stores/RouterStore'
+import userStore from '../../stores/UserStore'
 
 type IFields = INewUser
 
@@ -21,12 +22,13 @@ export default class Service {
     }
 
     async handleSubmit(values: IFields) {
-        let user = await register(values)
-        console.log(values)
-        if (user.error) {
+        let res = await register(values)
+        if (res.error) {
             alert('Unexpected error!')
         } else {
-            routerStore.history.push('creators/1')  //TODO redirect to recommendations
+            localStorage.setItem('access-token', res.data.accessToken)
+            userStore.isLoggedIn = true
+            history.push('creators/1')  //TODO redirect to recommendations
         }
     }
 

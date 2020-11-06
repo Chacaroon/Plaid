@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Common.Enums
 {
+    [Flags]
     public enum RoleEnum
     {
-        User,
-        Admin
+        User = 1,
+        Admin = 2,
+        Creator = 4
     }
 }

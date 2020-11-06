@@ -6,8 +6,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Common;
+using Common.Enums;
+using Common.Extensions;
 using DAL;
 using DAL.Interfaces;
+using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -16,25 +20,50 @@ using Server.Models;
 
 namespace server.Controllers
 {
+    [Authorize]
     [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IOptions<AuthOptions> _authOpions;
         private readonly IMapper _mapper;
 
-        public AccountController(IAccountRepository accountRepository,
+        public AccountController(IUserRepository userRepository,
             IOptions<AuthOptions> authOpions,
             IMapper mapper)
         {
-            _accountRepository = accountRepository;
+            _userRepository = userRepository;
             _authOpions = authOpions;
             _mapper = mapper;
         }
 
+        [HttpGet("")]
+        public IActionResult Test()
+        {
+            return Ok(new 
+            {
+                str = "All fine" 
+            });
+        }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] RegisterModel register)
+        {
+            var user = _mapper.Map<User>(register);
+            _userRepository.Add(user);
+            var token = GenerateJWT(user);
+
+            return Ok(new TokenModel()
+            {
+                AccessToken = token
+            });
+        }
+
+        [AllowAnonymous]
         [HttpPost("login")]
-        public IActionResult Login([FromBody]Login request)
+        public IActionResult Login([FromBody] LoginModel request)
         {
             var user = AuthenticateUser(request.Email, request.Password);
 
@@ -42,21 +71,22 @@ namespace server.Controllers
             {
                 var token = GenerateJWT(user);
 
-                return Ok(new
+                return Ok(new TokenModel()
                 {
-                    access_token = token
+                    AccessToken = token
                 });
             }
 
             return Unauthorized();
         }
 
-        private UserModel AuthenticateUser(string email, string password)
+        private User AuthenticateUser(string email, string password)
         {
-            return _mapper.Map<UserModel>(_accountRepository.GetAll().FirstOrDefault(a => a.Email == email && a.Password == password));
+            return _userRepository.GetAll(x => x.Email == email && x.Password == password)
+                .SingleOrDefault();
         }
 
-        private string GenerateJWT(UserModel account)
+        private string GenerateJWT(User account)
         {
             var authParams = _authOpions.Value;
             var securityKey = authParams.GetSymmetricSecurityKey();
@@ -68,9 +98,12 @@ namespace server.Controllers
                 new Claim(JwtRegisteredClaimNames.Sub, account.Id.ToString())
             };
 
-            foreach (var role in account.Roles)
+            foreach (var role in Enum.GetValues(typeof(RoleEnum)).Cast<RoleEnum>())
             {
-                claims.Add(new Claim("role", role.ToString()));
+                if (account.HasRole(role))
+                {
+                    claims.Add(new Claim("role", role.ToString()));
+                }
             }
 
             var token = new JwtSecurityToken(authParams.Issuer,
