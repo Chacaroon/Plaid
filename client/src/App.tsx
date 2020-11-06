@@ -1,7 +1,7 @@
 import {createMuiTheme, ThemeProvider} from '@material-ui/core'
 import React from 'react'
 import Router from './router'
-import {theme} from './theme/defaultTheme'
+import {theme} from './themes/defaultTheme'
 
 function App() {
     return (

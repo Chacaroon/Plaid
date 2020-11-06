@@ -3,22 +3,25 @@ import {IUserProfileResponse, getProfile} from '../../apis/Profile'
 import WithLoading from '../../services/WithLoading'
 
 interface IState {
-    user: IUserProfileResponse | null
+  profile: IUserProfileResponse
 }
 
-export default class Service extends WithLoading{
-    state: IState = observable({user: null})
+export default class Service extends WithLoading {
+  state: IState = observable({
+    profile: {name: '', tag: '', email: '', bio: '', isCreator: false}
+  })
 
-    constructor() {
-        super()
+  constructor() {
+    super()
 
+    this.fetchUserProfile()
+  }
+
+  fetchUserProfile = action(
+    async () => {
+      this.loading()
+      this.state.profile = await getProfile()
+      this.loaded()
     }
-
-    fetchUserProfile = action (
-        async () => {
-            this.loading()
-            this.state.user = await getProfile()
-            this.loaded()
-        }
-    )
+  )
 }

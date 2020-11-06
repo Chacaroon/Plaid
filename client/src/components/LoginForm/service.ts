@@ -12,22 +12,20 @@ export default class Service {
     }
 
     constructor() {
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.validateEmail = this.validateEmail.bind(this)
     }
 
-    async handleSubmit(values: IFields, {setErrors}: FormikHelpers<IFields>) {
-        let res = await login(values)
-        if (res.error) {
+    handleSubmit = async (values: IFields) => {
+        let data = await login(values)
+        if (data.error) {
             alert('Unexpected error!')
         } else {
-            localStorage.setItem('access-token', res.data.accessToken)
+            localStorage.setItem('access-token', data.accessToken)
             userStore.isLoggedIn = true
             history.push('creators/1')  //TODO redirect to recommendations
         }
     }
 
-    async validateEmail(value: string): Promise<string | undefined> {
+    validateEmail = async (value: string): Promise<string | undefined> => {
         if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)) {
             return 'Please enter valid e-mail'
         }
