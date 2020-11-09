@@ -1,6 +1,5 @@
 import {observer} from 'mobx-react'
 import React from 'react'
-import {IUserProfileResponse} from '../../apis/Profile'
 import Service from './service'
 import {Box, Grid, Paper, Typography} from '@material-ui/core'
 
@@ -33,7 +32,7 @@ const MyProfile = observer(
                   {/*<Typography variant={'subtitle1'}>{tag}</Typography>*/}
                 </Box>
                 <Typography variant={'body2'}>{email}</Typography>
-                <Typography variant={'body1'}>{bio}</Typography>
+                {isCreator && <Typography variant={'body1'}>{bio}</Typography>}
                 <Typography variant={'body1'}>isCreator: {isCreator}</Typography>
               </Box>
             </Paper>

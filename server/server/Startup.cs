@@ -1,3 +1,4 @@
+using System;
 using Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using BLL.Interfaces;
 using BLL.Services;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace server
 {
@@ -80,9 +82,10 @@ namespace server
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.AllowAnyOrigin()
+                        builder.WithOrigins("http://localhost:3000")
                             .AllowAnyMethod()
-                            .AllowAnyHeader();
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                     });
             });
 
@@ -97,6 +100,7 @@ namespace server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -114,6 +118,8 @@ namespace server
 
             app.UseRouting();
             
+            app.UseCors();
+
             app.UseCors();
 
             app.UseAuthentication();

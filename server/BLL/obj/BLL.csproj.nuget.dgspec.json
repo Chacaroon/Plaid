@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj": {}
+    "D:\\Programming\\Универ\\Plaid\\server\\BLL\\BLL.csproj": {}
   },
   "projects": {
-    "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj": {
+    "D:\\Programming\\Универ\\Plaid\\server\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj",
+        "projectUniqueName": "D:\\Programming\\Универ\\Plaid\\server\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Plaid\\server\\BLL\\obj\\",
+        "projectPath": "D:\\Programming\\Универ\\Plaid\\server\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Programming\\Универ\\Plaid\\server\\BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,11 +30,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
-                "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
+              "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj": {
+                "projectPath": "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj"
               },
-              "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj"
+              "D:\\Programming\\Универ\\Plaid\\server\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\Programming\\Универ\\Plaid\\server\\Domain\\Domain.csproj"
               }
             }
           }
@@ -69,21 +72,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+    "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Plaid\\server\\Common\\obj\\",
+        "projectPath": "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Programming\\Универ\\Plaid\\server\\Common\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -127,21 +133,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
+    "D:\\Programming\\Универ\\Plaid\\server\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\Programming\\Универ\\Plaid\\server\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Plaid\\server\\Domain\\obj\\",
+        "projectPath": "D:\\Programming\\Универ\\Plaid\\server\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Programming\\Универ\\Plaid\\server\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -154,8 +163,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
-                "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
+              "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj": {
+                "projectPath": "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj"
               }
             }
           }
@@ -189,7 +198,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -33,3 +33,12 @@ E:\Web\plaid\server\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cac
 E:\Web\plaid\server\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
 E:\Web\plaid\server\Common\obj\Debug\netcoreapp3.1\Common.dll
 E:\Web\plaid\server\Common\obj\Debug\netcoreapp3.1\Common.pdb
+D:\Programming\Универ\Plaid\server\Common\bin\Debug\netcoreapp3.1\Common.deps.json
+D:\Programming\Универ\Plaid\server\Common\bin\Debug\netcoreapp3.1\Common.dll
+D:\Programming\Универ\Plaid\server\Common\bin\Debug\netcoreapp3.1\Common.pdb
+D:\Programming\Универ\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.csprojAssemblyReference.cache
+D:\Programming\Универ\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+D:\Programming\Универ\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
+D:\Programming\Универ\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+D:\Programming\Универ\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.dll
+D:\Programming\Универ\Plaid\server\Common\obj\Debug\netcoreapp3.1\Common.pdb

@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Web\\plaid\\server\\Common\\Common.csproj": {}
+    "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj": {}
   },
   "projects": {
-    "E:\\Web\\plaid\\server\\Common\\Common.csproj": {
+    "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Web\\plaid\\server\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "E:\\Web\\plaid\\server\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\hokai\\.nuget\\packages\\",
-        "outputPath": "E:\\Web\\plaid\\server\\Common\\obj\\",
+        "projectPath": "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Programming\\Универ\\Plaid\\server\\Common\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\hokai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

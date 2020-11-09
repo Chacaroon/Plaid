@@ -1,4 +1,3 @@
-import {FormikBag, FormikValues} from 'formik'
 import {INewUser, isEmailTaken, isTagTaken, register} from '../../apis/Users'
 import {history} from '../../stores/RouterStore'
 import userStore from '../../stores/UserStore'
@@ -22,9 +21,8 @@ export default class Service {
         if (data.error) {
             alert('Unexpected error!')
         } else {
-            localStorage.setItem('access-token', data.accessToken)
             userStore.isLoggedIn = true
-            history.push('creators/1')  //TODO redirect to recommendations
+            history.push('creators/1')
         }
     }
 

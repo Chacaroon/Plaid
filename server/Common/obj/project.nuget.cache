@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t/g6tpWbUhprxgRRj+xhi4/5MPUtZ27sSewwN+cTK8zBmaJiGvKEsBQs0qPOOqjxvJ/zAmUNLaifBCyUteBe5A==",
+  "dgSpecHash": "2gBnuwTKVTqMKaxfS4mItUDd9v+Mw5mGGldmqP7YkehEWz8At3nf6JZsug4p0T2/F4PQdFrzjdKG+e6tL81wUg==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\Универ\\авпз\\Plaid\\server\\Common\\Common.csproj",
+  "projectFilePath": "D:\\Programming\\Универ\\Plaid\\server\\Common\\Common.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.logging\\6.8.0\\microsoft.identitymodel.logging.6.8.0.nupkg.sha512",

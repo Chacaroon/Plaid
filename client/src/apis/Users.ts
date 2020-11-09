@@ -3,7 +3,8 @@ import axios from 'axios'
 
 const api = axios.create({
     baseURL: 'https://localhost:5001/api/account',
-    timeout: 5000
+    timeout: 5000,
+    withCredentials: true
 })
 
 type IsTaken = {
@@ -18,14 +19,20 @@ interface INewUser {
     isCreator: boolean
 }
 
-type IUserCreateResponse = {
-    accessToken: string
-} & ErrorHandling
+type IUserCreateResponse = {} & ErrorHandling
 
 interface IUserCredentials {
     email: string
     password: string
 }
+
+type IUserResponse = {
+    name: string
+    tag: string
+    email: string
+    bio?: string
+    isCreator: boolean
+} & ErrorHandling
 
 async function isTagTaken(tag: string): Promise<IsTaken> {
     return {
@@ -39,14 +46,6 @@ async function isEmailTaken(email: string): Promise<IsTaken> {
     }
 }
 
-async function testToken(): Promise<any> {
-    return api.get('', {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('access-token')}`
-        }
-    })
-}
-
 async function register(newUser: INewUser): Promise<IUserCreateResponse> {
     return api.post('register', newUser).then(res => res.data)
 }
@@ -55,8 +54,31 @@ async function login(credentials: IUserCredentials): Promise<IUserCreateResponse
     return api.post('login', credentials).then(res => res.data)
 }
 
-export {isTagTaken, isEmailTaken, register, login, testToken}
+async function refreshAccessToken() {
+    return api.post('refresh-token')
+}
+
+async function current(): Promise<IUserResponse> {
+    return api.get('current').then(res => res.data)
+}
+
+api.interceptors.response.use((response) => {
+    return response
+}, async function (error) {
+    if (error.response.status === 401) {
+        return {data: undefined}
+    }
+    const originalRequest = error.config
+    if (error.response.status === 403 && !originalRequest._retry) {
+        originalRequest._retry = true
+        await refreshAccessToken()
+        return api(originalRequest)
+    }
+    return Promise.reject(error.response)
+})
+
+export {isTagTaken, isEmailTaken, register, login, current}
 export type
 {
-    INewUser, IUserCredentials
+    INewUser, IUserCredentials, IUserResponse
 }
