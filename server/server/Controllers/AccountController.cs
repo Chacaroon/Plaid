@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using BLL.Interfaces;
 using Common;
 using Common.Enums;
 using Common.Extensions;
@@ -28,14 +29,17 @@ namespace server.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IOptions<AuthOptions> _authOpions;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
         public AccountController(IUserRepository userRepository,
             IOptions<AuthOptions> authOpions,
-            IMapper mapper)
+            IMapper mapper,
+            ITokenService tokenService)
         {
             _userRepository = userRepository;
             _authOpions = authOpions;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         [HttpGet("")]
@@ -53,11 +57,13 @@ namespace server.Controllers
         {
             var user = _mapper.Map<User>(register);
             _userRepository.Add(user);
-            var token = GenerateJWT(user);
+            var accessToken = _tokenService.GenerateJwtToken(user);
+            var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
 
             return Ok(new TokenModel()
             {
-                AccessToken = token
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
             });
         }
 
@@ -69,11 +75,13 @@ namespace server.Controllers
 
             if (user != null)
             {
-                var token = GenerateJWT(user);
+                var accessToken = _tokenService.GenerateJwtToken(user);
+                var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
 
                 return Ok(new TokenModel()
                 {
-                    AccessToken = token
+                    AccessToken = accessToken,
+                    RefreshToken = refreshToken
                 });
             }
 
@@ -84,35 +92,6 @@ namespace server.Controllers
         {
             return _userRepository.GetAll(x => x.Email == email && x.Password == password)
                 .SingleOrDefault();
-        }
-
-        private string GenerateJWT(User account)
-        {
-            var authParams = _authOpions.Value;
-            var securityKey = authParams.GetSymmetricSecurityKey();
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new List<Claim>()
-            {
-                new Claim(JwtRegisteredClaimNames.Email, account.Email),
-                new Claim(JwtRegisteredClaimNames.Sub, account.Id.ToString())
-            };
-
-            foreach (var role in Enum.GetValues(typeof(RoleEnum)).Cast<RoleEnum>())
-            {
-                if (account.HasRole(role))
-                {
-                    claims.Add(new Claim("role", role.ToString()));
-                }
-            }
-
-            var token = new JwtSecurityToken(authParams.Issuer,
-                authParams.Audience,
-                claims,
-                expires: DateTime.Now.AddSeconds(authParams.TokenLifeTime),
-                signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

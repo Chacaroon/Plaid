@@ -28,6 +28,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
           "Autofac": "6.0.0",
           "Autofac.Extensions.DependencyInjection": "7.1.0",
+          "BLL": "1.0.0",
           "Common": "1.0.0",
           "DAL": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",
@@ -1530,6 +1531,20 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "BLL/1.0.0": {
+        "dependencies": {
+          "Common": "1.0.0",
+          "Domain": "1.0.0",
+          "Microsoft.Extensions.Options": "3.1.9",
+          "System.IdentityModel.Tokens.Jwt": "6.8.0"
+        },
+        "runtime": {
+          "BLL.dll": {}
+        },
+        "compile": {
+          "BLL.dll": {}
         }
       },
       "Common/1.0.0": {
@@ -3968,6 +3983,11 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Common/1.0.0": {
       "type": "project",

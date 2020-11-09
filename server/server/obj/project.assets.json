@@ -1628,6 +1628,22 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "BLL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Common": "1.0.0",
+          "Domain": "1.0.0",
+          "Microsoft.Extensions.Options": "3.1.9",
+          "System.IdentityModel.Tokens.Jwt": "6.8.0"
+        },
+        "compile": {
+          "bin/placeholder/BLL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BLL.dll": {}
+        }
+      },
       "Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -6077,6 +6093,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "BLL/1.0.0": {
+      "type": "project",
+      "path": "../BLL/BLL.csproj",
+      "msbuildProject": "../BLL/BLL.csproj"
+    },
     "Common/1.0.0": {
       "type": "project",
       "path": "../Common/Common.csproj",
@@ -6099,6 +6120,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.0",
       "Autofac >= 6.0.0",
       "Autofac.Extensions.DependencyInjection >= 7.1.0",
+      "BLL >= 1.0.0",
       "Common >= 1.0.0",
       "DAL >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.9",
@@ -6135,6 +6157,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+            "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj": {
+              "projectPath": "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj"
+            },
             "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
               "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
             },

@@ -10,6 +10,8 @@ using System.Reflection;
 using Autofac;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using BLL.Interfaces;
+using BLL.Services;
 
 namespace server
 {
@@ -70,6 +72,8 @@ namespace server
                             .AllowAnyHeader();
                     });
             });
+
+            services.AddTransient<ITokenService, TokenService>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
