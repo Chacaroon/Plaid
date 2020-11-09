@@ -14,6 +14,9 @@ namespace DAL
         public UserRepository(ApplicationContext context)
             : base(context)
         {
+
         }
+        
     }
 }
+

@@ -32,5 +32,10 @@ namespace DAL
         {
             return GetAll().Where(predicate);
         }
+
+        public virtual T GetById(int id)
+        {
+            return _context.Set<T>().Find(id);
+        }
     }
 }

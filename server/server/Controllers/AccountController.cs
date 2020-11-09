@@ -45,9 +45,9 @@ namespace server.Controllers
         [HttpGet("")]
         public IActionResult Test()
         {
-            return Ok(new 
+            return Ok(new
             {
-                str = "All fine" 
+                str = "All fine"
             });
         }
 
@@ -73,19 +73,39 @@ namespace server.Controllers
         {
             var user = AuthenticateUser(request.Email, request.Password);
 
-            if (user != null)
+            if (user == null)
             {
-                var accessToken = _tokenService.GenerateJwtToken(user);
-                var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
-
-                return Ok(new TokenModel()
-                {
-                    AccessToken = accessToken,
-                    RefreshToken = refreshToken
-                });
+                return Unauthorized();
             }
 
-            return Unauthorized();
+            var accessToken = _tokenService.GenerateJwtToken(user);
+            var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
+
+            return Ok(new TokenModel()
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
+            });
+        }
+
+        [HttpPost("refresh-token")]
+        public IActionResult UpdateTokens(TokenModel model)
+        {
+            if (_tokenService.GenerateRefreshToken(model.AccessToken) != model.RefreshToken)
+            {
+                return Unauthorized();
+            }
+
+            var token = new JwtSecurityTokenHandler().ReadToken(model.AccessToken) as JwtSecurityToken;
+            var user = _userRepository.GetById(Convert.ToInt32(token.Claims.First(claim => claim.Type == "sub").Value));
+            var accessToken = _tokenService.GenerateJwtToken(user);
+            var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
+
+            return Ok(new TokenModel()
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
+            });
         }
 
         private User AuthenticateUser(string email, string password)
