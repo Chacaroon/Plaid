@@ -12,6 +12,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using BLL.Interfaces;
 using BLL.Services;
+using System.Threading.Tasks;
 
 namespace server
 {
@@ -57,6 +58,18 @@ namespace server
 
                         IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
                         ValidateIssuerSigningKey = true
+                    };
+                    option.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            if (context.Request.Cookies.ContainsKey("accessToken"))
+                            {
+                                context.Token = context.Request.Cookies["accessToken"];
+                            }
+
+                            return Task.CompletedTask;
+                        }
                     };
                 });
 

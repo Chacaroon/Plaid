@@ -60,11 +60,10 @@ namespace server.Controllers
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
 
-            return Ok(new TokenModel()
-            {
-                AccessToken = accessToken,
-                RefreshToken = refreshToken
-            });
+            Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+            Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+
+            return Ok();
         }
 
         [AllowAnonymous]
@@ -81,31 +80,36 @@ namespace server.Controllers
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
 
-            return Ok(new TokenModel()
-            {
-                AccessToken = accessToken,
-                RefreshToken = refreshToken
-            });
+            Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+            Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+
+            return Ok();
         }
 
         [HttpPost("refresh-token")]
-        public IActionResult UpdateTokens(TokenModel model)
+        public IActionResult UpdateTokens()
         {
-            if (_tokenService.GenerateRefreshToken(model.AccessToken) != model.RefreshToken)
+            if (!(Request.Cookies.TryGetValue("accessToken", out var requestAccessToken) &&
+                Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken)))
+            {
+                return BadRequest();
+            }
+
+            if (_tokenService.GenerateRefreshToken(requestAccessToken) != requestRefreshToken)
             {
                 return Unauthorized();
             }
 
-            var token = new JwtSecurityTokenHandler().ReadToken(model.AccessToken) as JwtSecurityToken;
+            var token = new JwtSecurityTokenHandler().ReadToken(requestAccessToken) as JwtSecurityToken;
             var user = _userRepository.GetById(Convert.ToInt32(token.Claims.First(claim => claim.Type == "sub").Value));
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
 
-            return Ok(new TokenModel()
-            {
-                AccessToken = accessToken,
-                RefreshToken = refreshToken
-            });
+            Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+            Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+
+
+            return Ok();
         }
 
         private User AuthenticateUser(string email, string password)
