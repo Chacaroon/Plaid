@@ -42,6 +42,20 @@ namespace server.Controllers
             _tokenService = tokenService;
         }
 
+        [HttpGet("current")]
+        public IActionResult GetCurrentUser()
+        {
+            if (!(Request.Cookies.TryGetValue("accessToken", out var requestAccessToken)))
+            {
+                return BadRequest();
+            }
+
+            var token = new JwtSecurityTokenHandler().ReadToken(requestAccessToken) as JwtSecurityToken;
+            var user = _userRepository.GetById(Convert.ToInt32(token.Claims.First(claim => claim.Type == "sub").Value));
+
+            return Ok(_mapper.Map<User, UserModel>(user));
+        }
+
         [HttpGet("")]
         public IActionResult Test()
         {
