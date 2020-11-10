@@ -17,7 +17,11 @@ const MyProfile = observer(
     }
 
     render() {
-      const {name, tag, email, bio, isCreator} = this.service.state.profile
+      const {name, tag, email, bio} = this.service.state.profile
+      const isCreator = this.service.state.profile.roles.includes('creator')
+      if (this.service.isLoading) {
+        return 'Loading...'
+      }
 
       return (
         <Grid container>
@@ -29,11 +33,10 @@ const MyProfile = observer(
                   <Box fontWeight={'fontWeightLight'} color={'text.secondary'}>
                     @{tag}
                   </Box>
-                  {/*<Typography variant={'subtitle1'}>{tag}</Typography>*/}
                 </Box>
                 <Typography variant={'body2'}>{email}</Typography>
-                {isCreator && <Typography variant={'body1'}>{bio}</Typography>}
-                <Typography variant={'body1'}>isCreator: {isCreator}</Typography>
+                {bio && <Typography variant={'body1'}>{bio}</Typography>}
+                <Typography variant={'body1'}>isCreator: {isCreator ? 'Yes' : 'No'}</Typography>
               </Box>
             </Paper>
           </Grid>

@@ -31,7 +31,7 @@ type IUserResponse = {
     tag: string
     email: string
     bio?: string
-    isCreator: boolean
+    roles: string[]
 } & ErrorHandling
 
 async function isTagTaken(tag: string): Promise<IsTaken> {
@@ -55,28 +55,25 @@ async function login(credentials: IUserCredentials): Promise<IUserCreateResponse
 }
 
 async function refreshAccessToken() {
-    return api.post('refresh-token')
+    return api.post('refresh-token').catch(console.log)
 }
 
 async function current(): Promise<IUserResponse> {
-    return {
-        name: 'Name',
-        tag: 'tag123',
-        email: 'example@gmail.com',
-        bio: 'my bio :)',
-        isCreator: true
-    }
-    //return api.get('current').then(res => res.data)
+    // return {
+    //     name: 'Name',
+    //     tag: 'tag123',
+    //     email: 'example@gmail.com',
+    //     bio: 'my bio :)',
+    //     roles: ['creator']
+    // }
+    return api.get('current').then(res => res.data).catch(console.log)
 }
 
 api.interceptors.response.use((response) => {
     return response
 }, async function (error) {
-    if (error.response.status === 401) {
-        return {data: undefined}
-    }
     const originalRequest = error.config
-    if (error.response.status === 403 && !originalRequest._retry) {
+    if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true
         await refreshAccessToken()
         return api(originalRequest)
