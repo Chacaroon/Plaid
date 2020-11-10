@@ -3,12 +3,12 @@ import React from 'react'
 import {observer} from 'mobx-react'
 import {Typography} from '@material-ui/core'
 
-const Feed = observer(
+const Settings = observer(
   class extends React.Component {
     render() {
-      return <Typography>FEED</Typography>
+      return <Typography>Settings</Typography>
     }
-}
+  }
 )
 
-export default Feed
+export default Settings

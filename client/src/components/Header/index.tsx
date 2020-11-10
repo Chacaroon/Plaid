@@ -52,18 +52,20 @@ const Header = observer(
                 </Typography>
               </Grid>
               <Grid item xs={8} container justify={'center'}>
-                  <Button
-                    onClick={() => history.push('/creators/1')}> {/*TODO redirect to creators*/}
-                    Recommendations
-                  </Button>
-                  <Button
-                    onClick={() => history.push('/feed')}>
-                    Feed
-                  </Button>
-                  <Button
-                    onClick={() => history.push('/blog')}>
+                <Button
+                  onClick={() => history.push('/recommendations')}>
+                  Recommendations
+                </Button>
+                <Button
+                  onClick={() => history.push('/feed')}>
+                  Feed
+                </Button>
+                {userStore.user.isCreator &&
+                <Button
+                    onClick={() => history.push('/creators/1')}> {/*TODO: redirect to user's blog*/}
                     My blog
-                  </Button>
+                </Button>
+                }
               </Grid>
               <Grid item xs={2} container justify={'flex-end'}>
                 {isLoggedIn &&

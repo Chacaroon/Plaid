@@ -72,6 +72,7 @@ export default class Service extends WithLoading {
       } else {
         history.push('/feed')
         userStore.isLoggedIn = true
+        userStore.user = user
       }
       this.loaded()
     }

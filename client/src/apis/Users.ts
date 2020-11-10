@@ -59,7 +59,14 @@ async function refreshAccessToken() {
 }
 
 async function current(): Promise<IUserResponse> {
-    return api.get('current').then(res => res.data)
+    return {
+        name: 'Name',
+        tag: 'tag123',
+        email: 'example@gmail.com',
+        bio: 'my bio :)',
+        isCreator: true
+    }
+    //return api.get('current').then(res => res.data)
 }
 
 api.interceptors.response.use((response) => {

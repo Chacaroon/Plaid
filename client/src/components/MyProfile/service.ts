@@ -1,9 +1,9 @@
 import {action, observable} from 'mobx'
-import {IUserProfileResponse, getProfile} from '../../apis/Profile'
 import WithLoading from '../../services/WithLoading'
+import {current, IUserResponse} from '../../apis/Users'
 
 interface IState {
-  profile: IUserProfileResponse
+  profile: IUserResponse
 }
 
 export default class Service extends WithLoading {
@@ -20,7 +20,7 @@ export default class Service extends WithLoading {
   fetchUserProfile = action(
     async () => {
       this.loading()
-      this.state.profile = await getProfile()
+      this.state.profile = await current()
       this.loaded()
     }
   )

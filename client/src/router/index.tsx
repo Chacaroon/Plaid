@@ -7,6 +7,9 @@ import {history} from '../stores/RouterStore'
 import Header from '../components/Header'
 import {Box} from '@material-ui/core'
 import MyProfile from '../components/MyProfile'
+import Feed from '../components/Feed'
+import Recommendations from '../components/Recommendations'
+import Settings from '../components/Settings'
 
 export default function () {
     return (
@@ -18,6 +21,9 @@ export default function () {
                     <Route exact path={'/register'} render={() => <RegistrationForm/>}/>
                     <Route exact path={'/login'} render={() => <LoginForm/>}/>
                     <Route exact path={'/profile'} render={() => <MyProfile/>}/>
+                    <Route exact path={'/feed'} render={() => <Feed/>}/>
+                    <Route exact path={'/recommendations'} render={() => <Recommendations/>}/>
+                    <Route exact path={'/settings'} render={() => <Settings/>}/>
                 </Switch>
             </Router>
         </Box>
