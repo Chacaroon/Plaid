@@ -101,6 +101,7 @@ namespace server.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
         [HttpPost("refresh-token")]
         public IActionResult UpdateTokens()
         {
