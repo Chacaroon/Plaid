@@ -15,6 +15,7 @@ namespace Server.Mapper
         public AccountProfile()
         {
             CreateMap<User, UserModel>()
+                .ForMember(dst => dst.Roles, opt => opt.MapFrom(src => src.ToArrayString(src.Roles)))
                 .ReverseMap();
 
             CreateMap<RegisterModel, User>()
