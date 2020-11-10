@@ -99,6 +99,7 @@ namespace server.Controllers
 
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
+            _refreshTokenRepository.Add(new RefreshToken() { Token = refreshToken, User = user });
 
             Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
@@ -136,8 +137,15 @@ namespace server.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
+            if(!Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken))
+            {
+                return BadRequest();
+            }
             Response.Cookies.Delete("accessToken");
             Response.Cookies.Delete("refreshToken");
+            //TODO: FIX
+            var token =_refreshTokenRepository.GetAll().Where(x => x.Token == requestRefreshToken).First();
+            _refreshTokenRepository.Delete(token);
 
             return Ok();
         }
