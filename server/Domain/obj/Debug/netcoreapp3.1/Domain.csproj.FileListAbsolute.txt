@@ -18,7 +18,7 @@ D:\Project\Plaid\server\Domain\bin\Debug\netcoreapp3.1\Common.pdb
 D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
 D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
 D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
-D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
 D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CopyComplete
 D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.dll
 D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+D:\Project\Plaid\server\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache

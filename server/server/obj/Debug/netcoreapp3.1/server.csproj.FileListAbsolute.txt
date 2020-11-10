@@ -148,3 +148,9 @@ D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.MvcApplicationPart
 D:\Project\Plaid\server\server\obj\Debug\netcoreapp3.1\Server.MvcApplicationPartsAssemblyInfo.cache
 D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\BLL.dll
 D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\BLL.pdb
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+D:\Project\Plaid\server\server\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
