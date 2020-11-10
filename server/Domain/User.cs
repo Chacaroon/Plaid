@@ -25,11 +25,5 @@ namespace Domain
             } 
         }
         public RoleEnum Roles { get; set; }
-        public ICollection<RefreshToken> RefreshTokens { get; set; }
-
-        public User()
-        {
-            RefreshTokens = new List<RefreshToken>();
-        }
     }
 }

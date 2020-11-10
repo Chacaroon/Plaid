@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using System.Web.Helpers;
 using AutoMapper;
 using BLL.Interfaces;
 using Common;
@@ -29,19 +28,16 @@ namespace server.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IOptions<AuthOptions> _authOpions;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
 
         public AccountController(IUserRepository userRepository,
-            IRefreshTokenRepository refreshTokenRepository,
             IOptions<AuthOptions> authOpions,
             IMapper mapper,
             ITokenService tokenService)
         {
             _userRepository = userRepository;
-            _refreshTokenRepository = refreshTokenRepository;
             _authOpions = authOpions;
             _mapper = mapper;
             _tokenService = tokenService;
@@ -75,10 +71,9 @@ namespace server.Controllers
         public IActionResult Register([FromBody] RegisterModel register)
         {
             var user = _mapper.Map<User>(register);
+            _userRepository.Add(user);
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
-            _userRepository.Add(user);
-            _refreshTokenRepository.Add(new RefreshToken() {Token = refreshToken, User = user });
 
             Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
@@ -90,7 +85,7 @@ namespace server.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel request)
         {
-            var user = AuthenticateUser(request.Email, Crypto.HashPassword(request.Password));
+            var user = AuthenticateUser(request.Email, request.Password);
 
             if (user == null)
             {
@@ -99,7 +94,6 @@ namespace server.Controllers
 
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
-            _refreshTokenRepository.Add(new RefreshToken() { Token = refreshToken, User = user });
 
             Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
@@ -130,22 +124,6 @@ namespace server.Controllers
             Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
 
-
-            return Ok();
-        }
-
-        [HttpPost("logout")]
-        public IActionResult Logout()
-        {
-            if(!Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken))
-            {
-                return BadRequest();
-            }
-            Response.Cookies.Delete("accessToken");
-            Response.Cookies.Delete("refreshToken");
-            //TODO: FIX
-            var token =_refreshTokenRepository.GetAll().Where(x => x.Token == requestRefreshToken).First();
-            _refreshTokenRepository.Delete(token);
 
             return Ok();
         }

@@ -23,12 +23,6 @@ namespace DAL
             _context.SaveChanges();
         }
 
-        public void Delete(T item)
-        {
-            _context.Remove(item);
-            _context.SaveChanges();
-        }
-
         public virtual IQueryable<T> GetAll()
         {
             return _context.Set<T>();
