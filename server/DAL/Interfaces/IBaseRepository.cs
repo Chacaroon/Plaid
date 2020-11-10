@@ -12,5 +12,7 @@ namespace DAL.Interfaces
         public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate);
         public void Add(T item);
         public T GetById(int id);
+
+        public void Delete(T item);
     }
 }
