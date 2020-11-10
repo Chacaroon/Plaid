@@ -29,5 +29,6 @@ namespace DAL.Contexts
             });
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<RefreshToken> Tokens { get; set; }
     }
 }

@@ -29,16 +29,19 @@ namespace server.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IOptions<AuthOptions> _authOpions;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
 
         public AccountController(IUserRepository userRepository,
+            IRefreshTokenRepository refreshTokenRepository,
             IOptions<AuthOptions> authOpions,
             IMapper mapper,
             ITokenService tokenService)
         {
             _userRepository = userRepository;
+            _refreshTokenRepository = refreshTokenRepository;
             _authOpions = authOpions;
             _mapper = mapper;
             _tokenService = tokenService;
@@ -72,9 +75,10 @@ namespace server.Controllers
         public IActionResult Register([FromBody] RegisterModel register)
         {
             var user = _mapper.Map<User>(register);
-            _userRepository.Add(user);
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
+            _userRepository.Add(user);
+            _refreshTokenRepository.Add(new RefreshToken() {Token = refreshToken, User = user });
 
             Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
