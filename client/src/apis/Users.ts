@@ -58,6 +58,10 @@ async function refreshAccessToken() {
     return api.post('refresh-token').catch(console.log)
 }
 
+async function logout() {
+    return api.post('logout').catch(console.log)
+}
+
 async function current(): Promise<IUserResponse> {
     // return {
     //     name: 'Name',
@@ -81,7 +85,7 @@ api.interceptors.response.use((response) => {
     return Promise.reject(error.response)
 })
 
-export {isTagTaken, isEmailTaken, register, login, current}
+export {isTagTaken, isEmailTaken, register, login, current, logout}
 export type
 {
     INewUser, IUserCredentials, IUserResponse

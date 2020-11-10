@@ -3,7 +3,7 @@ import {action, observable} from 'mobx'
 import {history} from '../../stores/RouterStore'
 import userStore from '../../stores/UserStore'
 import WithLoading from '../../services/WithLoading'
-import {current} from '../../apis/Users'
+import {current, logout} from '../../apis/Users'
 
 interface IState {
   menuAnchor: HTMLElement | null,
@@ -37,7 +37,8 @@ export default class Service extends WithLoading {
   )
 
   handleLogout = action(
-    () => {
+    async () => {
+      await logout()
       userStore.isLoggedIn = false
       this.handleClose()
       history.push('/login')
