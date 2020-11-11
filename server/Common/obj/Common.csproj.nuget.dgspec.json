@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {}
+    "d:\\Project\\Plaid\\server\\Common\\Common.csproj": {}
   },
   "projects": {
-    "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+    "d:\\Project\\Plaid\\server\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
+        "projectUniqueName": "d:\\Project\\Plaid\\server\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
+        "projectPath": "d:\\Project\\Plaid\\server\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Plaid\\server\\Common\\obj\\",
+        "outputPath": "d:\\Project\\Plaid\\server\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",

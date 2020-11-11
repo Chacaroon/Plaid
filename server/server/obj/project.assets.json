@@ -6221,11 +6221,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\Plaid\\server\\server\\Server.csproj",
+      "projectUniqueName": "d:\\Project\\Plaid\\server\\server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "D:\\Project\\Plaid\\server\\server\\Server.csproj",
+      "projectPath": "d:\\Project\\Plaid\\server\\server\\Server.csproj",
       "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\Plaid\\server\\server\\obj\\",
+      "outputPath": "d:\\Project\\Plaid\\server\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6241,14 +6241,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj": {
-              "projectPath": "D:\\Project\\Plaid\\server\\BLL\\BLL.csproj"
+            "d:\\Project\\Plaid\\server\\BLL\\BLL.csproj": {
+              "projectPath": "d:\\Project\\Plaid\\server\\BLL\\BLL.csproj"
             },
-            "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
-              "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
+            "d:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+              "projectPath": "d:\\Project\\Plaid\\server\\Common\\Common.csproj"
             },
-            "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {
-              "projectPath": "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj"
+            "d:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {
+              "projectPath": "d:\\Project\\Plaid\\server\\DAL\\DAL.csproj"
             }
           }
         }

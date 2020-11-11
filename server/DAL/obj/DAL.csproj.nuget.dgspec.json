@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {}
+    "d:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+    "d:\\Project\\Plaid\\server\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
+        "projectUniqueName": "d:\\Project\\Plaid\\server\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj",
+        "projectPath": "d:\\Project\\Plaid\\server\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Plaid\\server\\Common\\obj\\",
+        "outputPath": "d:\\Project\\Plaid\\server\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -62,14 +62,14 @@
         }
       }
     },
-    "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {
+    "d:\\Project\\Plaid\\server\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj",
+        "projectUniqueName": "d:\\Project\\Plaid\\server\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\Project\\Plaid\\server\\DAL\\DAL.csproj",
+        "projectPath": "d:\\Project\\Plaid\\server\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Plaid\\server\\DAL\\obj\\",
+        "outputPath": "d:\\Project\\Plaid\\server\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -85,11 +85,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
-                "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
+              "d:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+                "projectPath": "d:\\Project\\Plaid\\server\\Common\\Common.csproj"
               },
-              "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj"
+              "d:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
+                "projectPath": "d:\\Project\\Plaid\\server\\Domain\\Domain.csproj"
               }
             }
           }
@@ -139,14 +139,14 @@
         }
       }
     },
-    "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
+    "d:\\Project\\Plaid\\server\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
+        "projectUniqueName": "d:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
+        "projectPath": "d:\\Project\\Plaid\\server\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Duckick\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Plaid\\server\\Domain\\obj\\",
+        "outputPath": "d:\\Project\\Plaid\\server\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Duckick\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -162,8 +162,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Project\\Plaid\\server\\Common\\Common.csproj": {
-                "projectPath": "D:\\Project\\Plaid\\server\\Common\\Common.csproj"
+              "d:\\Project\\Plaid\\server\\Common\\Common.csproj": {
+                "projectPath": "d:\\Project\\Plaid\\server\\Common\\Common.csproj"
               }
             }
           }

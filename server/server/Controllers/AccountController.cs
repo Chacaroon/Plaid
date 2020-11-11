@@ -76,9 +76,9 @@ namespace server.Controllers
         {
             register.Password = Crypto.HashPassword(register.Password);
             var user = _mapper.Map<User>(register);
+            _userRepository.Add(user);
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
-            _userRepository.Add(user);
             _refreshTokenRepository.Add(new RefreshToken() {Token = refreshToken, User = user });
 
             Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
