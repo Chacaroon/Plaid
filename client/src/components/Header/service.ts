@@ -53,12 +53,14 @@ export default class Service extends WithLoading {
 
   handleRegisterClick = action(
     () => {
+      this.handleClose()
       history.push('/register')
     }
   )
 
   handleSettings = action(
     () => {
+      this.handleClose()
       history.push('/settings')
     }
   )
