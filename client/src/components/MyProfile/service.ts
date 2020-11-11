@@ -8,7 +8,7 @@ interface IState {
 
 export default class Service extends WithLoading {
   state: IState = observable({
-    profile: {name: '', tag: '', email: '', bio: '', isCreator: false}
+    profile: {name: '', tag: '', email: '', bio: '', roles: []}
   })
 
   constructor() {

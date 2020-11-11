@@ -31,6 +31,7 @@ const Header = observer(
 
     render() {
       const isLoggedIn = userStore.isLoggedIn
+      const isCreator = userStore.user.roles.includes('creator')
       const {menuAnchor} = this.service.state
       const {
         handleClick,
@@ -60,7 +61,7 @@ const Header = observer(
                   onClick={() => history.push('/feed')}>
                   Feed
                 </Button>
-                {userStore.user.isCreator &&
+                {isCreator &&
                 <Button
                     onClick={() => history.push('/creators/1')}> {/*TODO: redirect to user's blog*/}
                     My blog

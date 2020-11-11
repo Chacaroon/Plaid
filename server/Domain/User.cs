@@ -18,11 +18,8 @@ namespace Domain
         private string hashPassword;
         public string Password 
         {
-            get { return hashPassword; }
-            set
-            {
-                hashPassword = Crypto.HashPassword(value); 
-            } 
+            get => hashPassword;
+            set => hashPassword = Crypto.HashPassword(value);
         }
         public RoleEnum Roles { get; set; }
         public ICollection<RefreshToken> RefreshTokens { get; set; }

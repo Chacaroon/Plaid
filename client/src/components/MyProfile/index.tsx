@@ -18,6 +18,7 @@ const MyProfile = observer(
 
     render() {
       const {name, tag, email, bio} = this.service.state.profile
+      console.log(this.service.state)
       const isCreator = this.service.state.profile.roles.includes('creator')
       if (this.service.isLoading) {
         return 'Loading...'

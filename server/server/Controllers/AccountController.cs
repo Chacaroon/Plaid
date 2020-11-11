@@ -90,7 +90,7 @@ namespace server.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel request)
         {
-            var user = AuthenticateUser(request.Email, Crypto.HashPassword(request.Password));
+            var user = AuthenticateUser(request.Email, request.Password);
 
             if (user == null)
             {
@@ -152,8 +152,13 @@ namespace server.Controllers
 
         private User AuthenticateUser(string email, string password)
         {
-            return _userRepository.GetAll(x => x.Email == email && x.Password == password)
-                .SingleOrDefault();
+            var user = _userRepository.GetAll(x => x.Email == email).SingleOrDefault();
+            if (Crypto.VerifyHashedPassword(user.Password, password))
+            {
+                return user;
+            }
+
+            return null;
         }
     }
 }

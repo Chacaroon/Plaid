@@ -5,7 +5,7 @@ class UserStore {
     constructor() {
         makeAutoObservable(this)
     }
-    user: IUserResponse = {name: '', tag: '', email: '', bio: '', isCreator: false}
+    user: IUserResponse = {name: '', tag: '', email: '', bio: '', roles: []}
     isLoggedIn: boolean = false
 }
 
