@@ -23,12 +23,12 @@ namespace DAL.Contexts
                     Name = "Vlad",
                     Tag = "Tag",
                     Email = "moransaka@gmail.com",
-                    Password = "qwe123",
+                    HashPassword = "qwe123",
                     Roles = Common.Enums.RoleEnum.Admin | Common.Enums.RoleEnum.Creator
                 }
             });
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<RefreshToken> Tokens { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

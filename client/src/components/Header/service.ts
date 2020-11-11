@@ -74,6 +74,7 @@ export default class Service extends WithLoading {
         userStore.isLoggedIn = true
         userStore.user = user
       }
+      console.log(user)
       this.loaded()
     }
   )

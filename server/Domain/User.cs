@@ -15,12 +15,7 @@ namespace Domain
         public string Email { get; set; }
         public string Tag { get; set; }
         public string Bio { get; set; }
-        private string hashPassword;
-        public string Password 
-        {
-            get => hashPassword;
-            set => hashPassword = Crypto.HashPassword(value);
-        }
+        public string HashPassword { get; set; }
         public RoleEnum Roles { get; set; }
         public ICollection<RefreshToken> RefreshTokens { get; set; }
 

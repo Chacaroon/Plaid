@@ -74,6 +74,7 @@ namespace server.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel register)
         {
+            register.Password = Crypto.HashPassword(register.Password);
             var user = _mapper.Map<User>(register);
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
@@ -90,7 +91,7 @@ namespace server.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel request)
         {
-            var user = AuthenticateUser(request.Email, request.Password);
+            var user = AuthenticateUser(request.Email, Crypto.HashPassword(request.Password));
 
             if (user == null)
             {
@@ -141,10 +142,15 @@ namespace server.Controllers
             {
                 return BadRequest();
             }
+           
             Response.Cookies.Delete("accessToken");
             Response.Cookies.Delete("refreshToken");
+           
             //TODO: FIX
-            var token =_refreshTokenRepository.GetAll().Where(x => x.Token == requestRefreshToken).First();
+            var token =_refreshTokenRepository.GetAll()
+                .Where(x => x.Token == requestRefreshToken)
+                .First();
+
             _refreshTokenRepository.Delete(token);
 
             return Ok();
@@ -152,13 +158,9 @@ namespace server.Controllers
 
         private User AuthenticateUser(string email, string password)
         {
-            var user = _userRepository.GetAll(x => x.Email == email).SingleOrDefault();
-            if (Crypto.VerifyHashedPassword(user.Password, password))
-            {
-                return user;
-            }
-
-            return null;
+            return _userRepository.GetAll(x => x.Email == email &&
+            Crypto.VerifyHashedPassword(x.HashPassword, password))
+                .SingleOrDefault();
         }
     }
 }
