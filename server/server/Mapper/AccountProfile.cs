@@ -19,6 +19,7 @@ namespace Server.Mapper
                 .ReverseMap();
 
             CreateMap<RegisterModel, User>()
+                .ForMember(dst => dst.HashPassword, opt => opt.MapFrom(src => src.Password))
                 .ForMember(dst => dst.Roles, opt => opt.MapFrom(src => RoleEnum.User))
                 .AfterMap((src, dst) => {
                     if (src.IsCreator)
