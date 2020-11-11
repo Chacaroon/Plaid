@@ -74,6 +74,7 @@ namespace server.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel register)
         {
+            register.Password = Crypto.HashPassword(register.Password);
             var user = _mapper.Map<User>(register);
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
@@ -141,10 +142,15 @@ namespace server.Controllers
             {
                 return BadRequest();
             }
+           
             Response.Cookies.Delete("accessToken");
             Response.Cookies.Delete("refreshToken");
+           
             //TODO: FIX
-            var token =_refreshTokenRepository.GetAll().Where(x => x.Token == requestRefreshToken).First();
+            var token =_refreshTokenRepository.GetAll()
+                .Where(x => x.Token == requestRefreshToken)
+                .First();
+
             _refreshTokenRepository.Delete(token);
 
             return Ok();
@@ -152,7 +158,8 @@ namespace server.Controllers
 
         private User AuthenticateUser(string email, string password)
         {
-            return _userRepository.GetAll(x => x.Email == email && x.Password == password)
+            return _userRepository.GetAll(x => x.Email == email &&
+            Crypto.VerifyHashedPassword(x.HashPassword, password))
                 .SingleOrDefault();
         }
     }
