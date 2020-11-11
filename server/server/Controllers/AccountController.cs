@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 using System.Web.Helpers;
 using AutoMapper;
 using BLL.Interfaces;
 using Common;
-using Common.Enums;
-using Common.Extensions;
-using DAL;
 using DAL.Interfaces;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Server.Models;
 
 namespace server.Controllers
@@ -79,7 +71,7 @@ namespace server.Controllers
             _userRepository.Add(user);
             var accessToken = _tokenService.GenerateJwtToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken(accessToken);
-            _refreshTokenRepository.Add(new RefreshToken() {Token = refreshToken, User = user });
+            _refreshTokenRepository.Add(new RefreshToken() { Token = refreshToken, User = user });
 
             Response.Cookies.Append("accessToken", accessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
@@ -91,7 +83,7 @@ namespace server.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel request)
         {
-            var user = AuthenticateUser(request.Email, Crypto.HashPassword(request.Password));
+            var user = AuthenticateUser(request.Email, request.Password);
 
             if (user == null)
             {
@@ -138,16 +130,16 @@ namespace server.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            if(!Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken))
+            if (!Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken))
             {
                 return BadRequest();
             }
-           
+
             Response.Cookies.Delete("accessToken");
             Response.Cookies.Delete("refreshToken");
-           
+
             //TODO: FIX
-            var token =_refreshTokenRepository.GetAll()
+            var token = _refreshTokenRepository.GetAll()
                 .Where(x => x.Token == requestRefreshToken)
                 .First();
 
@@ -156,11 +148,27 @@ namespace server.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
+        [HttpPost("account-is-email-taken")]
+        public bool IsEmailTaken([FromBody] string email)
+        {
+            var user = _userRepository.GetAll(x => x.Email == email);
+            return user != null;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("account-is-tag-taken")]
+        public bool IsTagTaken([FromBody] string tag)
+        {
+            var user = _userRepository.GetAll(x => x.Tag == tag);
+            return user != null;
+        }
+
         private User AuthenticateUser(string email, string password)
         {
-            return _userRepository.GetAll(x => x.Email == email &&
-            Crypto.VerifyHashedPassword(x.HashPassword, password))
+            var user = _userRepository.GetAll(x => x.Email == email)
                 .SingleOrDefault();
+            return Crypto.VerifyHashedPassword(user.HashPassword, password) ? user : null;
         }
     }
 }
