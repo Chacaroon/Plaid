@@ -88,6 +88,7 @@ namespace server
             });
 
             services.AddTransient<ITokenService, TokenService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

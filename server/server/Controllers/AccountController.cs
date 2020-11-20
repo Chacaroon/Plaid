@@ -21,18 +21,21 @@ namespace server.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IOptions<AuthOptions> _authOpions;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
 
         public AccountController(IUserRepository userRepository,
+            IUserService userService,
             IRefreshTokenRepository refreshTokenRepository,
             IOptions<AuthOptions> authOpions,
             IMapper mapper,
             ITokenService tokenService)
         {
             _userRepository = userRepository;
+            _userService = userService;
             _refreshTokenRepository = refreshTokenRepository;
             _authOpions = authOpions;
             _mapper = mapper;
@@ -66,6 +69,22 @@ namespace server.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel register)
         {
+            if (_userService.IsEmailTaken(register.Email))
+            {
+                return BadRequest(new
+                {
+                    message = "Email is taken"
+                });
+            }
+
+            if (_userService.IsTagTaken(register.Tag))
+            {
+                return BadRequest(new
+                {
+                    message = "Tag is taken"
+                });
+            }
+
             register.Password = Crypto.HashPassword(register.Password);
             var user = _mapper.Map<User>(register);
             _userRepository.Add(user);
@@ -83,7 +102,7 @@ namespace server.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel request)
         {
-            var user = AuthenticateUser(request.Email, request.Password);
+            var user = _userService.AuthenticateUser(request.Email, request.Password);
 
             if (user == null)
             {
@@ -150,25 +169,16 @@ namespace server.Controllers
 
         [AllowAnonymous]
         [HttpPost("account-is-email-taken")]
-        public bool IsEmailTaken([FromBody] string email)
+        public bool AccountIsEmailTaken([FromBody] string email)
         {
-            var user = _userRepository.GetAll(x => x.Email == email);
-            return user != null;
+            return _userService.IsEmailTaken(email);
         }
 
         [AllowAnonymous]
         [HttpPost("account-is-tag-taken")]
         public bool IsTagTaken([FromBody] string tag)
         {
-            var user = _userRepository.GetAll(x => x.Tag == tag);
-            return user != null;
-        }
-
-        private User AuthenticateUser(string email, string password)
-        {
-            var user = _userRepository.GetAll(x => x.Email == email)
-                .SingleOrDefault();
-            return Crypto.VerifyHashedPassword(user.HashPassword, password) ? user : null;
+            return _userService.IsTagTaken(tag);
         }
     }
 }
