@@ -2,6 +2,8 @@ import {observer} from 'mobx-react'
 import React from 'react'
 import Service from './service'
 import {Box, Grid, Paper, Typography} from '@material-ui/core'
+import Bio from './Bio'
+import AddPost from './AddPost'
 
 interface IProps {
 }
@@ -24,24 +26,33 @@ const MyProfile = observer(
         return 'Loading...'
       }
 
+      const bioProps = {bio}
+
       return (
-        <Grid container>
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-            <Paper>
-              <Box p={2}>
-                <Box mb={2}>
-                  <Typography variant={'h6'}>{name}</Typography>
-                  <Box fontWeight={'fontWeightLight'} color={'text.secondary'}>
-                    @{tag}
+        <Box pt={5}>
+          <Grid container justify={'center'} alignItems={'center'}>
+            <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+              <Paper>
+                <Box p={2}>
+                  <Box mb={2}>
+                    <Typography variant={'h6'}>{name}</Typography>
+                    <Box fontWeight={'fontWeightLight'} color={'text.secondary'}>
+                      @{tag}
+                    </Box>
                   </Box>
+                  <Typography variant={'body2'}>{email}</Typography>
+                  <Bio {...bioProps}/>
+                  <Typography variant={'body1'}>isCreator: {isCreator ? 'Yes' : 'No'}</Typography>
                 </Box>
-                <Typography variant={'body2'}>{email}</Typography>
-                {bio && <Typography variant={'body1'}>{bio}</Typography>}
-                <Typography variant={'body1'}>isCreator: {isCreator ? 'Yes' : 'No'}</Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={9}>
+              <Box mt={3} display={'flex'} justifyContent={'center'}>
+                <AddPost/>
               </Box>
-            </Paper>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
       )
     }
   }
