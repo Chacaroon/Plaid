@@ -50,8 +50,7 @@ namespace server.Controllers
                 return BadRequest();
             }
 
-            var token = new JwtSecurityTokenHandler().ReadToken(requestAccessToken) as JwtSecurityToken;
-            var user = _userRepository.GetById(Convert.ToInt32(token.Claims.First(claim => claim.Type == "sub").Value));
+            var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
 
             return Ok(_mapper.Map<User, UserModel>(user));
         }
@@ -84,7 +83,7 @@ namespace server.Controllers
                     message = "Tag is taken"
                 });
             }
-
+            
             register.Password = Crypto.HashPassword(register.Password);
             var user = _mapper.Map<User>(register);
             _userRepository.Add(user);
@@ -179,6 +178,16 @@ namespace server.Controllers
         public bool IsTagTaken([FromBody] string tag)
         {
             return _userService.IsTagTaken(tag);
+        }
+
+        [HttpPost("change-bio")]
+        public IActionResult ChangeBio([FromBody] string bio)
+        {
+            Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
+            var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
+            _userService.ChangeBio(user, bio.ToString());
+
+            return Ok();
         }
     }
 }

@@ -58,5 +58,10 @@ namespace BLL.Services
             var computedHash = hashAlgoritm.ComputeHash(thirdPartOfToken);
             return Convert.ToBase64String(computedHash, 0, computedHash.Length);
         }
+
+        public JwtSecurityToken GetCurrentToken(string token)
+        {
+            return new JwtSecurityTokenHandler().ReadToken(token) as JwtSecurityToken;
+        }
     }
 }

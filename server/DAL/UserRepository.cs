@@ -16,6 +16,15 @@ namespace DAL
         {
 
         }
+
+        public void UpdateBIO(User user, string bio)
+        {
+            var userFromDB =_context.Users.Where(user => user.Email == user.Email)
+                .FirstOrDefault();
+            userFromDB.Bio = bio;
+
+            _context.SaveChanges();
+        }
         
     }
 }
