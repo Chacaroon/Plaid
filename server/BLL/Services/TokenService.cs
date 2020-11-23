@@ -2,6 +2,7 @@
 using Common;
 using Common.Enums;
 using Common.Extensions;
+using DAL.Interfaces;
 using Domain;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -20,11 +21,15 @@ namespace BLL.Services
     public class TokenService : ITokenService
     {
         private readonly IOptions<AuthOptions> _authOpions;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
 
-        public TokenService(IOptions<AuthOptions> authOpions)
+        public TokenService(IOptions<AuthOptions> authOpions,
+            IRefreshTokenRepository refreshTokenRepository)
         {
             _authOpions = authOpions;
+            _refreshTokenRepository = refreshTokenRepository;
         }
+
 
         public string GenerateJwtToken(User user)
         {
@@ -62,6 +67,14 @@ namespace BLL.Services
         public JwtSecurityToken GetCurrentToken(string token)
         {
             return new JwtSecurityTokenHandler().ReadToken(token) as JwtSecurityToken;
+        }
+        public void CleanToken(string tokenStr)
+        {
+            var token = _refreshTokenRepository.GetAll()
+               .Where(x => x.Token == tokenStr)
+               .First();
+
+            _refreshTokenRepository.Delete(token);
         }
     }
 }

@@ -47,7 +47,10 @@ namespace server.Controllers
         {
             if (!(Request.Cookies.TryGetValue("accessToken", out var requestAccessToken)))
             {
-                return BadRequest();
+                return Unauthorized(new ErrorMessageModel()
+                {
+                    Message = "Token is not valid"
+                });
             }
 
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
@@ -70,20 +73,20 @@ namespace server.Controllers
         {
             if (_userService.IsEmailTaken(register.Email))
             {
-                return BadRequest(new
+                return BadRequest(new ErrorMessageModel()
                 {
-                    message = "Email is taken"
+                    Message = "Email is taken"
                 });
             }
 
             if (_userService.IsTagTaken(register.Tag))
             {
-                return BadRequest(new
+                return BadRequest(new ErrorMessageModel()
                 {
-                    message = "Tag is taken"
+                    Message = "Tag is taken"
                 });
             }
-            
+
             register.Password = Crypto.HashPassword(register.Password);
             var user = _mapper.Map<User>(register);
             _userRepository.Add(user);
@@ -105,7 +108,10 @@ namespace server.Controllers
 
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized(new ErrorMessageModel()
+                {
+                    Message = "login or password are incorrect"
+                });
             }
 
             var accessToken = _tokenService.GenerateJwtToken(user);
@@ -125,12 +131,18 @@ namespace server.Controllers
             if (!(Request.Cookies.TryGetValue("accessToken", out var requestAccessToken) &&
                 Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken)))
             {
-                return BadRequest();
+                return BadRequest(new ErrorMessageModel()
+                {
+                    Message = "token was not found"
+                });
             }
 
             if (_tokenService.GenerateRefreshToken(requestAccessToken) != requestRefreshToken)
             {
-                return Unauthorized();
+                return BadRequest(new ErrorMessageModel()
+                {
+                    Message = "access token and refresh token are not valid"
+                });
             }
 
             var token = new JwtSecurityTokenHandler().ReadToken(requestAccessToken) as JwtSecurityToken;
@@ -150,18 +162,15 @@ namespace server.Controllers
         {
             if (!Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken))
             {
-                return BadRequest();
+                return BadRequest(new ErrorMessageModel()
+                {
+                    Message = "token was not found"
+                });
             }
 
             Response.Cookies.Delete("accessToken");
             Response.Cookies.Delete("refreshToken");
-
-            //TODO: FIX
-            var token = _refreshTokenRepository.GetAll()
-                .Where(x => x.Token == requestRefreshToken)
-                .First();
-
-            _refreshTokenRepository.Delete(token);
+            _tokenService.CleanToken(requestRefreshToken);
 
             return Ok();
         }

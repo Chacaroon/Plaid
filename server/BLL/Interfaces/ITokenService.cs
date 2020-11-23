@@ -11,6 +11,6 @@ namespace BLL.Interfaces
         public string GenerateJwtToken(User user);
         public string GenerateRefreshToken(string accessToken);
         public JwtSecurityToken GetCurrentToken(string token);
-
+        public void CleanToken(string token);
     }
 }
