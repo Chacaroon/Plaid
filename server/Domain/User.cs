@@ -18,10 +18,12 @@ namespace Domain
         public string HashPassword { get; set; }
         public RoleEnum Roles { get; set; }
         public ICollection<RefreshToken> RefreshTokens { get; set; }
+        public ICollection<Post> Posts { get; set; }
 
         public User()
         {
             RefreshTokens = new List<RefreshToken>();
+            Posts = new List<Post>();
         }
     }
 }
