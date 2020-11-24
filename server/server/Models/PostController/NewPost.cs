@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models
+namespace Server.Models.PostController
 {
-    public class TagStringModel
+    public class NewPost
     {
-        public string Tag { get; set; }
+        public string Post { get; set; }
     }
 }

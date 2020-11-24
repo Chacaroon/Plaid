@@ -2,7 +2,7 @@
 using Common.Enums;
 using Common.Extensions;
 using Domain;
-using Server.Models;
+using Server.Models.AccountController;
 using System;
 using System.Collections.Generic;
 using System.Linq;

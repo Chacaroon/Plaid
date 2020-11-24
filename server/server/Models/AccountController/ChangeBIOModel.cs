@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models
+namespace Server.Models.AccountController
 {
-    public class ErrorMessageModel
+    public class ChangeBIOModel
     {
-        public string ErrorMessage { get; set; }
+        public string BIO { get; set; }
     }
 }

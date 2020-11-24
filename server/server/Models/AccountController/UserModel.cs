@@ -1,10 +1,11 @@
 ﻿using Common.Enums;
 using Common.Interfaces;
 
-namespace Server.Models
+namespace Server.Models.AccountController
 {
     public class UserModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Tag { get; set; }
         public string Email { get; set; }

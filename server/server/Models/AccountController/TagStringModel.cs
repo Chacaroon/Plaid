@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models
+namespace Server.Models.AccountController
 {
-    public class ChangeBIOModel
+    public class TagStringModel
     {
-        public string BIO { get; set; }
+        public string Tag { get; set; }
     }
 }
