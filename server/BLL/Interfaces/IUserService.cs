@@ -12,6 +12,7 @@ namespace BLL.Interfaces
         bool IsTagTaken(string tag);
         User AuthenticateUser(string email, string password);
         User GetCurrentUser(JwtSecurityToken token);
+        public User GetCurrentUserById(int id);
         void ChangeBio(User user, string bio);
     }
 }

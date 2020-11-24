@@ -37,7 +37,7 @@ namespace Server.Controllers
         }
 
         [Authorize(Roles = "Creator")]
-        [HttpPost("")]
+        [HttpPost]
         public IActionResult AddPost([FromBody] NewPost post)
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);

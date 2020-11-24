@@ -198,5 +198,11 @@ namespace server.Controllers
 
             return Ok();
         }
+
+        [HttpGet("current-user-id")]
+        public IActionResult GetCurrentCreator(CurrentCreateModel model)
+        {
+            return Ok(_mapper.Map<UserModel>(_userService.GetCurrentUserById(model.Id)));
+        }
     }
 }
