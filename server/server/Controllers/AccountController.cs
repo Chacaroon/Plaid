@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Server.Models;
+using Server.Models.AccountController;
 
 namespace server.Controllers
 {
@@ -177,16 +177,16 @@ namespace server.Controllers
 
         [AllowAnonymous]
         [HttpPost("account-is-email-taken")]
-        public bool AccountIsEmailTaken([FromBody] string email)
+        public bool AccountIsEmailTaken([FromBody] EmailStringModel emailStringModel)
         {
-            return _userService.IsEmailTaken(email);
+            return _userService.IsEmailTaken(emailStringModel.Email);
         }
 
         [AllowAnonymous]
         [HttpPost("account-is-tag-taken")]
-        public bool IsTagTaken([FromBody] string tag)
+        public bool IsTagTaken([FromBody] TagStringModel tagStringModel)
         {
-            return _userService.IsTagTaken(tag);
+            return _userService.IsTagTaken(tagStringModel.Tag);
         }
 
         [HttpPost("change-bio")]
@@ -197,6 +197,22 @@ namespace server.Controllers
             _userService.ChangeBio(user, bio.BIO);
 
             return Ok();
+        }
+
+        [HttpGet("user-id")]
+        public IActionResult GetCurrentUserById([FromQuery]int id)
+        {
+            var user = _userService.GetCurrentUserById(id);
+            
+            if (user == null)
+            {
+                return BadRequest(new ErrorMessageModel()
+                {
+                    ErrorMessage = "User are not creator or does not exist"
+                });
+            }
+
+            return Ok(_mapper.Map<UserModel>(user));
         }
     }
 }

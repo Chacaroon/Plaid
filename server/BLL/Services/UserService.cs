@@ -44,6 +44,11 @@ namespace BLL.Services
             return _userRepository.GetById(Convert.ToInt32(token.Claims.First(claim => claim.Type == "sub").Value));
         }
 
+        public User GetCurrentUserById(int id)
+        {
+            return _userRepository.GetById(id);
+        }
+
         public void ChangeBio(User user, string bio)
         {
             _userRepository.UpdateBIO(user, bio);
