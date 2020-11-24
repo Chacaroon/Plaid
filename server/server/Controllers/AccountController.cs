@@ -190,11 +190,11 @@ namespace server.Controllers
         }
 
         [HttpPost("change-bio")]
-        public IActionResult ChangeBio([FromBody] string bio)
+        public IActionResult ChangeBio([FromBody] ChangeBIOModel bio)
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
-            _userService.ChangeBio(user, bio.ToString());
+            _userService.ChangeBio(user, bio.BIO);
 
             return Ok();
         }
