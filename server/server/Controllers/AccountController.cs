@@ -47,11 +47,13 @@ namespace server.Controllers
         {
             if (!(Request.Cookies.TryGetValue("accessToken", out var requestAccessToken)))
             {
-                return BadRequest();
+                return Unauthorized(new ErrorMessageModel()
+                {
+                    Message = "Token is not valid"
+                });
             }
 
-            var token = new JwtSecurityTokenHandler().ReadToken(requestAccessToken) as JwtSecurityToken;
-            var user = _userRepository.GetById(Convert.ToInt32(token.Claims.First(claim => claim.Type == "sub").Value));
+            var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
 
             return Ok(_mapper.Map<User, UserModel>(user));
         }
@@ -71,17 +73,17 @@ namespace server.Controllers
         {
             if (_userService.IsEmailTaken(register.Email))
             {
-                return BadRequest(new
+                return BadRequest(new ErrorMessageModel()
                 {
-                    message = "Email is taken"
+                    Message = "Email is taken"
                 });
             }
 
             if (_userService.IsTagTaken(register.Tag))
             {
-                return BadRequest(new
+                return BadRequest(new ErrorMessageModel()
                 {
-                    message = "Tag is taken"
+                    Message = "Tag is taken"
                 });
             }
 
@@ -106,7 +108,10 @@ namespace server.Controllers
 
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized(new ErrorMessageModel()
+                {
+                    Message = "login or password are incorrect"
+                });
             }
 
             var accessToken = _tokenService.GenerateJwtToken(user);
@@ -126,12 +131,18 @@ namespace server.Controllers
             if (!(Request.Cookies.TryGetValue("accessToken", out var requestAccessToken) &&
                 Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken)))
             {
-                return BadRequest();
+                return BadRequest(new ErrorMessageModel()
+                {
+                    Message = "token was not found"
+                });
             }
 
             if (_tokenService.GenerateRefreshToken(requestAccessToken) != requestRefreshToken)
             {
-                return Unauthorized();
+                return BadRequest(new ErrorMessageModel()
+                {
+                    Message = "access token and refresh token are not valid"
+                });
             }
 
             var token = new JwtSecurityTokenHandler().ReadToken(requestAccessToken) as JwtSecurityToken;
@@ -151,18 +162,15 @@ namespace server.Controllers
         {
             if (!Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken))
             {
-                return BadRequest();
+                return BadRequest(new ErrorMessageModel()
+                {
+                    Message = "token was not found"
+                });
             }
 
             Response.Cookies.Delete("accessToken");
             Response.Cookies.Delete("refreshToken");
-
-            //TODO: FIX
-            var token = _refreshTokenRepository.GetAll()
-                .Where(x => x.Token == requestRefreshToken)
-                .First();
-
-            _refreshTokenRepository.Delete(token);
+            _tokenService.CleanToken(requestRefreshToken);
 
             return Ok();
         }
@@ -179,6 +187,16 @@ namespace server.Controllers
         public bool IsTagTaken([FromBody] string tag)
         {
             return _userService.IsTagTaken(tag);
+        }
+
+        [HttpPost("change-bio")]
+        public IActionResult ChangeBio([FromBody] string bio)
+        {
+            Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
+            var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
+            _userService.ChangeBio(user, bio.ToString());
+
+            return Ok();
         }
     }
 }

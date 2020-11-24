@@ -5,8 +5,7 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface IUserRepository : IBaseRepository<User>
+    public interface IPostRepository : IBaseRepository<Post>
     {
-        void UpdateBIO(User user, string bio);
     }
 }

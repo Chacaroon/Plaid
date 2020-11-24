@@ -1,6 +1,7 @@
 ﻿using Domain;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
 namespace BLL.Interfaces
@@ -9,6 +10,7 @@ namespace BLL.Interfaces
     {
         public string GenerateJwtToken(User user);
         public string GenerateRefreshToken(string accessToken);
-
+        public JwtSecurityToken GetCurrentToken(string token);
+        public void CleanToken(string token);
     }
 }
