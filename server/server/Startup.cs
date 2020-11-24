@@ -90,6 +90,7 @@ namespace server
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<ICommentService, CommentService>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -116,7 +117,7 @@ namespace server
             });
 
             app.UseRouting();
-            
+
             app.UseCors();
 
             app.UseAuthentication();

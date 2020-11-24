@@ -5,10 +5,8 @@ using System.Text;
 
 namespace BLL.Interfaces
 {
-    public interface IPostService
+    public interface ICommentService
     {
-        void CreateNewPost(string post, User user);
-        Post GetPostById(int id);
-
+        void AddComment(string comment, Post post, User user);
     }
 }
