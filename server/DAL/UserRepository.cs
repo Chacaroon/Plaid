@@ -19,7 +19,7 @@ namespace DAL
 
         public void UpdateBIO(User user, string bio)
         {
-            var userFromDB =_context.Users.Where(user => user.Email == user.Email)
+            var userFromDB =_context.Users.Where(x => x.Email == user.Email)
                 .FirstOrDefault();
             userFromDB.Bio = bio;
 
