@@ -200,9 +200,19 @@ namespace server.Controllers
         }
 
         [HttpGet("current-user-id")]
-        public IActionResult GetCurrentCreator(CurrentCreateModel model)
+        public IActionResult GetCurrentUserById(CurrentUserId model)
         {
-            return Ok(_mapper.Map<UserModel>(_userService.GetCurrentUserById(model.Id)));
+            var user = _userService.GetCurrentUserById(model.Id);
+            
+            if (user == null)
+            {
+                return BadRequest(new ErrorMessageModel()
+                {
+                    ErrorMessage = "User are not creator or does not exist"
+                });
+            }
+
+            return Ok(_mapper.Map<UserModel>(user));
         }
     }
 }
