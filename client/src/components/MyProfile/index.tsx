@@ -26,8 +26,6 @@ const MyProfile = observer(
         return 'Loading...'
       }
 
-      const bioProps = {bio}
-
       return (
         <Box pt={5}>
           <Grid container justify={'center'} alignItems={'center'}>
@@ -41,7 +39,7 @@ const MyProfile = observer(
                     </Box>
                   </Box>
                   <Typography variant={'body2'}>{email}</Typography>
-                  <Bio {...bioProps}/>
+                  <Bio {...{bio}}/>
                   <Typography variant={'body1'}>isCreator: {isCreator ? 'Yes' : 'No'}</Typography>
                 </Box>
               </Paper>

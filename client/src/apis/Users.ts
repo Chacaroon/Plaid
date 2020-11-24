@@ -66,7 +66,24 @@ async function current(): Promise<IUserResponse> {
 }
 
 async function updateBio(bio: string) {
-    return api.post('change-bio', bio)
+    return api.post('change-bio', {bio})
+}
+
+interface ICreatorInfo {
+    id: number
+    name: string
+    tag: string
+    bio: string
+}
+
+async function getCreatorInfo(creatorId: number): Promise<ICreatorInfo> {
+    console.log('getCreatorInfo')
+    return {
+        id: creatorId,
+        name: 'John Doe',
+        tag: 'john_cool337',
+        bio: "I'm an artist. I'm a performance artist."
+    }
 }
 
 api.interceptors.response.use((response) => {
@@ -81,8 +98,8 @@ api.interceptors.response.use((response) => {
     return Promise.reject(error.response)
 })
 
-export {isTagTaken, isEmailTaken, register, login, current, logout, updateBio}
+export {isTagTaken, isEmailTaken, register, login, current, logout, updateBio, getCreatorInfo}
 export type
 {
-    INewUser, IUserCredentials, IUserResponse
+    INewUser, IUserCredentials, IUserResponse, ICreatorInfo
 }

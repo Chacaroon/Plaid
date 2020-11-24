@@ -1,5 +1,6 @@
 import {ErrorHandling} from '../utils/ErrorHandling'
 import axios from 'axios'
+import testPost from './TEST_POST'
 
 const api = axios.create({
   baseURL: 'https://localhost:5001/api/post',
@@ -7,27 +8,27 @@ const api = axios.create({
   withCredentials: true
 })
 
-type Post = {
+type IPost = {
   id: number
   content: string
 }
 
 type IPostsResponse = {
-  posts: Array<Post>
+  posts: Array<IPost>
 } & ErrorHandling
 
 async function addPost(post: string) {
   return api.post('add').catch(console.log)
 }
 
-async function getPosts(creatorId: string): Promise<IPostsResponse> {
+async function getPosts(creatorId: number): Promise<IPostsResponse> {
   return {
     posts: [
-      {id: 1, content: '<h1>POST1</h1>'},
-      {id: 2, content: '<h1>POST2</h1>'}
+      {id: 1, content: testPost},
+      {id: 2, content: testPost}
     ]
   }
 }
 
 export {getPosts}
-export type {Post, IPostsResponse}
+export type {IPost, IPostsResponse}

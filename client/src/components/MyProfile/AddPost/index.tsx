@@ -61,13 +61,13 @@ const AddPost = observer(
 AddPost.modules = {
   imageCompress: {
     quality: 1,
-    maxWidth: 800,
-    maxHeight: 800,
+    maxWidth: 400,
+    maxHeight: 400,
     imageType: 'image/jpeg',
     debug: true,
   },
   toolbar: [
-    [{'header': '1'}, {'header': '2'}, {'font': []}],
+    [{'header': '1'}, {'header': '2'}],
     [{size: []}],
     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
     [{'list': 'ordered'}, {'list': 'bullet'},

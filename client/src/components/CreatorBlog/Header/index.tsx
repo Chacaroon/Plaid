@@ -1,4 +1,4 @@
-import {Typography} from '@material-ui/core'
+import {Box, Paper, Typography} from '@material-ui/core'
 import {observer} from 'mobx-react'
 import React from 'react'
 import {ICreatorInfo} from '../../../apis/Creators'
@@ -11,11 +11,13 @@ const Header = observer(({creatorInfo}: IProps) => {
     const {name, tag, bio} = creatorInfo
 
     return (
-        <div>
+        <Paper>
+          <Box p={2}>
             <Typography variant={'h5'} component={'h1'}>{name}</Typography>
             <Typography color={'textSecondary'}>{tag}</Typography>
             <Typography>{bio}</Typography>
-        </div>
+          </Box>
+        </Paper>
     )
 })
 

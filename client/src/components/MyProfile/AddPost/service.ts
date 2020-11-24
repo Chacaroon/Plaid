@@ -30,9 +30,9 @@ export default class Service extends WithLoading {
 
   handleSubmit = action(
     async () => {
+      console.log(this.state.inputPost)
       this.state.isEditing = false
       this.state.inputPost = ''
-      console.log(this.state.inputPost)
     }
   )
 

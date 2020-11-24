@@ -5,42 +5,58 @@ import {ICreatorInfo} from '../../apis/Creators'
 import {routerStore} from '../../stores/RouterStore'
 import Header from './Header'
 import Service from './service'
+import Post from './Post'
+import {Box, Grid} from '@material-ui/core'
 
 interface IRouterParams {
-    creatorId: string
+  creatorId: number
 }
 
 interface IProps {
-    match: {
-        params: IRouterParams
-    }
+  match: {
+    params: IRouterParams
+  }
 }
 
 const CreatorBlog = observer(
-    class extends React.Component {
-        private readonly service: Service
+  class extends React.Component {
+    private readonly service: Service
 
-        constructor(props: IProps) {
-            super(props)
+    constructor(props: IProps) {
+      super(props)
 
-            const creatorId: string = (matchPath(routerStore.location.pathname, {
-                path: '/creators/:creatorId'
-            }) as any).params.creatorId
-            this.service = new Service({creatorId})
-        }
-
-        render() {
-            const {isLoading, creatorInfo} = this.service
-
-            if (isLoading) {
-                return 'Loading...'
-            }
-
-            return (
-                <Header creatorInfo={creatorInfo as ICreatorInfo}/>
-            )
-        }
+      const creatorId: number = (matchPath(routerStore.location.pathname, {
+        path: '/creators/:creatorId'
+      }) as any).params.creatorId
+      this.service = new Service({creatorId})
     }
+
+    render() {
+      const {isLoading} = this.service
+      const {creatorInfo, posts} = this.service.state
+
+      if (isLoading) {
+        return 'Loading...'
+      }
+
+      return (
+        <Box pt={5}>
+          <Grid container justify={'center'} alignItems={'center'}>
+            <Grid item xl={4}>
+              <Header creatorInfo={creatorInfo as ICreatorInfo}/>
+            </Grid>
+          </Grid>
+          <Grid container justify={'center'} alignItems={'center'}>
+            <Grid item xl={6}>
+              <Box mt={4}>
+                {posts.map(post => <Post key={post.id} {...{post}}/>)}
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      )
+    }
+  }
 )
 
 export default CreatorBlog
