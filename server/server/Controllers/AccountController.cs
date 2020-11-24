@@ -177,16 +177,16 @@ namespace server.Controllers
 
         [AllowAnonymous]
         [HttpPost("account-is-email-taken")]
-        public bool AccountIsEmailTaken([FromBody] string email)
+        public bool AccountIsEmailTaken([FromBody] EmailStringModel emailStringModel)
         {
-            return _userService.IsEmailTaken(email);
+            return _userService.IsEmailTaken(emailStringModel.Email);
         }
 
         [AllowAnonymous]
         [HttpPost("account-is-tag-taken")]
-        public bool IsTagTaken([FromBody] string tag)
+        public bool IsTagTaken([FromBody] TagStringModel tagStringModel)
         {
-            return _userService.IsTagTaken(tag);
+            return _userService.IsTagTaken(tagStringModel.Tag);
         }
 
         [HttpPost("change-bio")]
