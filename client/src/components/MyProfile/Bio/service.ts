@@ -1,6 +1,6 @@
 import {action, observable} from 'mobx'
 import WithLoading from '../../../services/WithLoading'
-import {updateBio} from '../../../apis/Profile'
+import {updateBio} from '../../../apis/Users'
 
 interface IState {
   bio: string

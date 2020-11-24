@@ -7,10 +7,6 @@ const api = axios.create({
     withCredentials: true
 })
 
-type IsTaken = {
-    isTaken: boolean
-} & ErrorHandling
-
 interface INewUser {
     name: string
     tag: string
@@ -34,24 +30,20 @@ type IUserResponse = {
     roles: string[]
 } & ErrorHandling
 
-async function isTagTaken(tag: string): Promise<IsTaken> {
-    return {
-        isTaken: false
-    }
+async function isTagTaken(tag: string): Promise<boolean> {
+    return false
 }
 
-async function isEmailTaken(email: string): Promise<IsTaken> {
-    return {
-        isTaken: false
-    }
+async function isEmailTaken(email: string): Promise<boolean> {
+    return false
 }
 
 async function register(newUser: INewUser): Promise<IUserCreateResponse> {
-    return api.post('register', newUser).then(res => res.data)
+    return api.post('register', newUser).then(res => res.data).catch(res => res.data)
 }
 
 async function login(credentials: IUserCredentials): Promise<IUserCreateResponse> {
-    return api.post('login', credentials).then(res => res.data)
+    return api.post('login', credentials).then(res => res.data).catch(res => res.data)
 }
 
 async function refreshAccessToken() {
@@ -73,6 +65,10 @@ async function current(): Promise<IUserResponse> {
     return api.get('current').then(res => res.data).catch(console.log)
 }
 
+async function updateBio(bio: string) {
+    return api.post('change-bio', bio)
+}
+
 api.interceptors.response.use((response) => {
     return response
 }, async function (error) {
@@ -85,7 +81,7 @@ api.interceptors.response.use((response) => {
     return Promise.reject(error.response)
 })
 
-export {isTagTaken, isEmailTaken, register, login, current, logout}
+export {isTagTaken, isEmailTaken, register, login, current, logout, updateBio}
 export type
 {
     INewUser, IUserCredentials, IUserResponse

@@ -13,7 +13,7 @@ export default class Service {
 
   handleSubmit = action(async (values: IFields) => {
       let data = await login(values)
-      if (data.error) {
+      if (data.errorMessage) {
         alert('Unexpected error!')
       } else {
         userStore.isLoggedIn = true

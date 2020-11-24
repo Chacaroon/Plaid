@@ -23,6 +23,9 @@ namespace BLL.Services
         {
             var user = _userRepository.GetAll(x => x.Email == email)
                .SingleOrDefault();
+
+            if (user == null) return null;
+
             return Crypto.VerifyHashedPassword(user.HashPassword, password) ? user : null;
         }
 

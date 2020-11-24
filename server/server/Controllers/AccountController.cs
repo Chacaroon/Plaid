@@ -49,7 +49,7 @@ namespace server.Controllers
             {
                 return Unauthorized(new ErrorMessageModel()
                 {
-                    Message = "Token is not valid"
+                    ErrorMessage = "Token is not valid"
                 });
             }
 
@@ -75,7 +75,7 @@ namespace server.Controllers
             {
                 return BadRequest(new ErrorMessageModel()
                 {
-                    Message = "Email is taken"
+                    ErrorMessage = "Email is taken"
                 });
             }
 
@@ -83,7 +83,7 @@ namespace server.Controllers
             {
                 return BadRequest(new ErrorMessageModel()
                 {
-                    Message = "Tag is taken"
+                    ErrorMessage = "Tag is taken"
                 });
             }
 
@@ -110,7 +110,7 @@ namespace server.Controllers
             {
                 return Unauthorized(new ErrorMessageModel()
                 {
-                    Message = "login or password are incorrect"
+                    ErrorMessage = "login or password are incorrect"
                 });
             }
 
@@ -133,7 +133,7 @@ namespace server.Controllers
             {
                 return BadRequest(new ErrorMessageModel()
                 {
-                    Message = "token was not found"
+                    ErrorMessage = "token was not found"
                 });
             }
 
@@ -141,7 +141,7 @@ namespace server.Controllers
             {
                 return BadRequest(new ErrorMessageModel()
                 {
-                    Message = "access token and refresh token are not valid"
+                    ErrorMessage = "access token and refresh token are not valid"
                 });
             }
 
@@ -164,7 +164,7 @@ namespace server.Controllers
             {
                 return BadRequest(new ErrorMessageModel()
                 {
-                    Message = "token was not found"
+                    ErrorMessage = "token was not found"
                 });
             }
 

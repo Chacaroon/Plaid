@@ -1,5 +1,5 @@
 interface ErrorHandling {
-    error?: { message: string }
+    errorMessage?: { message: string }
 }
 
 export type {ErrorHandling}

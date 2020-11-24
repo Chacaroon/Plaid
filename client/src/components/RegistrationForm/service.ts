@@ -16,7 +16,7 @@ export default class Service {
 
   handleSubmit = action(async (values: IFields) => {
       let data = await register(values)
-      if (data.error) {
+      if (data.errorMessage) {
         alert('Unexpected error!')
       } else {
         userStore.isLoggedIn = true
@@ -42,13 +42,9 @@ export default class Service {
                 Only lowercase latin letters, digits and _ are allowed`
     }
 
-    let tag = await isTagTaken(value)
-    if (tag.error) {
-      alert('Unexpected error!')
-    } else {
-      if (tag.isTaken) {
-        return 'Tag already taken!'
-      }
+    let taken = await isTagTaken(value)
+    if (taken) {
+      return 'Tag already taken!'
     }
   }
 
@@ -57,14 +53,11 @@ export default class Service {
       return 'Invalid e-mail'
     }
 
-    let email = await isEmailTaken(value)
-    if (email.error) {
-      alert('Unexpected error!')
-    } else {
-      if (email.isTaken) {
-        return 'Email already taken!'
-      }
+    let taken = await isEmailTaken(value)
+    if (taken) {
+      return 'Email already taken!'
     }
+
   }
 
   validatePassword = async (value: string): Promise<string> => {

@@ -7,6 +7,6 @@ namespace Server.Models
 {
     public class ErrorMessageModel
     {
-        public string Message { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

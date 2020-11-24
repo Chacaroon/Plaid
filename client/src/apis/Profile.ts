@@ -18,9 +18,5 @@ async function getProfile(): Promise<IUserProfileResponse> {
     }
 }
 
-async function updateBio(bio: string) {
-
-}
-
-export {getProfile, updateBio}
+export {getProfile}
 export type {IUserProfileResponse}
