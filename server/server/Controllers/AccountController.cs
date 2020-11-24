@@ -16,7 +16,7 @@ using Server.Models.AccountController;
 namespace server.Controllers
 {
     [Authorize]
-    [Route("api/accounts")]
+    [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -199,10 +199,10 @@ namespace server.Controllers
             return Ok();
         }
 
-        [HttpGet("current-user-id")]
-        public IActionResult GetCurrentUserById(CurrentUserId model)
+        [HttpGet("user-id")]
+        public IActionResult GetCurrentUserById([FromQuery]int id)
         {
-            var user = _userService.GetCurrentUserById(model.Id);
+            var user = _userService.GetCurrentUserById(id);
             
             if (user == null)
             {
