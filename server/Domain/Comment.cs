@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Domain
 {
-    public class PostComment
+    public class Comment
     {
         public int Id { get; set; }
-        public string Comment { get; set; }
+        public string Content { get; set; }
         public int UserId { get; set; }
         public Post Post { get; set; }
+
     }
 }

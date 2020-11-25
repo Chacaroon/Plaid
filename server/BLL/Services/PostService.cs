@@ -27,5 +27,10 @@ namespace BLL.Services
                 User = user
             });
         }
+
+        public Post GetPostById(int id)
+        {
+            return _postRepository.GetById(id);
+        }
     }
 }

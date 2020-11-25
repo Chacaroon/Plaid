@@ -31,6 +31,6 @@ namespace DAL.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<PostComment> PostComments{ get; set; }
+        public DbSet<Comment> Comments{ get; set; }
     }
 }

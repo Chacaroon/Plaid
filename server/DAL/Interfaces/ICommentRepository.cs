@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface IPostCommentRepository : IBaseRepository<PostComment>
+    public interface ICommentRepository : IBaseRepository<Comment>
     {
     }
 }
