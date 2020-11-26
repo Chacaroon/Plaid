@@ -4,6 +4,7 @@ import Service from './service'
 import {Box, Grid, Paper, Typography} from '@material-ui/core'
 import Bio from './Bio'
 import AddPost from './AddPost'
+import Post from '../CreatorBlog/Post'
 
 interface IProps {
 }
@@ -20,6 +21,7 @@ const MyProfile = observer(
 
     render() {
       const {name, tag, email, bio} = this.service.state.profile
+      const {posts} = this.service.state
       console.log(this.service.state)
       const isCreator = this.service.state.profile.roles.includes('creator')
       if (this.service.isLoading) {
@@ -48,6 +50,13 @@ const MyProfile = observer(
               <Box mt={3} display={'flex'} justifyContent={'center'}>
                 <AddPost/>
               </Box>
+            </Grid>
+            <Grid container justify={'center'} alignItems={'center'}>
+              <Grid item xl={6}>
+                <Box mt={4}>
+                  {posts.map(post => <Post key={post.id} {...{post}}/>)}
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
         </Box>

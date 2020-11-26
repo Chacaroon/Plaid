@@ -23,6 +23,7 @@ interface IUserCredentials {
 }
 
 type IUserResponse = {
+    id: number
     name: string
     tag: string
     email: string
@@ -76,14 +77,14 @@ interface ICreatorInfo {
     bio: string
 }
 
-async function getCreatorInfo(creatorId: number): Promise<ICreatorInfo> {
-    console.log('getCreatorInfo')
-    return {
-        id: creatorId,
-        name: 'John Doe',
-        tag: 'john_cool337',
-        bio: "I'm an artist. I'm a performance artist."
-    }
+async function getCreatorInfo(creatorId: number): Promise<IUserResponse> {
+    return api.get('user-id',  { params: { id: creatorId } }).then(res => res.data)
+    // return {
+    //     id: creatorId,
+    //     name: 'John Doe',
+    //     tag: 'john_cool337',
+    //     bio: "I'm an artist. I'm a performance artist."
+    // }
 }
 
 api.interceptors.response.use((response) => {

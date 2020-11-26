@@ -1,5 +1,6 @@
 import {action, observable} from 'mobx'
 import WithLoading from '../../../services/WithLoading'
+import {addPost} from '../../../apis/Posts'
 
 interface IState {
   isEditing: boolean
@@ -30,7 +31,7 @@ export default class Service extends WithLoading {
 
   handleSubmit = action(
     async () => {
-      console.log(this.state.inputPost)
+      await addPost(this.state.inputPost)
       this.state.isEditing = false
       this.state.inputPost = ''
     }

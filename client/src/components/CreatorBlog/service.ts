@@ -1,5 +1,5 @@
-import {observable} from 'mobx'
-import {getCreatorInfo, ICreatorInfo} from '../../apis/Users'
+import {action, observable} from 'mobx'
+import {getCreatorInfo, IUserResponse} from '../../apis/Users'
 import WithLoading from '../../services/WithLoading'
 import {getPosts, IPost} from '../../apis/Posts'
 
@@ -8,14 +8,14 @@ interface IServiceParams {
 }
 
 interface IState {
-  creatorInfo: ICreatorInfo
+  creatorInfo: IUserResponse
   posts: Array<IPost>
 }
 
 class Service extends WithLoading {
   state: IState = observable(
     {
-      creatorInfo: {id: 0, name: '', tag: '', bio: ''},
+      creatorInfo: {id: 0, name: '', tag: '', email: '', bio: '', roles: []},
       posts: []
     })
 
@@ -27,15 +27,16 @@ class Service extends WithLoading {
     this.fetchPosts()
   }
 
-  async fetchCreatorInfo() {
+  fetchCreatorInfo = action(async () => {
     this.loading()
     this.state.creatorInfo = await getCreatorInfo(this.state.creatorInfo.id)
+    console.log(await getCreatorInfo(this.state.creatorInfo.id))
     this.loaded()
-  }
+  })
 
-  async fetchPosts() {
+  fetchPosts = action(async () => {
     this.state.posts = (await getPosts(this.state.creatorInfo.id)).posts
-  }
+  })
 }
 
 export default Service

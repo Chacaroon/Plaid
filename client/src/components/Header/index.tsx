@@ -63,7 +63,7 @@ const Header = observer(
                 </Button>
                 {isCreator &&
                 <Button
-                    onClick={() => history.push('/creators/1')}> {/*TODO: redirect to user's blog*/}
+                    onClick={() => history.push('/creators/' + userStore.user.id)}> {/*TODO: redirect to user's blog*/}
                     My blog
                 </Button>
                 }
