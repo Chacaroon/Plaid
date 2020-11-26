@@ -52,5 +52,12 @@ namespace Server.Controllers
 
             return Ok();
         }
+
+        [HttpGet("all")]
+        public IActionResult GetAllPosts([FromQuery]UserIdModel model)
+        {
+            _mapper.Map<PostModel>(_postService.GetAllPosts(model.Id));
+            return Ok();
+        }
     }
 }

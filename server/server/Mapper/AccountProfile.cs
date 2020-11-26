@@ -4,6 +4,7 @@ using Common.Extensions;
 using Domain;
 using Server.Models.AccountController;
 using Server.Models.CommentController;
+using Server.Models.PostController;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace Server.Mapper
                     }
                 });
             CreateMap<Comment, CommentModel>()
+                .ReverseMap();
+            CreateMap<Post, PostModel>()
                 .ReverseMap();
         }
     }
