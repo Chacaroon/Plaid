@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using BLL.Interfaces;
 using BLL.Services;
 using System.Threading.Tasks;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace server
 {
@@ -86,6 +88,9 @@ namespace server
                             .AllowCredentials();
                     });
             });
+
+            services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
+                                               UnicodeRanges.CjkUnifiedIdeographs }));
 
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IUserService, UserService>();

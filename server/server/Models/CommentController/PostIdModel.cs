@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Server.Models.CommentController
 {
-    public class CommentModel
+    public class PostIdModel
     {
-        public string Content { get; set; }
-        public int UserId { get; set; }
+        public int Id { get; set; }
     }
 }

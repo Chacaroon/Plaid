@@ -29,5 +29,10 @@ namespace BLL.Services
                 UserId = user.Id
             });
         }
+
+        public ICollection<Comment> GetAllComments(Post model)
+        {
+            return model.PostComments;
+        }
     }
 }

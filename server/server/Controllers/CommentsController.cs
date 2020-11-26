@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using AutoMapper;
 using BLL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,29 +19,40 @@ namespace Server.Controllers
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
         private readonly IPostService _postService;
+        private readonly IMapper _mapper;
 
         public CommentsController(ICommentService commentService,
              IUserService userService,
             ITokenService tokenService, 
-            IPostService postService)
+            IPostService postService,
+            IMapper mapper)
         {
             _commentService = commentService;
             _userService = userService;
             _tokenService = tokenService;
             _postService = postService;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public IActionResult AddComments([FromBody]CommentModel comment)
+        public IActionResult AddComments([FromBody]CommentAddModel model)
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
 
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
-            var post = _postService.GetPostById(comment.PostId);
-
-            _commentService.AddComment(comment.Content, post, user);
+            var post = _postService.GetPostById(model.PostId);
+            
+            _commentService.AddComment(model.Content, post, user);
 
             return Ok();
+        }
+
+        [HttpGet("all")]
+        public IActionResult GetAllComments([FromQuery] PostIdModel model)
+        {
+            var comments =_mapper.Map<CommentModel>(_commentService.GetAllComments(_postService.GetPostById(model.Id)));
+
+            return Ok(comments);
         }
     }
 }

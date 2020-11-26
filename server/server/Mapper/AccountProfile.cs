@@ -3,6 +3,7 @@ using Common.Enums;
 using Common.Extensions;
 using Domain;
 using Server.Models.AccountController;
+using Server.Models.CommentController;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace Server.Mapper
                         dst.AddRole(RoleEnum.Creator);
                     }
                 });
+            CreateMap<Comment, CommentModel>()
+                .ReverseMap();
         }
     }
 }
