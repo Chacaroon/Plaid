@@ -49,7 +49,7 @@ namespace Server.Controllers
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
 
             var sanitizer = new HtmlSanitizer();
-
+            sanitizer.AllowedSchemes.Add("data");
             _postService.CreateNewPost(sanitizer.Sanitize(post.Post), user);
 
             return Ok();

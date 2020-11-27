@@ -17,8 +17,8 @@ export default class Service extends WithLoading {
 
   constructor(bio: string) {
     super()
-    this.state.bio = bio
-    this.state.inputBio = bio
+    this.state.bio = bio ?? ''
+    this.state.inputBio = bio ?? ''
   }
 
   handleEditing = action(
