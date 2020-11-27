@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace Server.Mapper
 {
-    public class AccountProfile: Profile
+    public class ApplicationProfile: Profile
     {
-        public AccountProfile()
+        public ApplicationProfile()
         {
             CreateMap<User, UserModel>()
                 .ForMember(dst => dst.Roles, opt => opt.MapFrom(src => src.ToArrayString(src.Roles)))
@@ -32,6 +32,8 @@ namespace Server.Mapper
             CreateMap<Comment, CommentModel>()
                 .ReverseMap();
             CreateMap<Post, PostModel>()
+                .ForMember(dst => dst.AuthorId, opt => opt.MapFrom(src => src.User.Id))
+                .ForMember(dst => dst.AuthorName, opt => opt.MapFrom(src => src.User.Name))
                 .ReverseMap();
         }
     }

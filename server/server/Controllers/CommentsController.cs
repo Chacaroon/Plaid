@@ -47,10 +47,10 @@ namespace Server.Controllers
             return Ok();
         }
 
-        [HttpGet("all")]
-        public IActionResult GetAllComments([FromQuery] PostIdModel model)
+        [HttpGet("{postId}")]
+        public IActionResult GetAllComments([FromRoute] int postId)
         {
-            var comments =_mapper.Map<CommentModel>(_commentService.GetAllComments(_postService.GetPostById(model.Id)));
+            var comments =_mapper.Map<IEnumerable<CommentModel>>(_commentService.GetAllComments(postId));
 
             return Ok(comments);
         }

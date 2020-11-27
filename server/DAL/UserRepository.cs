@@ -1,6 +1,7 @@
 ﻿using DAL.Contexts;
 using DAL.Interfaces;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace DAL
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
+        protected override IQueryable<User> _baseQuery => _context.Set<User>()
+            .Include(x => x.Posts);
         public UserRepository(ApplicationContext context)
             : base(context)
         {
