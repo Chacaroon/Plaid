@@ -157,7 +157,7 @@ namespace server.Controllers
             return Ok();
         }
 
-        [HttpPost("logout")]
+        [HttpGet("logout")]
         public IActionResult Logout()
         {
             if (!Request.Cookies.TryGetValue("refreshToken", out var requestRefreshToken))
