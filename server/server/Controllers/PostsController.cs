@@ -53,11 +53,11 @@ namespace Server.Controllers
             return Ok();
         }
 
-        [HttpGet("all")]
-        public IActionResult GetAllPosts([FromQuery]UserIdModel model)
+        [HttpGet("{userId}")]
+        public IActionResult GetAllPosts([FromRoute]int userId)
         {
-            _mapper.Map<PostModel>(_postService.GetAllPosts(model.Id));
-            return Ok();
+            var posts = _mapper.Map<IEnumerable<PostModel>>(_postService.GetAllPosts(userId));
+            return Ok(posts);
         }
     }
 }

@@ -32,6 +32,8 @@ namespace Server.Mapper
             CreateMap<Comment, CommentModel>()
                 .ReverseMap();
             CreateMap<Post, PostModel>()
+                .ForMember(dst => dst.AuthorId, opt => opt.MapFrom(src => src.User.Id))
+                .ForMember(dst => dst.AuthorName, opt => opt.MapFrom(src => src.User.Name))
                 .ReverseMap();
         }
     }
