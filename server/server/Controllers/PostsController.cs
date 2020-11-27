@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Interfaces;
 using Common;
+using Ganss.XSS;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,9 +47,10 @@ namespace Server.Controllers
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
-            var content =_htmlEncoder.Encode(post.Post);
 
-            _postService.CreateNewPost(content, user);
+            var sanitizer = new HtmlSanitizer();
+
+            _postService.CreateNewPost(sanitizer.Sanitize(post.Post), user);
 
             return Ok();
         }
