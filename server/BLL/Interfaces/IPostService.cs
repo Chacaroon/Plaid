@@ -9,6 +9,6 @@ namespace BLL.Interfaces
     {
         void CreateNewPost(string post, User user);
         Post GetPostById(int id);
-
+        ICollection<Post> GetAllPosts(int id);
     }
 }

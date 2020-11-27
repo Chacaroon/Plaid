@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models.CommentController
+namespace Server.Models.PostController
 {
-    public class CommentModel
+    public class PostModel
     {
         public string Content { get; set; }
-        public int UserId { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Interfaces;
@@ -22,18 +23,21 @@ namespace Server.Controllers
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
         private readonly IOptions<AuthOptions> _authOptions;
+        private readonly HtmlEncoder _htmlEncoder;
 
         public PostsController(IMapper mapper,
             IPostService postService,
             IUserService userService,
             ITokenService tokenService,
-            IOptions<AuthOptions> authOptions)
+            IOptions<AuthOptions> authOptions,
+            HtmlEncoder htmlEncoder)
         {
             _mapper = mapper;
             _postService = postService;
             _userService = userService;
             _tokenService = tokenService;
             _authOptions = authOptions;
+            _htmlEncoder = htmlEncoder;
         }
 
         [Authorize(Roles = "Creator")]
@@ -42,9 +46,17 @@ namespace Server.Controllers
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
+            var content =_htmlEncoder.Encode(post.Post);
 
-            _postService.CreateNewPost(post.Post, user);
+            _postService.CreateNewPost(content, user);
 
+            return Ok();
+        }
+
+        [HttpGet("all")]
+        public IActionResult GetAllPosts([FromQuery]UserIdModel model)
+        {
+            _mapper.Map<PostModel>(_postService.GetAllPosts(model.Id));
             return Ok();
         }
     }
