@@ -53,19 +53,23 @@ const Header = observer(
                 </Typography>
               </Grid>
               <Grid item xs={8} container justify={'center'}>
-                <Button
-                  onClick={() => history.push('/recommendations')}>
-                  Recommendations
-                </Button>
-                <Button
-                  onClick={() => history.push('/feed')}>
-                  Feed
-                </Button>
-                {isCreator &&
-                <Button
-                    onClick={() => history.push('/creators/' + userStore.user.id)}>
-                    My blog
-                </Button>
+                {isLoggedIn &&
+                <Box display={'flex'} alignItems={'center'}>
+                    <Button
+                        onClick={() => history.push('/recommendations')}>
+                        Recommendations
+                    </Button>
+                    <Button
+                        onClick={() => history.push('/feed')}>
+                        Feed
+                    </Button>
+                  {isCreator &&
+                  <Button
+                      onClick={() => history.push('/creators/' + userStore.user.id)}>
+                      My blog
+                  </Button>
+                  }
+                </Box>
                 }
               </Grid>
               <Grid item xs={2} container justify={'flex-end'}>
@@ -92,15 +96,17 @@ const Header = observer(
                     </Button>
                 </Box>
                 }
+                {isLoggedIn &&
                 <Menu
-                  anchorEl={menuAnchor}
-                  open={!!menuAnchor}
-                  onClose={handleClose}
+                    anchorEl={menuAnchor}
+                    open={!!menuAnchor}
+                    onClose={handleClose}
                 >
-                  <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                  <MenuItem onClick={handleSettings}>Settings</MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                    <MenuItem onClick={handleSettings}>Settings</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
+                }
               </Grid>
             </Grid>
           </Toolbar>

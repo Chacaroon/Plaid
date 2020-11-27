@@ -17,7 +17,7 @@ export default class Service {
   handleSubmit = action(async (values: IFields) => {
       let data = await register(values)
       if (data.errorMessage) {
-        alert('Unexpected error!')
+        alert(data.errorMessage)
       } else {
         userStore.isLoggedIn = true
         history.push('creators/1')

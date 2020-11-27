@@ -1,4 +1,4 @@
-import {IUserCredentials, login} from '../../apis/Users'
+import {current, IUserCredentials, login} from '../../apis/Users'
 import {history} from '../../stores/RouterStore'
 import userStore from '../../stores/UserStore'
 import {action} from 'mobx'
@@ -14,9 +14,10 @@ export default class Service {
   handleSubmit = action(async (values: IFields) => {
       let data = await login(values)
       if (data.errorMessage) {
-        alert('Unexpected error!')
+        alert(data.errorMessage)
       } else {
         userStore.isLoggedIn = true
+        userStore.user = await current()
         history.push('/feed')
       }
     }

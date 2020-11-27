@@ -5,6 +5,7 @@ import {Box, Grid, Paper, Typography} from '@material-ui/core'
 import Bio from './Bio'
 import AddPost from './AddPost'
 import Post from '../CreatorBlog/Post'
+import SubscriptionLevels from './SubscriptionLevels'
 
 interface IProps {
 }
@@ -22,7 +23,6 @@ const MyProfile = observer(
     render() {
       const {name, tag, email, bio} = this.service.state.profile
       const {posts} = this.service.state
-      console.log(this.service.state)
       const isCreator = this.service.state.profile.roles.includes('creator')
       if (this.service.isLoading) {
         return 'Loading...'
@@ -41,23 +41,29 @@ const MyProfile = observer(
                     </Box>
                   </Box>
                   <Typography variant={'body2'}>{email}</Typography>
-                  <Bio {...{bio}}/>
-                  <Typography variant={'body1'}>isCreator: {isCreator ? 'Yes' : 'No'}</Typography>
+                  {isCreator && <>
+                      <Bio {...{bio}}/>
+                      <SubscriptionLevels/>
+                  </>
+                  }
+
                 </Box>
               </Paper>
             </Grid>
-            <Grid item xs={9}>
-              <Box mt={3} display={'flex'} justifyContent={'center'}>
-                <AddPost/>
-              </Box>
-            </Grid>
-            <Grid container justify={'center'} alignItems={'center'}>
-              <Grid item xl={6}>
-                <Box mt={4}>
-                  {posts.map(post => <Post key={post.id} {...{post}}/>)}
-                </Box>
-              </Grid>
-            </Grid>
+            {isCreator && <>
+                <Grid item xs={9}>
+                    <Box mt={3} display={'flex'} justifyContent={'center'}>
+                        <AddPost/>
+                    </Box>
+                </Grid>
+                <Grid container justify={'center'} alignItems={'center'}>
+                    <Grid item xl={6}>
+                        <Box mt={4}>
+                          {posts.map(post => <Post key={post.id} {...{post}}/>)}
+                        </Box>
+                    </Grid>
+                </Grid>
+            </>}
           </Grid>
         </Box>
       )
