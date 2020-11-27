@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Domain
 {
-    public class RefreshToken
+    public class RefreshToken: BaseEntity
     {
-        public int Id { get; set; }
         public string Token { get; set; }
         public User User { get; set; }
     }

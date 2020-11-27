@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace Server.Mapper
 {
-    public class AccountProfile: Profile
+    public class ApplicationProfile: Profile
     {
-        public AccountProfile()
+        public ApplicationProfile()
         {
             CreateMap<User, UserModel>()
                 .ForMember(dst => dst.Roles, opt => opt.MapFrom(src => src.ToArrayString(src.Roles)))

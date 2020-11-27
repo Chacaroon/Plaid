@@ -8,6 +8,6 @@ namespace BLL.Interfaces
     public interface ICommentService
     {
         void AddComment(string comment, Post post, User user);
-        ICollection<Comment> GetAllComments(Post model);
+        IEnumerable<Comment> GetAllComments(int postId);
     }
 }

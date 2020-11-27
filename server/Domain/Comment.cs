@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Domain
 {
-    public class Comment
+    public class Comment: BaseEntity
     {
-        public int Id { get; set; }
         public string Content { get; set; }
-        public int UserId { get; set; }
+        public int AuthorId { get; set; }
+        public User Author { get; set; }
+        public int PostId { get; set; }
         public Post Post { get; set; }
 
     }

@@ -1,5 +1,6 @@
 ﻿using DAL.Contexts;
 using DAL.Interfaces;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,10 @@ using System.Text;
 
 namespace DAL
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly ApplicationContext _context;
+        protected virtual IQueryable<T> _baseQuery => _context.Set<T>();
 
         public BaseRepository(ApplicationContext context)
         {
@@ -31,7 +33,7 @@ namespace DAL
 
         public virtual IQueryable<T> GetAll()
         {
-            return _context.Set<T>();
+            return _baseQuery;
         }
 
         public virtual IQueryable<T> GetAll(Expression<Func<T,bool>> predicate)
@@ -41,7 +43,7 @@ namespace DAL
 
         public virtual T GetById(int id)
         {
-            return _context.Set<T>().Find(id);
+            return _baseQuery.Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }
