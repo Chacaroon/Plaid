@@ -19,20 +19,20 @@ export default class Service extends WithLoading {
     super()
 
     this.fetchUserProfile()
-    this.fetchPosts()
   }
 
   fetchUserProfile = action(
     async () => {
       this.loading()
       this.state.profile = await current()
+      this.state.posts = await getPosts(this.state.profile.id)
       this.loaded()
     }
   )
 
   fetchPosts = action(
     async () => {
-      this.state.posts = (await getPosts(userStore.user.id)).posts
+      this.state.posts = await getPosts(this.state.profile.id)
     }
   )
 }

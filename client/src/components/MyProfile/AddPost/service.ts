@@ -7,14 +7,21 @@ interface IState {
   inputPost: string
 }
 
+interface IServiceParams {
+  fetchPosts: (() => void)
+}
+
 export default class Service extends WithLoading {
   state: IState = observable({
     isEditing: false,
     inputPost: ''
   })
 
-  constructor() {
+  private readonly fetchPosts: (() => void)
+
+  constructor(params: IServiceParams) {
     super()
+    this.fetchPosts = params.fetchPosts
   }
 
   handleEditing = action(
@@ -34,6 +41,7 @@ export default class Service extends WithLoading {
       await addPost(this.state.inputPost)
       this.state.isEditing = false
       this.state.inputPost = ''
+      await this.fetchPosts()
     }
   )
 

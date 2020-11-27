@@ -44,7 +44,6 @@ export default class Service extends WithLoading {
   handleCostChange = action(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.value.match(/^\d{0,5}$/)) {
-        console.log(event.target.value)
         this.state.inputCost = event.target.value
       }
     }

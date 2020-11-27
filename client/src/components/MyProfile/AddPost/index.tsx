@@ -11,7 +11,7 @@ import ImageCompress from 'quill-image-compress'
 Quill.register('modules/imageCompress', ImageCompress)
 
 interface IProps {
-
+  fetchPosts: (() => void)
 }
 
 const AddPost = observer(
@@ -22,7 +22,7 @@ const AddPost = observer(
 
     constructor(props: IProps) {
       super(props)
-      this.service = new Service()
+      this.service = new Service({fetchPosts: props.fetchPosts})
     }
 
     render() {

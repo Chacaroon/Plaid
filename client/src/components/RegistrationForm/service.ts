@@ -1,4 +1,4 @@
-import {INewUser, isEmailTaken, isTagTaken, register} from '../../apis/Users'
+import {current, INewUser, isEmailTaken, isTagTaken, register} from '../../apis/Users'
 import {history} from '../../stores/RouterStore'
 import userStore from '../../stores/UserStore'
 import {action} from 'mobx'
@@ -20,6 +20,7 @@ export default class Service {
         alert(data.errorMessage)
       } else {
         userStore.isLoggedIn = true
+        userStore.user = await current()
         history.push('creators/1')
       }
     }

@@ -75,7 +75,6 @@ export default class Service extends WithLoading {
       } else {
         userStore.isLoggedIn = true
         userStore.user = user
-        history.push('/profile')
       }
       console.log(user)
       this.loaded()

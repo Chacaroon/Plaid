@@ -15,22 +15,19 @@ type IPost = {
   content: string
 }
 
-type IPostsResponse = {
-  posts: Array<IPost>
-} & ErrorHandling
-
 async function addPost(post: string) {
   return api.post('', {post}).catch(console.log)
 }
 
-async function getPosts(creatorId: number): Promise<IPostsResponse> {
-  return {
-    posts: [
-      {id: 1, authorId: 1, authorName:'author1', content: testPost},
-      {id: 2, authorId: 2, authorName:'author2', content: testPost}
-    ]
-  }
+async function getPosts(creatorId: number): Promise<Array<IPost>> {
+  return api.get(`${creatorId}`).then(res => res.data)
+  // return {
+  //   posts: [
+  //     {id: 1, authorId: 1, authorName:'author1', content: testPost},
+  //     {id: 2, authorId: 2, authorName:'author2', content: testPost}
+  //   ]
+  // }
 }
 
 export {getPosts, addPost}
-export type {IPost, IPostsResponse}
+export type {IPost}

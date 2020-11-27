@@ -35,7 +35,7 @@ class Service extends WithLoading {
   })
 
   fetchPosts = action(async () => {
-    this.state.posts = (await getPosts(this.state.creatorInfo.id)).posts
+    this.state.posts = await getPosts(this.state.creatorInfo.id)
   })
 }
 

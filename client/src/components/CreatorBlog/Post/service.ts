@@ -26,7 +26,7 @@ class Service extends WithLoading {
 
   fetchComments = action(async () =>  {
     this.loading()
-    this.state.comments = (await getComments(this.state.postId)).comments
+    this.state.comments = await getComments(this.state.postId)
     console.log("fetching comments")
     this.loaded()
   })

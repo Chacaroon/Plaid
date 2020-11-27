@@ -23,6 +23,7 @@ const MyProfile = observer(
     render() {
       const {name, tag, email, bio} = this.service.state.profile
       const {posts} = this.service.state
+      const {fetchPosts} = this.service
       const isCreator = this.service.state.profile.roles.includes('creator')
       if (this.service.isLoading) {
         return 'Loading...'
@@ -53,7 +54,7 @@ const MyProfile = observer(
             {isCreator && <>
                 <Grid item xs={9}>
                     <Box mt={3} display={'flex'} justifyContent={'center'}>
-                        <AddPost/>
+                        <AddPost {...{fetchPosts}}/>
                     </Box>
                 </Grid>
                 <Grid container justify={'center'} alignItems={'center'}>

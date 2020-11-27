@@ -25,6 +25,7 @@ const Post = observer(
     render() {
       const {comments} = this.service.state
       const {fetchComments} = this.service
+      console.log(this.post.content)
       return (
         <Paper>
           <Box p={1} pl={2} pr={2} mt={2}>
@@ -32,9 +33,11 @@ const Post = observer(
                  dangerouslySetInnerHTML={{__html: this.post.content}}></div>
           </Box>
           <Divider light/>
+          {comments.length !== 0 &&
           <Box p={2} pb={0}>
             {comments.map(comment => <Comment key={comment.id} {...{comment}}/>)}
           </Box>
+          }
           <Divider light/>
           <AddCommentField {...{postId: this.post.id, fetchComments: fetchComments}}/>
         </Paper>
