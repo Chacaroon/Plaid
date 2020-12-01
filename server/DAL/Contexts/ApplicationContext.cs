@@ -15,10 +15,11 @@ namespace DAL.Contexts
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasMany(s => s.Subscriptions).WithOne(p => p.User).OnDelete(DeleteBehavior.Restrict);
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().HasData(new[] {
                 new User()
-                { 
+                {
                     Id = 1,
                     Name = "Vlad",
                     Tag = "Tag",
@@ -31,6 +32,8 @@ namespace DAL.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Comment> Comments{ get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<SubscriptionLevel> SubscriptionLevels { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
     }
 }

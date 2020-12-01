@@ -1,0 +1,16 @@
+﻿using DAL.Contexts;
+using DAL.Interfaces;
+using Domain;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DAL
+{
+    public class SubscriptionRepository : BaseRepository<Subscription>, ISubscriptionRepository
+    {
+        public SubscriptionRepository(ApplicationContext context) : base(context)
+        {
+        }
+    }
+}

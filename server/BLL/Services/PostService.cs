@@ -33,7 +33,7 @@ namespace BLL.Services
             return _postRepository.GetById(id);
         }
 
-        public ICollection<Post> GetAllPosts(int id)
+        public IEnumerable<Post> GetAllPosts(int id)
         {
             return _userRepository.GetById(id).Posts;
         }
