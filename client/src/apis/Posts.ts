@@ -18,8 +18,8 @@ interface ICreatePost {
   subscriptionLevelId: number
 }
 
-async function addPost(post: string) {
-  return api.post('', {post}).catch(console.log)
+async function addPost(post: ICreatePost) {
+  return api.post('', post).catch(console.log)
 }
 
 async function getPosts(creatorId: number): Promise<Array<IPost>> {

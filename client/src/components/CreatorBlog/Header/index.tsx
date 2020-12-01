@@ -51,7 +51,7 @@ const Header = observer(
                               <Select fullWidth value={selectedLevelId}
                                       onChange={handleLevelSelect}>
                                 {subscriptionLevels.map(level => <MenuItem
-                                  value={level.id}>{level.name}</MenuItem>)}
+                                  value={level.id} key={level.id}>{level.name}</MenuItem>)}
                               </Select>
                           </Grid>
                           <Grid item>

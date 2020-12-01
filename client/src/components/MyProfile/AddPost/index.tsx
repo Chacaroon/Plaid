@@ -1,6 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react'
-import {Box, Button, Grid} from '@material-ui/core'
+import {Box, Button, Grid, MenuItem, Select, Typography} from '@material-ui/core'
 import Service from './service'
 import ReactQuill, {Quill} from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
@@ -26,13 +26,23 @@ const AddPost = observer(
     }
 
     render() {
-      const {isEditing, inputPost} = this.service.state
-      const {handleEditing, handlePostChange, handleSubmit} = this.service
+      const {isEditing, inputPost, subscriptionLevels, selectedLevelId} = this.service.state
+      const {handleEditing, handlePostChange, handleSubmit, handleLevelSelect} = this.service
       return (
         <>
           {
             isEditing ?
               <Grid container direction={'column'} alignItems={'center'}>
+                <Grid item>
+                  <Box p={1} display={'flex'} alignItems={'center'}>
+                    <Box mr={2}><Typography>Subscription level:</Typography></Box>
+                    <Select value={selectedLevelId}
+                            onChange={handleLevelSelect}>
+                      {subscriptionLevels.map(level => <MenuItem
+                        value={level.id} key={level.id}>{level.name}</MenuItem>)}
+                    </Select>
+                  </Box>
+                </Grid>
                 <Grid item>
                   <ReactQuill
                     theme={'snow'}
@@ -64,7 +74,7 @@ AddPost.modules = {
     maxWidth: 400,
     maxHeight: 400,
     imageType: 'image/jpeg',
-    debug: true,
+    debug: true
   },
   toolbar: [
     [{'header': '1'}, {'header': '2'}],
