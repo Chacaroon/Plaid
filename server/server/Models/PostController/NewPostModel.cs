@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Server.Models.PostController
 {
-    public class NewPost
+    public class NewPostModel
     {
         public string Post { get; set; }
     }

@@ -6,6 +6,7 @@ using BLL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Server.Models.AccountController;
 using Server.Models.SubController;
 
 namespace Server.Controllers
@@ -29,10 +30,30 @@ namespace Server.Controllers
 
         [Authorize(Roles = "Creator")]
         [HttpPost]
-        public IActionResult AddSubscriptionLevel([FromBody]SubLevel model)
+        public IActionResult AddSubscriptionLevel([FromBody]SubLevelModel model)
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
+            _subscriptionLevelService.AddSubLevel(model.Cost, user);
+
+            return Ok();
+        }
+
+
+        [Authorize(Roles = "Creator")]
+        [HttpPost("creator-id")]
+        public IActionResult AddSubscriptionLevelToCreator([FromBody] SubLevelCreatorModel model)
+        {
+           
+            var user = _userService.GetCurrentUserById(model.CreatorId);
+
+            if (user == null)
+            {
+                return BadRequest(new ErrorMessageModel()
+                {
+                    ErrorMessage = "User are not creator or does not exist"
+                });
+            }
             _subscriptionLevelService.AddSubLevel(model.Cost, user);
 
             return Ok();
