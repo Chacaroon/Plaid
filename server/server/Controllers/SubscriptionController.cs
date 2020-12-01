@@ -13,19 +13,22 @@ namespace Server.Controllers
 {
     [Route("api/sub-levels")]
     [ApiController]
-    public class SubscriptionLevelController : ControllerBase
+    public class SubscriptionController : ControllerBase
     {
         private readonly ISubscriptionLevelService _subscriptionLevelService;
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
+        private readonly ISubscriptionService _subscriptionService;
 
-        public SubscriptionLevelController(ISubscriptionLevelService subscriptionLevelService,
+        public SubscriptionController(ISubscriptionLevelService subscriptionLevelService,
             IUserService userService,
-            ITokenService tokenService)
+            ITokenService tokenService,
+            ISubscriptionService subscriptionService)
         {
             _subscriptionLevelService = subscriptionLevelService;
             _userService = userService;
             _tokenService = tokenService;
+            _subscriptionService = subscriptionService;
         }
 
         [Authorize(Roles = "Creator")]
@@ -41,8 +44,8 @@ namespace Server.Controllers
 
 
         [Authorize(Roles = "Creator")]
-        [HttpPost("creator-id")]
-        public IActionResult AddSubscriptionLevelToCreator([FromBody] SubLevelCreatorModel model)
+        [HttpPost("subscription")]
+        public IActionResult AddSubscription([FromBody] SubLevelCreatorIdModel model)
         {
            
             var user = _userService.GetCurrentUserById(model.CreatorId);
@@ -54,7 +57,18 @@ namespace Server.Controllers
                     ErrorMessage = "User are not creator or does not exist"
                 });
             }
-            _subscriptionLevelService.AddSubLevel(model.Cost, user);
+
+            var subLevel = _subscriptionLevelService.GetSubscriptionLevelById(model.SubLevelId);
+
+            if (subLevel == null)
+            {
+                return BadRequest(new ErrorMessageModel()
+                {
+                    ErrorMessage = "SubLevel does not exist"
+                });
+            }
+
+            _subscriptionService.AddSubscription(subLevel, user);
 
             return Ok();
         }

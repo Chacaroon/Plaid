@@ -24,5 +24,10 @@ namespace BLL.Services
             };
             _subscriptionsLevelRepository.Add(subLevel);
         }
+
+        public SubscriptionLevel GetSubscriptionLevelById(int id)
+        {
+            return _subscriptionsLevelRepository.GetById(id);
+        }
     }
 }

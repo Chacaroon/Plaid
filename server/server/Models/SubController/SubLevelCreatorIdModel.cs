@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Server.Models.SubController
 {
-    public class SubLevelCreatorModel
+    public class SubLevelCreatorIdModel
     {
-        public float Cost { get; set; }
+        public int SubLevelId { get; set; }
         public int CreatorId { get; set; }
     }
 }
