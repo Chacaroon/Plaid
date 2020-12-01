@@ -9,5 +9,6 @@ namespace BLL.Interfaces
     {
         void AddSubLevel(float cost, User creator);
         SubscriptionLevel GetSubscriptionLevelById(int id);
+        void Delete(int id);
     }
 }

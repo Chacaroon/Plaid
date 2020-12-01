@@ -72,5 +72,14 @@ namespace Server.Controllers
 
             return Ok();
         }
+
+        [Authorize(Roles = "Creator")]
+        [HttpGet("delete/{id}")]
+        public IActionResult DeleteSubLevel([FromRoute] SubLevelIdModel model)
+        {
+            _subscriptionLevelService.Delete(model.Id);
+
+            return Ok();
+        }
     }
 }

@@ -29,5 +29,11 @@ namespace BLL.Services
         {
             return _subscriptionsLevelRepository.GetById(id);
         }
+
+        public void Delete(int id)
+        {
+            var sub = _subscriptionsLevelRepository.GetById(id);
+            _subscriptionsLevelRepository.Delete(sub);
+        }
     }
 }
