@@ -8,5 +8,6 @@ namespace BLL.Interfaces
     public interface ISubscriptionService
     {
         void AddSubscription(SubscriptionLevel subLevel, User user);
+        bool IsExist(int id);
     }
 }
