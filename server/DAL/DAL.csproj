@@ -5,6 +5,49 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201201164540_AddSubs.cs" />
+    <Compile Remove="Migrations\20201201164540_AddSubs.Designer.cs" />
+    <Compile Remove="Migrations\20201201164839_AddSubs1.cs" />
+    <Compile Remove="Migrations\20201201164839_AddSubs1.Designer.cs" />
+    <Compile Remove="Migrations\20201201165318_AddSubsFix1.cs" />
+    <Compile Remove="Migrations\20201201165318_AddSubsFix1.Designer.cs" />
+    <Compile Remove="Migrations\20201201170451_AddSubsFix2.cs" />
+    <Compile Remove="Migrations\20201201170451_AddSubsFix2.Designer.cs" />
+    <Compile Remove="Migrations\20201201170537_AddSubsFix3.cs" />
+    <Compile Remove="Migrations\20201201170537_AddSubsFix3.Designer.cs" />
+    <Compile Remove="Migrations\20201201171837_AddSubsFix4.cs" />
+    <Compile Remove="Migrations\20201201171837_AddSubsFix4.Designer.cs" />
+    <Compile Remove="Migrations\20201201173533_AddSubsFix5.cs" />
+    <Compile Remove="Migrations\20201201173533_AddSubsFix5.Designer.cs" />
+    <Compile Remove="Migrations\20201201173854_AddSubsFix6.cs" />
+    <Compile Remove="Migrations\20201201173854_AddSubsFix6.Designer.cs" />
+    <Compile Remove="Migrations\20201201174054_AddSubsFix7.cs" />
+    <Compile Remove="Migrations\20201201174054_AddSubsFix7.Designer.cs" />
+    <Compile Remove="Migrations\20201201174755_AddSubsFix8.cs" />
+    <Compile Remove="Migrations\20201201174755_AddSubsFix8.Designer.cs" />
+    <Compile Remove="Migrations\20201201175103_AddSubsFix9.cs" />
+    <Compile Remove="Migrations\20201201175103_AddSubsFix9.Designer.cs" />
+    <Compile Remove="Migrations\20201201175433_AddSubsFix10.cs" />
+    <Compile Remove="Migrations\20201201175433_AddSubsFix10.Designer.cs" />
+    <Compile Remove="Migrations\20201201175714_AddSubsFix1.cs" />
+    <Compile Remove="Migrations\20201201175714_AddSubsFix1.Designer.cs" />
+    <Compile Remove="Migrations\20201201180002_AddSubsFix2.cs" />
+    <Compile Remove="Migrations\20201201180002_AddSubsFix2.Designer.cs" />
+    <Compile Remove="Migrations\20201201180135_AddSubsFix3.cs" />
+    <Compile Remove="Migrations\20201201180135_AddSubsFix3.Designer.cs" />
+    <Compile Remove="Migrations\20201201180313_AddSubsFix2.cs" />
+    <Compile Remove="Migrations\20201201180313_AddSubsFix2.Designer.cs" />
+    <Compile Remove="Migrations\20201201180417_AddSubsFix3.cs" />
+    <Compile Remove="Migrations\20201201180417_AddSubsFix3.Designer.cs" />
+    <Compile Remove="Migrations\20201201180558_AddSub.cs" />
+    <Compile Remove="Migrations\20201201180558_AddSub.Designer.cs" />
+    <Compile Remove="Migrations\20201201180832_AddSub.cs" />
+    <Compile Remove="Migrations\20201201180832_AddSub.Designer.cs" />
+    <Compile Remove="Migrations\20201201181124_AddSubfix.cs" />
+    <Compile Remove="Migrations\20201201181124_AddSubfix.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.9" />

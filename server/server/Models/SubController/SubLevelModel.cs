@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models.PostController
+namespace Server.Models.SubController
 {
-    public class NewPost
+    public class SubLevelModel
     {
-        public string Post { get; set; }
+        public float Cost { get; set; }
+
     }
 }

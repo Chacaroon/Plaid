@@ -8,6 +8,7 @@ namespace Domain
     {
         public string Content { get; set; }
         public User User { get; set; }
+        public SubscriptionLevel SubscriptionLevel { get; set; }
         public ICollection<Comment> PostComments { get; set; }
 
         public Post()

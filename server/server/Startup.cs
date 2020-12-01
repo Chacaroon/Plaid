@@ -96,6 +96,8 @@ namespace server
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<ISubscriptionLevelService, SubscriptionLevelService>();
+            services.AddTransient<ISubscriptionService, SubscriptionService>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
