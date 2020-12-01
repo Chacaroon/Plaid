@@ -1,6 +1,4 @@
-import {ErrorHandling} from '../utils/ErrorHandling'
 import axios from 'axios'
-import testPost from './TEST_POST'
 
 const api = axios.create({
   baseURL: 'https://localhost:5001/api/posts',
@@ -13,6 +11,11 @@ type IPost = {
   authorId: number
   authorName: string
   content: string
+}
+
+interface ICreatePost {
+  content: string,
+  subscriptionLevelId: number
 }
 
 async function addPost(post: string) {

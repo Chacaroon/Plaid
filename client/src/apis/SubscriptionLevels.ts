@@ -1,4 +1,4 @@
-import {ErrorHandling} from '../utils/ErrorHandling'
+
 
 interface IAddSubscriptionLevel {
   name: string,
@@ -11,18 +11,13 @@ type ISubscriptionLevel = {
   cost: number
 }
 
-type ISubscriptionLevelsResponse = {
-  subscriptionLevels: Array<ISubscriptionLevel>
-} & ErrorHandling
+async function getSubscriptionLevels(creatorId: number): Promise<Array<ISubscriptionLevel>> {
+  return [
+    {id: 1, name: 'Level1', cost: 50},
+    {id: 2, name: 'Level2', cost: 100},
+    {id: 3, name: 'Level3', cost: 200}
+  ]
 
-async function getSubscriptionLevels(creatorId: number) : Promise<ISubscriptionLevelsResponse> {
-  return {
-    subscriptionLevels: [
-      {id: 1, name: 'Level1', cost: 50},
-      {id: 2, name: 'Level2', cost: 100},
-      {id: 3, name: 'Level3', cost: 200},
-    ]
-  }
 }
 
 async function addSubscriptionLevel(level: IAddSubscriptionLevel) {

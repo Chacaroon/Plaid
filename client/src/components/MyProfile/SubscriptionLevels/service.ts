@@ -1,6 +1,5 @@
 import {action, observable} from 'mobx'
 import WithLoading from '../../../services/WithLoading'
-import {updateBio} from '../../../apis/Users'
 import {
   addSubscriptionLevel,
   getSubscriptionLevels,
@@ -62,7 +61,7 @@ export default class Service extends WithLoading {
 
   fetchLevels = action(
     async () => {
-      this.state.levels = (await getSubscriptionLevels(userStore.user.id)).subscriptionLevels
+      this.state.levels = await getSubscriptionLevels(userStore.user.id)
     }
   )
 

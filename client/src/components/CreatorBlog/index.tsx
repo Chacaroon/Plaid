@@ -1,7 +1,6 @@
 import {observer} from 'mobx-react'
 import React from 'react'
 import {matchPath} from 'react-router'
-import {ICreatorInfo} from '../../apis/Users'
 import {routerStore} from '../../stores/RouterStore'
 import Header from './Header'
 import Service from './service'
@@ -43,7 +42,7 @@ const CreatorBlog = observer(
         <Box pt={5}>
           <Grid container justify={'center'} alignItems={'center'}>
             <Grid item xl={4}>
-              <Header creatorInfo={creatorInfo as ICreatorInfo}/>
+              <Header {...{creatorInfo}}/>
             </Grid>
           </Grid>
           <Grid container justify={'center'} alignItems={'center'}>
