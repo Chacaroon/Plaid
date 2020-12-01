@@ -4,6 +4,7 @@ import React from 'react'
 import {ICreatorInfo} from '../../../apis/Users'
 import Service from './service'
 import userStore from '../../../stores/UserStore'
+import {history} from '../../../stores/RouterStore'
 
 interface IProps {
   creatorInfo: ICreatorInfo
@@ -34,8 +35,13 @@ const Header = observer(
               <Typography color={'textSecondary'}>@{tag}</Typography>
               <Typography>{bio}</Typography>
             </Box>
-            {id !== userStore.user.id && <Box p={2}>
-                <Button variant={'contained'}>Make an order</Button>
+            {id !== userStore.user.id && <Box p={2} display={'flex'} flexDirection={'column'}>
+                <Box mb={2}><Button variant={'contained'} fullWidth>Make an order</Button></Box>
+                <Button variant={'contained'}
+                        fullWidth
+                        onClick={() => history.push('/inbox')}>
+                    Send a message
+                </Button>
             </Box>}
           </Box>
           <Divider light/>

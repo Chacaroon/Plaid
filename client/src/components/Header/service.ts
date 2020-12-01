@@ -30,6 +30,20 @@ export default class Service extends WithLoading {
     }
   )
 
+  handleOrders = action(
+    () => {
+      this.handleClose()
+      history.push('/orders')
+    }
+  )
+
+  handleInbox = action(
+    () => {
+      this.handleClose()
+      history.push('/inbox')
+    }
+  )
+
   handleClose = action(
     () => {
       this.state.menuAnchor = null

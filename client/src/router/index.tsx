@@ -10,6 +10,9 @@ import MyProfile from '../components/MyProfile'
 import Feed from '../components/Feed'
 import Recommendations from '../components/Recommendations'
 import Settings from '../components/Settings'
+import MyOrders from '../components/MyOrders'
+import Inbox from '../components/Inbox'
+import Chat from '../components/Inbox/Chat'
 
 export default function () {
     return (
@@ -21,6 +24,9 @@ export default function () {
                     <Route exact path={'/register'} render={() => <RegistrationForm/>}/>
                     <Route exact path={'/login'} render={() => <LoginForm/>}/>
                     <Route exact path={'/profile'} render={() => <MyProfile/>}/>
+                    <Route exact path={'/orders'} render={() => <MyOrders/>}/>
+                    <Route exact path={'/inbox'} render={() => <Inbox/>}/>
+                    <Route exact path={'/inbox/:chatId'} render={() => <Chat/>}/>
                     <Route exact path={'/feed'} render={() => <Feed/>}/>
                     <Route exact path={'/recommendations'} render={() => <Recommendations/>}/>
                     <Route exact path={'/settings'} render={() => <Settings/>}/>

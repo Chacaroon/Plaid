@@ -40,7 +40,9 @@ const Header = observer(
         handleLogout,
         handleProfile,
         handleRegisterClick,
-        handleSettings
+        handleSettings,
+        handleOrders,
+        handleInbox
       } = this.service
 
       return (
@@ -103,6 +105,8 @@ const Header = observer(
                     onClose={handleClose}
                 >
                     <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                    <MenuItem onClick={handleOrders}>Orders</MenuItem>
+                    <MenuItem onClick={handleInbox}>Inbox</MenuItem>
                     <MenuItem onClick={handleSettings}>Settings</MenuItem>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
