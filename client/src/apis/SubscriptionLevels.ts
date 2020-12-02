@@ -36,11 +36,11 @@ async function addSubscriptionLevel(level: IAddSubscriptionLevel) {
 }
 
 async function removeSubscriptionLevel(levelId: number) {
-
+  return api.get(`delete/${levelId}`)
 }
 
 async function subscribe(sub: ISubscribe) {
-
+  return api.post('subscription', sub)
 }
 
 export type {ISubscriptionLevel}

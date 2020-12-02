@@ -55,7 +55,8 @@ const AddPost = observer(
                 </Grid>
                 <Grid item>
                   <Box mt={2}>
-                    <Button variant={'contained'} onClick={handleSubmit}>Post</Button>
+                    <Button variant={'contained'} onClick={handleSubmit}
+                            disabled={subscriptionLevels.length == 0}>Post</Button>
                   </Box>
                 </Grid>
               </Grid>

@@ -34,6 +34,7 @@ export default class Service extends WithLoading {
   handleEditing = action(
     () => {
       this.state.isEditing = true
+      this.fetchLevels()
     }
   )
 
@@ -58,7 +59,8 @@ export default class Service extends WithLoading {
   fetchLevels = action(
     async () => {
       this.state.subscriptionLevels = await getSubscriptionLevels(userStore.user.id)
-      this.state.selectedLevelId = this.state.subscriptionLevels[0].id
+      if(this.state.subscriptionLevels.length > 0)
+        this.state.selectedLevelId = this.state.subscriptionLevels[0].id
     }
   )
 

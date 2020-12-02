@@ -27,7 +27,8 @@ export default class Service extends WithLoading {
   fetchLevels = action (
     async () => {
       this.state.subscriptionLevels = await getSubscriptionLevels(this.creatorId)
-      this.state.selectedLevelId = this.state.subscriptionLevels[0].id
+      if(this.state.subscriptionLevels.length > 0)
+        this.state.selectedLevelId = this.state.subscriptionLevels[0].id
     }
   )
 

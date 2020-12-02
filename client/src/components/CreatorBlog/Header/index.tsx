@@ -62,6 +62,7 @@ const Header = observer(
                           </Grid>
                           <Grid item>
                               <Button variant={'contained'} disableElevation
+                                      disabled={subscriptionLevels.length == 0}
                                       onClick={handleSubscribe}>
                                   Subscribe for {selectedLevel ? selectedLevel.cost : 0}$
                               </Button>

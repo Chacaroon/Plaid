@@ -30,7 +30,7 @@ const Post = observer(
         <Paper>
           <Box p={1} mt={3} pl={2}>
             <Typography
-              onClick={() => history.push(`${this.post.authorId}`)}>
+              onClick={() => history.push(`/creators/${this.post.authorId}`)}>
               by {this.post.authorName}
             </Typography>
           </Box>
