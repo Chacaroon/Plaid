@@ -26,7 +26,6 @@ const Post = observer(
     render() {
       const {comments} = this.service.state
       const {fetchComments} = this.service
-      console.log(this.post.content)
       return (
         <Paper>
           <Box p={1} mt={3} pl={2}>
