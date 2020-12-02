@@ -35,5 +35,10 @@ namespace BLL.Services
             var sub = _subscriptionsLevelRepository.GetById(id);
             _subscriptionsLevelRepository.Delete(sub);
         }
+
+        public IEnumerable<SubscriptionLevel> GetAllByCreatorId(int creatorId)
+        {
+            return _subscriptionsLevelRepository.GetAll(s => s.Creator.Id == creatorId);
+        }
     }
 }
