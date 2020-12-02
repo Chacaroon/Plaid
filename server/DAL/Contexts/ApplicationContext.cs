@@ -16,6 +16,8 @@ namespace DAL.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasMany(s => s.Subscriptions).WithOne(p => p.User).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Message>().HasOne(m => m.Recipient).WithOne().OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Message>().HasOne(m => m.Sender).WithOne().OnDelete(DeleteBehavior.NoAction);
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().HasData(new[] {
                 new User()
@@ -35,5 +37,7 @@ namespace DAL.Contexts
         public DbSet<Comment> Comments { get; set; }
         public DbSet<SubscriptionLevel> SubscriptionLevels { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        
     }
 }

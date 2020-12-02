@@ -61,5 +61,13 @@ namespace Server.Controllers
             var posts = _mapper.Map<IEnumerable<PostModel>>(_postService.GetAllPosts(userId));
             return Ok(posts);
         }
+
+        //[HttpGet("access")]
+        //public IActionResult GetAllAccessedPosts()
+        //{
+        //    Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
+        //    var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
+        //    _postService.GetAllAccessedPosts(user);
+        //}
     }
 }

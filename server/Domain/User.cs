@@ -12,10 +12,10 @@ namespace Domain
         public string Bio { get; set; }
         public string HashPassword { get; set; }
         public RoleEnum Roles { get; set; }
-        public IEnumerable<RefreshToken> RefreshTokens { get; set; }
-        public IEnumerable<Post> Posts { get; set; }
-        public IEnumerable<Subscription> Subscriptions { get; set; }
-        public IEnumerable<SubscriptionLevel> SubscriptionLevels { get; set; }
+        public ICollection<RefreshToken> RefreshTokens { get; set; }
+        public ICollection<Post> Posts { get; set; }
+        public ICollection<Subscription> Subscriptions { get; set; }
+        public ICollection<SubscriptionLevel> SubscriptionLevels { get; set; }
 
 
         public User()

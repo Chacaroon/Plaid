@@ -31,6 +31,14 @@ namespace Server.Controllers
             _subscriptionService = subscriptionService;
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetSubLevel([FromQuery] SubLevelIdModel model)
+        {
+            var subs =_subscriptionLevelService.GetAllByCreatorId(model.Id);
+
+            return Ok(subs);
+        }
+
         [Authorize(Roles = "Creator")]
         [HttpPost]
         public IActionResult AddSubscriptionLevel([FromBody]SubLevelModel model)
