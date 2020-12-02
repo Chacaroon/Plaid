@@ -40,7 +40,7 @@ namespace Server.Controllers
         }
 
         [Authorize(Roles = "Creator")]
-        [HttpPost]
+        [HttpPost("add-level")]
         public IActionResult AddSubscriptionLevel([FromBody]SubLevelModel model)
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
