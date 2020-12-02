@@ -7,7 +7,7 @@ namespace BLL.Interfaces
 {
     public interface IPostService
     {
-        void CreateNewPost(string post, User user);
+        void CreateNewPost(string post, User user, int subId);
         Post GetPostById(int id);
         IEnumerable<Post> GetAllPosts(int id);
     }

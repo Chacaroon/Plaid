@@ -25,12 +25,15 @@ namespace BLL.Services
             _subscriptionRepository = subscriptionRepository;
         }
 
-        public void CreateNewPost(string post, User user)
+        public void CreateNewPost(string post, User user, int subId)
         {
+            var subLevel = _subscriptionLevelRepository.GetById(subId);
+
             _postRepository.Add(new Post()
             {
                 Content = post,
-                User = user
+                User = user,
+                SubscriptionLevel = subLevel
             });
         }
 
