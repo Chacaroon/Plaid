@@ -85,7 +85,7 @@ namespace Server.Controllers
         [HttpGet("delete/{id}")]
         public IActionResult DeleteSubLevel([FromRoute] SubLevelIdModel model)
         {
-            if (_subscriptionService.IsExist(model.Id))
+            if (!_subscriptionService.IsExist(model.Id))
             {
                 return BadRequest(new ErrorMessageModel()
                 {
