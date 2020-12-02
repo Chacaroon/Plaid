@@ -55,8 +55,8 @@ namespace Server.Controllers
         [HttpPost("subscription")]
         public IActionResult AddSubscription([FromBody] SubLevelCreatorIdModel model)
         {
-           
-            var user = _userService.GetCurrentUserById(model.CreatorId);
+            Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
+            var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
 
             if (user == null)
             {

@@ -14,7 +14,7 @@ type IPost = {
 }
 
 interface ICreatePost {
-  content: string,
+  post: string,
   subscriptionLevelId: number
 }
 

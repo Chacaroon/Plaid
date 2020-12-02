@@ -47,7 +47,7 @@ export default class Service extends WithLoading {
   handleSubmit = action(
     async () => {
       await addPost({
-        content: this.state.inputPost,
+        post: this.state.inputPost,
         subscriptionLevelId: this.state.selectedLevelId
       })
       this.state.isEditing = false

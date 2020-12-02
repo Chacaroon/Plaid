@@ -8,6 +8,5 @@ namespace Server.Models.SubController
     public class SubLevelCreatorIdModel
     {
         public int SubLevelId { get; set; }
-        public int CreatorId { get; set; }
     }
 }

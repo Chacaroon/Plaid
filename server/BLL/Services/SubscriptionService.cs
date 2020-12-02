@@ -21,12 +21,12 @@ namespace BLL.Services
         }
         public void AddSubscription(SubscriptionLevel subLevel, User user)
         {
-            var sub = new Subscription()
+            var existingSub = _subscriptionRepository.GetAll().FirstOrDefault(s => s.SubscriptionLevel.Creator == subLevel.Creator);
+            if (existingSub != null)
             {
-                SubscriptionLevel = subLevel,
-                User = user
-            };
-            _subscriptionRepository.Add(sub);
+                _subscriptionRepository.Delete(existingSub);
+            }
+            _subscriptionRepository.Add(new Subscription { SubscriptionLevel = subLevel, User = user });
         }
 
         public bool IsExist(int id)

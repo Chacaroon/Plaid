@@ -1,6 +1,10 @@
 import {action, observable} from 'mobx'
 import WithLoading from '../../../services/WithLoading'
-import {getSubscriptionLevels, ISubscriptionLevel} from '../../../apis/SubscriptionLevels'
+import {
+  getSubscriptionLevels,
+  ISubscriptionLevel,
+  subscribe
+} from '../../../apis/SubscriptionLevels'
 
 interface IServiceParams {
   creatorId: number
@@ -40,7 +44,7 @@ export default class Service extends WithLoading {
 
   handleSubscribe = action (
     async () => {
-        console.log(`subscribing to ${this.state.selectedLevelId}`) //TODO: make call to subscription api
+        subscribe({creatorId: this.creatorId, subLevelId: this.state.selectedLevelId})
     }
   )
 }
