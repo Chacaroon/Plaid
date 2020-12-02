@@ -7,6 +7,7 @@ namespace Server.Models.SubController
 {
     public class SubLevelModel
     {
+        public string Name { get; set; }
         public float Cost { get; set; }
 
     }

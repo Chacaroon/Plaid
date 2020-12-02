@@ -6,6 +6,7 @@ namespace Domain
 {
     public class SubscriptionLevel : BaseEntity
     {
+        public string Name { get; set; }
         public float Cost { get; set; }
         public User Creator { get; set; }
         public IEnumerable<Subscription> Subscriptions { get; set; }

@@ -11,12 +11,18 @@ namespace BLL.Services
     {
         private readonly IPostRepository _postRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ISubscriptionLevelRepository _subscriptionLevelRepository;
+        private readonly ISubscriptionRepository _subscriptionRepository;
 
         public PostService(IPostRepository postRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            ISubscriptionLevelRepository subscriptionLevelRepository,
+            ISubscriptionRepository subscriptionRepository)
         {
             _postRepository = postRepository;
             _userRepository = userRepository;
+            _subscriptionLevelRepository = subscriptionLevelRepository;
+            _subscriptionRepository = subscriptionRepository;
         }
 
         public void CreateNewPost(string post, User user)
@@ -37,5 +43,11 @@ namespace BLL.Services
         {
             return _userRepository.GetById(id).Posts;
         }
+
+        //TODO: Realize
+        //public IEnumerable<Post> GetAllAccessedPosts(User user)
+        //{
+        //    return;    
+        //}
     }
 }
