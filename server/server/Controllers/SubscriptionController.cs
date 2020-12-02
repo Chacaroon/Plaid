@@ -32,7 +32,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSubLevel([FromQuery] SubLevelIdModel model)
+        public IActionResult GetSubLevel([FromRoute] SubLevelIdModel model)
         {
             var subs =_subscriptionLevelService.GetAllByCreatorId(model.Id);
 
@@ -40,12 +40,12 @@ namespace Server.Controllers
         }
 
         [Authorize(Roles = "Creator")]
-        [HttpPost]
+        [HttpPost("add-level")]
         public IActionResult AddSubscriptionLevel([FromBody]SubLevelModel model)
         {
             Request.Cookies.TryGetValue("accessToken", out var requestAccessToken);
             var user = _userService.GetCurrentUser(_tokenService.GetCurrentToken(requestAccessToken));
-            _subscriptionLevelService.AddSubLevel(model.Cost, user);
+            _subscriptionLevelService.AddSubLevel(model.Cost, model.Name, user);
 
             return Ok();
         }

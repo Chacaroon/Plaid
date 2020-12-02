@@ -15,11 +15,12 @@ namespace BLL.Services
         {
             _subscriptionsLevelRepository = subscriptionsLevelRepository;
         }
-        public void AddSubLevel(float cost, User creator)
+        public void AddSubLevel(float cost, string name, User creator)
         {
             var subLevel = new SubscriptionLevel()
             {
                 Cost = cost,
+                Name = name,
                 Creator = creator
             };
             _subscriptionsLevelRepository.Add(subLevel);
