@@ -50,7 +50,7 @@ namespace Server.Controllers
 
             var sanitizer = new HtmlSanitizer();
 
-            _postService.CreateNewPost(sanitizer.Sanitize(post.Post), user);
+            _postService.CreateNewPost(sanitizer.Sanitize(post.Post), user, post.SubscriptionLevelId);
 
             return Ok();
         }

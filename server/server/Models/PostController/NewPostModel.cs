@@ -8,5 +8,6 @@ namespace Server.Models.PostController
     public class NewPostModel
     {
         public string Post { get; set; }
+        public int SubscriptionLevelId { get; set; }
     }
 }
