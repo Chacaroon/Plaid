@@ -3,7 +3,9 @@ using DAL.Interfaces;
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace BLL.Services
 {
@@ -28,7 +30,7 @@ namespace BLL.Services
 
         public SubscriptionLevel GetSubscriptionLevelById(int id)
         {
-            return _subscriptionsLevelRepository.GetById(id);
+            return _subscriptionsLevelRepository.GetAll(s => s.Id == id).Include(s => s.Creator).SingleOrDefault();
         }
 
         public void Delete(int id)
