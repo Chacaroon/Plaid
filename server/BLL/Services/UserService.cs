@@ -58,5 +58,10 @@ namespace BLL.Services
         {
             return _userRepository.GetAll(c => c.Category == category);
         }
+        
+        public IEnumerable<User> Search(string name)
+        {
+            return _userRepository.Search(name);
+        }
     }
 }
