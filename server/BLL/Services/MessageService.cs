@@ -3,6 +3,7 @@ using DAL.Interfaces;
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BLL.Services
@@ -27,6 +28,14 @@ namespace BLL.Services
             };
 
             _messageRepository.Add(message);
+        }
+
+        public IEnumerable<User> GetAllRecipients(User user)
+        {
+            var recipients = _messageRepository.GetAll(m => m.SenderId == user.Id).Select(m => m.Recipient).Distinct();
+            var senders = _messageRepository.GetAll(m => m.RecipientId == user.Id).Select(m => m.Sender).Distinct();
+
+            return recipients.Union(senders).Distinct();
         }
     }
 }
