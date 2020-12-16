@@ -37,5 +37,10 @@ namespace BLL.Services
 
             return recipients.Union(senders).Distinct();
         }
+
+        public IEnumerable<Message> GetAllUserMessages(User user)
+        {
+            return _messageRepository.GetAll(m => m.SenderId == user.Id || m.RecipientId == user.Id);
+        }
     }
 }

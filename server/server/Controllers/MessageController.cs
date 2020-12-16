@@ -40,6 +40,15 @@ namespace Server.Controllers
             return Ok();
         }
 
+        [HttpGet("user/{id}")]
+        public IActionResult GetAllMessages([FromRoute] int id)
+        {
+            var user = _userService.GetCurrentUserById(id);
+            var messages = _messageService.GetAllUserMessages(user);
+
+            return Ok(messages);
+        }
+
         //Get all users that we have messages with
         [HttpGet("recipients")]
         public IActionResult GetRecipients()

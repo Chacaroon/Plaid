@@ -9,5 +9,6 @@ namespace BLL.Interfaces
     {
         void SendMessage(User sender, User recipient, DateTime dateTime, string content);
         IEnumerable<User> GetAllRecipients(User user);
+        IEnumerable<Message> GetAllUserMessages(User user);
     }
 }
