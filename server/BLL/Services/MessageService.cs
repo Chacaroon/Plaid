@@ -40,7 +40,8 @@ namespace BLL.Services
 
         public IEnumerable<Message> GetAllUserMessages(User user)
         {
-            return _messageRepository.GetAll(m => m.SenderId == user.Id || m.RecipientId == user.Id);
+            return _messageRepository.GetAll(m => m.SenderId == user.Id || m.RecipientId == user.Id)
+                .OrderBy(m => m.Date);
         }
     }
 }
