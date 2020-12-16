@@ -11,8 +11,6 @@ namespace DAL
 {
     public class SubscriptionLevelRepository : BaseRepository<SubscriptionLevel>, ISubscriptionLevelRepository
     {
-        protected override IQueryable<SubscriptionLevel> _baseQuery => _context.Set<SubscriptionLevel>()
-            .Include(s => s.Creator);
         public SubscriptionLevelRepository(ApplicationContext context) : base(context)
         {
         }
