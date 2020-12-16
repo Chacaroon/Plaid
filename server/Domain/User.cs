@@ -11,6 +11,7 @@ namespace Domain
         public string Tag { get; set; }
         public string Bio { get; set; }
         public string HashPassword { get; set; }
+        public string Category { get; set; }
         public RoleEnum Roles { get; set; }
         public ICollection<RefreshToken> RefreshTokens { get; set; }
         public ICollection<Post> Posts { get; set; }

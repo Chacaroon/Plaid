@@ -58,15 +58,6 @@ namespace server.Controllers
             return Ok(_mapper.Map<User, UserModel>(user));
         }
 
-        [HttpGet("")]
-        public IActionResult Test()
-        {
-            return Ok(new
-            {
-                str = "All fine"
-            });
-        }
-
         [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel register)

@@ -22,5 +22,7 @@ namespace Server.Models.AccountController
         public string Password { get; set; }
 
         public bool IsCreator { get; set; }
+
+        public string Category { get; set; }
     }
 }
