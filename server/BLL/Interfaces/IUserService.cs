@@ -14,5 +14,6 @@ namespace BLL.Interfaces
         User GetCurrentUser(JwtSecurityToken token);
         public User GetCurrentUserById(int id);
         void ChangeBio(User user, string bio);
+        IEnumerable<User> GetAllByCategory(string category);
     }
 }

@@ -53,5 +53,10 @@ namespace BLL.Services
         {
             _userRepository.UpdateBIO(user, bio);
         }
+
+        public IEnumerable<User> GetAllByCategory(string category)
+        {
+            return _userRepository.GetAll(c => c.Category == category);
+        }
     }
 }
