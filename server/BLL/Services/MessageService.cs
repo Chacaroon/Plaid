@@ -16,12 +16,13 @@ namespace BLL.Services
             _messageRepository = messageRepository;
         }
 
-        public void SendMessage(User sender, User recipient, string content)
+        public void SendMessage(User sender, User recipient, DateTime dateTime, string content)
         {
             var message = new Message()
             {
                 Sender = sender,
                 Recipient = recipient,
+                Date = dateTime,
                 Content = content
             };
 

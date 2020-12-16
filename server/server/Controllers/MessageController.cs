@@ -31,7 +31,7 @@ namespace Server.Controllers
             var sender = _userService.GetCurrentUserById(model.SenderId);
             var recipient = _userService.GetCurrentUserById(model.RecipientId);
 
-            _messageService.SendMessage(sender, recipient, model.Content);
+            _messageService.SendMessage(sender, recipient, model.Date, model.Content);
 
             return Ok();
         }

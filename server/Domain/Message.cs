@@ -10,6 +10,7 @@ namespace Domain
         public User Sender { get; set; }
         public int RecipientId{ get; set; }
         public User Recipient { get; set; }
+        public DateTime Date { get; set; }
         public string Content { get; set; }
     }
 }
