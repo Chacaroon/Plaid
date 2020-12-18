@@ -57,18 +57,26 @@ const Header = observer(
               <Grid item xs={8} container justify={'center'}>
                 {isLoggedIn &&
                 <Box display={'flex'} alignItems={'center'}>
-                    <Button
-                        onClick={() => history.push('/recommendations')}>
-                        Recommendations
-                    </Button>
-                    <Button
-                        onClick={() => history.push('/feed')}>
-                        Feed
-                    </Button>
+                  {/*<Button*/}
+                  {/*    onClick={() => history.push('/recommendations')}>*/}
+                  {/*    Recommendations*/}
+                  {/*</Button>*/}
+                  {/*<Button*/}
+                  {/*    onClick={() => history.push('/feed')}>*/}
+                  {/*    Feed*/}
+                  {/*</Button>*/}
+                  <Button
+                    onClick={() => history.push('/categories')}>
+                    Categories
+                  </Button>
+                  <Button
+                    onClick={() => history.push('/search')}>
+                    Search
+                  </Button>
                   {isCreator &&
                   <Button
-                      onClick={() => history.push('/creators/' + userStore.user.id)}>
-                      My blog
+                    onClick={() => history.push('/creators/' + userStore.user.id)}>
+                    My blog
                   </Button>
                   }
                 </Box>
@@ -77,38 +85,38 @@ const Header = observer(
               <Grid item xs={2} container justify={'flex-end'}>
                 {isLoggedIn &&
                 <Box style={{marginLeft: 'auto'}}>
-                    <IconButton
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleClick}
-                        color="inherit"
-                    >
-                        <AccountCircle/>
-                    </IconButton>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                    color="inherit"
+                  >
+                    <AccountCircle/>
+                  </IconButton>
                 </Box>
                 }
                 {!isLoggedIn &&
                 <Box style={{marginLeft: 'auto'}}>
-                    <Button onClick={handleRegisterClick}>
-                        Register
-                    </Button>
-                    <Button onClick={handleLoginClick}>
-                        Login
-                    </Button>
+                  <Button onClick={handleRegisterClick}>
+                    Register
+                  </Button>
+                  <Button onClick={handleLoginClick}>
+                    Login
+                  </Button>
                 </Box>
                 }
                 {isLoggedIn &&
                 <Menu
-                    anchorEl={menuAnchor}
-                    open={!!menuAnchor}
-                    onClose={handleClose}
+                  anchorEl={menuAnchor}
+                  open={!!menuAnchor}
+                  onClose={handleClose}
                 >
-                    <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                    <MenuItem onClick={handleOrders}>Orders</MenuItem>
-                    <MenuItem onClick={handleInbox}>Inbox</MenuItem>
-                    <MenuItem onClick={handleSettings}>Settings</MenuItem>
-                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                  <MenuItem onClick={handleOrders}>Orders</MenuItem>
+                  <MenuItem onClick={handleInbox}>Inbox</MenuItem>
+                  <MenuItem onClick={handleSettings}>Settings</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
                 }
               </Grid>

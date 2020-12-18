@@ -1,9 +1,9 @@
 import WithLoading from '../../services/WithLoading'
-import {getChats, IChat} from '../../apis/Messages'
+import {getChats} from '../../apis/Messages'
 import {action, observable} from 'mobx'
 
 interface IState {
-  chats: Array<IChat>
+  chats: Array<any>
 }
 
 export default class Service extends WithLoading {
@@ -19,6 +19,7 @@ export default class Service extends WithLoading {
   fetchChats = action(
     async () => {
       this.state.chats = await getChats()
+      console.log((await getChats()))
     }
   )
 

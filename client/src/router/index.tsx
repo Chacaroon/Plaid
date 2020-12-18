@@ -13,6 +13,8 @@ import Settings from '../components/Settings'
 import MyOrders from '../components/MyOrders'
 import Inbox from '../components/Inbox'
 import Chat from '../components/Inbox/Chat'
+import SearchCreators from '../components/SearchCreators'
+import CategorySearch from '../components/CategorySearch'
 
 export default function () {
     return (
@@ -28,6 +30,8 @@ export default function () {
                     <Route exact path={'/inbox'} render={() => <Inbox/>}/>
                     <Route exact path={'/inbox/:chatId'} render={() => <Chat/>}/>
                     <Route exact path={'/feed'} render={() => <Feed/>}/>
+                    <Route exact path={'/search'} render={() => <SearchCreators/>}/>
+                    <Route exact path={'/categories'} render={() => <CategorySearch/>}/>
                     <Route exact path={'/recommendations'} render={() => <Recommendations/>}/>
                     <Route exact path={'/settings'} render={() => <Settings/>}/>
                 </Switch>

@@ -4,6 +4,7 @@ import {Box, Button, Grid, Paper, TextField, Typography} from '@material-ui/core
 import Service from './service'
 import {matchPath} from 'react-router'
 import {routerStore} from '../../../stores/RouterStore'
+import userStore from '../../../stores/UserStore'
 
 interface IProps {
 
@@ -33,7 +34,7 @@ const Chat = observer(
                   {messages.map(message => <Box key={message.id}>
                     <Paper style={{backgroundColor: '#f6f6f6'}}>
                       <Box p={1} ml={1} mb={2}>
-                        <Typography>{message.senderName} says:</Typography>
+                        <Typography>{message.senderId == userStore.user.id ? "you:" : "to you:"}</Typography>
                         <Box ml={2} mt={1}><Typography>{message.content}</Typography></Box>
                       </Box>
                     </Paper>

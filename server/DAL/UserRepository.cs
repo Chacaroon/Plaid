@@ -12,8 +12,7 @@ namespace DAL
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        protected override IQueryable<User> _baseQuery => _context.Set<User>()
-            .Include(x => x.Posts);
+        protected override IQueryable<User> _baseQuery => _context.Set<User>();
         public UserRepository(ApplicationContext context)
             : base(context)
         {

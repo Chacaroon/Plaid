@@ -1,9 +1,9 @@
-import {Box, Button, Grid, Paper, Typography} from '@material-ui/core'
+import {Box, Button, Grid, MenuItem, Paper, Typography} from '@material-ui/core'
 import {observer} from 'mobx-react'
 import React from 'react'
 import {Field, Form, Formik} from 'formik'
 import Service from './service'
-import {TextField, Checkbox} from 'formik-material-ui'
+import {TextField, Checkbox, Select} from 'formik-material-ui'
 
 interface IProps {
 }
@@ -30,7 +30,8 @@ const RegistrationForm = observer(
         validateName,
         validateTag,
         validateEmail,
-        validatePassword
+        validatePassword,
+        categories
       } = this.service
 
       return (
@@ -75,6 +76,14 @@ const RegistrationForm = observer(
                           type={'password'}
                           validate={validatePassword}
                         />
+                        <Field
+                          style={fieldStyle}
+                          component={Select}
+                          name={'category'}
+                          label={'Category'}
+                        >
+                          {categories.map((cat,i) => <MenuItem key={i} value={cat}>{cat}</MenuItem>)}
+                        </Field>
                         <Grid item container justify={'center'}
                               alignItems={'center'} style={fieldStyle}>
                           <Typography>I am a creator</Typography>

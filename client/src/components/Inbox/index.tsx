@@ -26,7 +26,7 @@ const Inbox = observer(
               {chats.map(chat => <Box mb={3} key={chat.id}>
                 <Paper variant={'outlined'}>
                   <Box p={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-                    <Typography>{chat.title} with {chat.userName}</Typography>
+                    <Typography>Chat with {chat.name}</Typography>
                     <Button variant={'contained'} onClick={() => history.push('/inbox/' + chat.id)}>Open</Button>
                   </Box>
                 </Paper>

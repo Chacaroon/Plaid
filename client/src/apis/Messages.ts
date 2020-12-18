@@ -1,51 +1,29 @@
-interface IMessage {
-  id: number
-  senderName: string
+import axios from 'axios'
+
+const api = axios.create({
+  baseURL: 'https://localhost:5001/api/message',
+  timeout: 5000,
+  withCredentials: true
+})
+
+interface INewMessage {
+  senderId: number
+  recipientId: number
+  date: Date
   content: string
 }
 
-interface IChat {
-  id: number
-  title: string
-  userId: number
-  userName: string
+
+async function getChats(): Promise<Array<any>> {
+  return api.get('recipients').then(res => res.data)
 }
 
-async function getChats(): Promise<Array<IChat>> {
-  return [
-    {
-      id: 1,
-      title: 'Chat 1',
-      userId: 1,
-      userName: 'Chatter 1'
-    },
-    {
-      id: 2,
-      title: 'Chat 2',
-      userId: 2,
-      userName: 'Chatter 2'
-    },
-    {
-      id: 3,
-      title: 'Chat 3',
-      userId: 3,
-      userName: 'Chatter 3'
-    },
-  ]
+async function getMessages(chatId: number): Promise<Array<any>> {
+  return api.get(`user/${chatId}`).then(res => res.data)
 }
 
-async function getMessages(chatId: number): Promise<Array<IMessage>> {
-  return [
-    {id: 1, senderName: 'user 1', content: 'message from user 1'},
-    {id: 2, senderName: 'user 2', content: 'message from user 2'},
-    {id: 3, senderName: 'user 1', content: 'message from user 1'},
-  ]
-
+async function sendMessage(message: INewMessage) {
+  return api.post('', message).then(console.log).catch(console.log)
 }
 
-async function sendMessage(chatId: number) {
-
-}
-
-export type {IChat, IMessage}
 export {getChats, getMessages, sendMessage}

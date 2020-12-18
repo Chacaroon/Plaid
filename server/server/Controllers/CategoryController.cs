@@ -30,7 +30,8 @@ namespace Server.Controllers
         [HttpGet("{category}/creators")]
         public IActionResult GetAllCreatorsByCategory([FromRoute] string category)
         {
-            return Ok(_userService.GetAllByCategory(category));
+            var t = _userService.GetAllByCategory(category);
+            return Ok(t);
         }
     }
 }

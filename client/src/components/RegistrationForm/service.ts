@@ -11,8 +11,11 @@ export default class Service {
     tag: '',
     email: '',
     password: '',
-    isCreator: false
+    isCreator: false,
+    category: ''
   }
+
+  readonly categories = ["none", "music", "art", "games", "literature", "travel"]
 
   handleSubmit = action(async (values: IFields) => {
       let data = await register(values)

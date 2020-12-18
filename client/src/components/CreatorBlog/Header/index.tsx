@@ -39,7 +39,7 @@ const Header = observer(
                 <Box mb={2}><Button variant={'contained'} fullWidth>Make an order</Button></Box>
                 <Button variant={'contained'}
                         fullWidth
-                        onClick={() => history.push('/inbox')}>
+                        onClick={() => history.push(`/inbox/${id}`)}>
                     Send a message
                 </Button>
             </Box>}

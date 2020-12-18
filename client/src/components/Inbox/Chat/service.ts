@@ -1,10 +1,11 @@
 import WithLoading from '../../../services/WithLoading'
 import {action, observable} from 'mobx'
-import {getMessages, IMessage, sendMessage} from '../../../apis/Messages'
+import {getMessages, sendMessage} from '../../../apis/Messages'
 import {addComment} from '../../../apis/Comments'
+import userStore from '../../../stores/UserStore'
 
 interface IState {
-  messages: Array<IMessage>
+  messages: Array<any>
   inputMessage: string
 }
 
@@ -14,15 +15,17 @@ export default class Service extends WithLoading {
     inputMessage: ''
   })
   chatId: number
+
   constructor(chatId: number) {
     super()
     this.chatId = chatId
     this.fetchMessages()
   }
 
-  fetchMessages = action (
+  fetchMessages = action(
     async () => {
       this.state.messages = await getMessages(this.chatId)
+      console.log(await getMessages(this.chatId))
     }
   )
 
@@ -34,7 +37,12 @@ export default class Service extends WithLoading {
 
   handleSubmit = action(
     async () => {
-      await sendMessage(this.chatId)
+      await sendMessage({
+        senderId: userStore.user.id,
+        recipientId: Number(this.chatId),
+        date: new Date(),
+        content: this.state.inputMessage
+      })
       await this.fetchMessages()
       this.state.inputMessage = ''
     }
