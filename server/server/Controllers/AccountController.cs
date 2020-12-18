@@ -58,15 +58,6 @@ namespace server.Controllers
             return Ok(_mapper.Map<User, UserModel>(user));
         }
 
-        [HttpGet("")]
-        public IActionResult Test()
-        {
-            return Ok(new
-            {
-                str = "All fine"
-            });
-        }
-
         [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel register)
@@ -200,10 +191,10 @@ namespace server.Controllers
         }
 
         [HttpGet("user-id")]
-        public IActionResult GetCurrentUserById([FromQuery]int id)
+        public IActionResult GetCurrentUserById([FromQuery] int id)
         {
             var user = _userService.GetCurrentUserById(id);
-            
+
             if (user == null)
             {
                 return BadRequest(new ErrorMessageModel()
@@ -213,6 +204,12 @@ namespace server.Controllers
             }
 
             return Ok(_mapper.Map<UserModel>(user));
+        }
+
+        [HttpGet("search/{username}")]
+        public IActionResult Search([FromRoute] string username)
+        {
+            return Ok(_userService.Search(username));
         }
     }
 }

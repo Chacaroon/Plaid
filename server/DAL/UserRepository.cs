@@ -29,6 +29,13 @@ namespace DAL
             _context.SaveChanges();
         }
 
+        public IEnumerable<User> Search(string name)
+        {
+            var pattern = "%" + name + "%";
+            return _baseQuery.Where(u => EF.Functions.Like(u.Name, pattern) 
+                && u.Roles.HasFlag(Common.Enums.RoleEnum.Creator));
+        }
+
     }
 }
 
